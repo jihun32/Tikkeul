@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA793BE52D50C9FD0028E7E2 /* .gitignore */; };
+		CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA793C022D50CC270028E7E2 /* ComposableArchitecture */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CA793BC92D50C4FA0028E7E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,22 +32,45 @@
 		CA793BB32D50C4F70028E7E2 /* Tikkeul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tikkeul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA793BE52D50C9FD0028E7E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulTests/TikkeulTests.swift,
+				Test/TikkeulUITests/TikkeulUITests.swift,
+				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
+			);
+			target = CA793BB22D50C4F70028E7E2 /* Tikkeul */;
+		};
+		CA793BF62D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulTests/TikkeulTests.swift,
+			);
+			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
+		};
+		CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulUITests/TikkeulUITests.swift,
+				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
+			);
+			target = CA793BD12D50C4FB0028E7E2 /* TikkeulUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CA793BB52D50C4F70028E7E2 /* Tikkeul */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */,
+				CA793BF62D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
+				CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */,
+			);
 			path = Tikkeul;
-			sourceTree = "<group>";
-		};
-		CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TikkeulTests;
-			sourceTree = "<group>";
-		};
-		CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TikkeulUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +104,8 @@
 		CA793BAA2D50C4F70028E7E2 = {
 			isa = PBXGroup;
 			children = (
+				CA793BE52D50C9FD0028E7E2 /* .gitignore */,
 				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
-				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
-				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
 				CA793BB42D50C4F70028E7E2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +140,7 @@
 			);
 			name = Tikkeul;
 			packageProductDependencies = (
+				CA793C022D50CC270028E7E2 /* ComposableArchitecture */,
 			);
 			productName = Tikkeul;
 			productReference = CA793BB32D50C4F70028E7E2 /* Tikkeul.app */;
@@ -129,9 +158,6 @@
 			);
 			dependencies = (
 				CA793BCA2D50C4FA0028E7E2 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
 			);
 			name = TikkeulTests;
 			packageProductDependencies = (
@@ -152,9 +178,6 @@
 			);
 			dependencies = (
 				CA793BD42D50C4FB0028E7E2 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
 			);
 			name = TikkeulUITests;
 			packageProductDependencies = (
@@ -215,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +596,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA793C022D50CC270028E7E2 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA793C012D50CC270028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CA793BAB2D50C4F70028E7E2 /* Project object */;
 }
