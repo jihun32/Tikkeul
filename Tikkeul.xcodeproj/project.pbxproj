@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		CA793BC92D50C4FA0028E7E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA793BAB2D50C4F70028E7E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA793BB22D50C4F70028E7E2;
+			remoteInfo = Tikkeul;
+		};
+		CA793BD32D50C4FB0028E7E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA793BAB2D50C4F70028E7E2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA793BB22D50C4F70028E7E2;
+			remoteInfo = Tikkeul;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CA793BB32D50C4F70028E7E2 /* Tikkeul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tikkeul.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CA793BB52D50C4F70028E7E2 /* Tikkeul */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Tikkeul;
+			sourceTree = "<group>";
+		};
+		CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TikkeulTests;
+			sourceTree = "<group>";
+		};
+		CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TikkeulUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA793BB02D50C4F70028E7E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA793BC52D50C4FA0028E7E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA793BCF2D50C4FB0028E7E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA793BAA2D50C4F70028E7E2 = {
+			isa = PBXGroup;
+			children = (
+				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
+				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
+				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
+				CA793BB42D50C4F70028E7E2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA793BB42D50C4F70028E7E2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA793BB32D50C4F70028E7E2 /* Tikkeul.app */,
+				CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */,
+				CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CA793BB22D50C4F70028E7E2 /* Tikkeul */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA793BDC2D50C4FB0028E7E2 /* Build configuration list for PBXNativeTarget "Tikkeul" */;
+			buildPhases = (
+				CA793BAF2D50C4F70028E7E2 /* Sources */,
+				CA793BB02D50C4F70028E7E2 /* Frameworks */,
+				CA793BB12D50C4F70028E7E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
+			);
+			name = Tikkeul;
+			packageProductDependencies = (
+			);
+			productName = Tikkeul;
+			productReference = CA793BB32D50C4F70028E7E2 /* Tikkeul.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CA793BC72D50C4FA0028E7E2 /* TikkeulTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA793BDF2D50C4FB0028E7E2 /* Build configuration list for PBXNativeTarget "TikkeulTests" */;
+			buildPhases = (
+				CA793BC42D50C4FA0028E7E2 /* Sources */,
+				CA793BC52D50C4FA0028E7E2 /* Frameworks */,
+				CA793BC62D50C4FA0028E7E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA793BCA2D50C4FA0028E7E2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
+			);
+			name = TikkeulTests;
+			packageProductDependencies = (
+			);
+			productName = TikkeulTests;
+			productReference = CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CA793BD12D50C4FB0028E7E2 /* TikkeulUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA793BE22D50C4FB0028E7E2 /* Build configuration list for PBXNativeTarget "TikkeulUITests" */;
+			buildPhases = (
+				CA793BCE2D50C4FB0028E7E2 /* Sources */,
+				CA793BCF2D50C4FB0028E7E2 /* Frameworks */,
+				CA793BD02D50C4FB0028E7E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA793BD42D50C4FB0028E7E2 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
+			);
+			name = TikkeulUITests;
+			packageProductDependencies = (
+			);
+			productName = TikkeulUITests;
+			productReference = CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA793BAB2D50C4F70028E7E2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					CA793BB22D50C4F70028E7E2 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					CA793BC72D50C4FA0028E7E2 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = CA793BB22D50C4F70028E7E2;
+					};
+					CA793BD12D50C4FB0028E7E2 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = CA793BB22D50C4F70028E7E2;
+					};
+				};
+			};
+			buildConfigurationList = CA793BAE2D50C4F70028E7E2 /* Build configuration list for PBXProject "Tikkeul" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CA793BAA2D50C4F70028E7E2;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CA793BB42D50C4F70028E7E2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA793BB22D50C4F70028E7E2 /* Tikkeul */,
+				CA793BC72D50C4FA0028E7E2 /* TikkeulTests */,
+				CA793BD12D50C4FB0028E7E2 /* TikkeulUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA793BB12D50C4F70028E7E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA793BC62D50C4FA0028E7E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA793BD02D50C4FB0028E7E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CA793BAF2D50C4F70028E7E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA793BC42D50C4FA0028E7E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA793BCE2D50C4FB0028E7E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CA793BCA2D50C4FA0028E7E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA793BB22D50C4F70028E7E2 /* Tikkeul */;
+			targetProxy = CA793BC92D50C4FA0028E7E2 /* PBXContainerItemProxy */;
+		};
+		CA793BD42D50C4FB0028E7E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA793BB22D50C4F70028E7E2 /* Tikkeul */;
+			targetProxy = CA793BD32D50C4FB0028E7E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CA793BDA2D50C4FB0028E7E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CA793BDB2D50C4FB0028E7E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CA793BDD2D50C4FB0028E7E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tikkeul/Preview Content\"";
+				DEVELOPMENT_TEAM = WBG9V97XP4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CA793BDE2D50C4FB0028E7E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Tikkeul/Preview Content\"";
+				DEVELOPMENT_TEAM = WBG9V97XP4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CA793BE02D50C4FB0028E7E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WBG9V97XP4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tikkeul.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tikkeul";
+			};
+			name = Debug;
+		};
+		CA793BE12D50C4FB0028E7E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WBG9V97XP4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tikkeul.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tikkeul";
+			};
+			name = Release;
+		};
+		CA793BE32D50C4FB0028E7E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WBG9V97XP4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tikkeul;
+			};
+			name = Debug;
+		};
+		CA793BE42D50C4FB0028E7E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WBG9V97XP4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Tikkeul;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CA793BAE2D50C4F70028E7E2 /* Build configuration list for PBXProject "Tikkeul" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA793BDA2D50C4FB0028E7E2 /* Debug */,
+				CA793BDB2D50C4FB0028E7E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA793BDC2D50C4FB0028E7E2 /* Build configuration list for PBXNativeTarget "Tikkeul" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA793BDD2D50C4FB0028E7E2 /* Debug */,
+				CA793BDE2D50C4FB0028E7E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA793BDF2D50C4FB0028E7E2 /* Build configuration list for PBXNativeTarget "TikkeulTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA793BE02D50C4FB0028E7E2 /* Debug */,
+				CA793BE12D50C4FB0028E7E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA793BE22D50C4FB0028E7E2 /* Build configuration list for PBXNativeTarget "TikkeulUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA793BE32D50C4FB0028E7E2 /* Debug */,
+				CA793BE42D50C4FB0028E7E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CA793BAB2D50C4F70028E7E2 /* Project object */;
+}
