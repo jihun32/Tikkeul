@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA793BE52D50C9FD0028E7E2 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CA793BC92D50C4FA0028E7E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		CA793BB32D50C4F70028E7E2 /* Tikkeul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tikkeul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA793BE52D50C9FD0028E7E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		CA793BAA2D50C4F70028E7E2 = {
 			isa = PBXGroup;
 			children = (
+				CA793BE52D50C9FD0028E7E2 /* .gitignore */,
 				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
 				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
 				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
