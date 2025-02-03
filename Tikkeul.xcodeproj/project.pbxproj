@@ -34,20 +34,42 @@
 		CA793BE52D50C9FD0028E7E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulTests/TikkeulTests.swift,
+				Test/TikkeulUITests/TikkeulUITests.swift,
+				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
+			);
+			target = CA793BB22D50C4F70028E7E2 /* Tikkeul */;
+		};
+		CA793BF62D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulTests/TikkeulTests.swift,
+			);
+			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
+		};
+		CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulUITests/TikkeulUITests.swift,
+				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
+			);
+			target = CA793BD12D50C4FB0028E7E2 /* TikkeulUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CA793BB52D50C4F70028E7E2 /* Tikkeul */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */,
+				CA793BF62D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
+				CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */,
+			);
 			path = Tikkeul;
-			sourceTree = "<group>";
-		};
-		CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TikkeulTests;
-			sourceTree = "<group>";
-		};
-		CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TikkeulUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -82,8 +104,6 @@
 			children = (
 				CA793BE52D50C9FD0028E7E2 /* .gitignore */,
 				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
-				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
-				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
 				CA793BB42D50C4F70028E7E2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -136,9 +156,6 @@
 			dependencies = (
 				CA793BCA2D50C4FA0028E7E2 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				CA793BCB2D50C4FB0028E7E2 /* TikkeulTests */,
-			);
 			name = TikkeulTests;
 			packageProductDependencies = (
 			);
@@ -158,9 +175,6 @@
 			);
 			dependencies = (
 				CA793BD42D50C4FB0028E7E2 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CA793BD52D50C4FB0028E7E2 /* TikkeulUITests */,
 			);
 			name = TikkeulUITests;
 			packageProductDependencies = (
