@@ -600,7 +600,6 @@
 /* Begin XCSwiftPackageProductDependency section */
 		CA793C022D50CC270028E7E2 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CA793C012D50CC270028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
