@@ -28,7 +28,7 @@ struct MainTabView: View {
     private func tabView(_ destination: TabDestination) -> some View {
         switch destination {
         case .home:
-            HomeView()
+            HomeRootView()
         case .record:
             Text("record")
         case .settings:
