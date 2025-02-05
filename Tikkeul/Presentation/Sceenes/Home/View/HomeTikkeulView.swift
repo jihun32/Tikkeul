@@ -11,19 +11,30 @@ struct HomeTikkeulView: View {
     let tikkeulList: [HomeTikkeulData]
     var body: some View {
         
-        ZStack(alignment: .bottom) {
-            
+        ZStack {
             VStack(alignment: .leading, spacing: 0) {
                 todayTikkeulMoney
                 
                 Divider()
                     .padding(.top, 5)
                 
-                HomeTikkeulList(tikkeulList: tikkeulList)
+                Spacer()
+                
+                if !tikkeulList.isEmpty {
+                    HomeTikkeulList(tikkeulList: tikkeulList)
+                }
             }
             
-            gatherButton
-                .padding(.bottom, 10)
+            if tikkeulList.isEmpty {
+                homeTikkeulEmptyView
+            }
+            
+            VStack {
+                Spacer()
+                
+                addTikkeulButton
+                    .padding(.bottom, 10)
+            }
         }
         .padding(.horizontal, 20)
         .background(Color.background)
@@ -47,21 +58,36 @@ extension HomeTikkeulView {
             .foregroundColor(Color.primaryMain)
     }
     
-    private var gatherButton: some View {
+    private var addTikkeulButton: some View {
         Button {
             
         } label: {
-            Group {
-                Text("티끌 모으기 ") +
-                Text(Image(systemName: "plus"))
-            }
-            .font(.headline)
-            .foregroundStyle(.white)
+            Label("티끌 모으기", systemImage: "plus")
+                .font(.headline)
+                .foregroundStyle(.white)
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 16)
         .padding(.horizontal, 20)
         .background(.primaryMain)
         .clipShape(.capsule)
+    }
+    
+    private var homeTikkeulEmptyView: some View {
+        VStack(spacing: 10) {
+            Image(.money)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 250)
+            
+            Text("""
+                오늘 기록한 티끌이 없어요.
+                아래 버튼을 눌러 지출하지 않은 돈을 모아보세요!
+                """)
+                .multilineTextAlignment(.center)
+                .font(.caption)
+                .foregroundStyle(.gray)
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 }
 

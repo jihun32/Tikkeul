@@ -12,7 +12,7 @@ struct HomeTikkeulList: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack(spacing: 0) {
                 historyText
                     .padding(.top, 20)
                 
@@ -30,6 +30,7 @@ extension HomeTikkeulList {
         Text("내역")
             .foregroundStyle(.gray.opacity(0.6))
             .font(.subheadline)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
