@@ -36,21 +36,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA3638892D54AF1F0052D972 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
+			);
+			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
+		};
 		CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Test/TikkeulTests/TikkeulTests.swift,
 				Test/TikkeulUITests/TikkeulUITests.swift,
 				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
 			);
 			target = CA793BB22D50C4F70028E7E2 /* Tikkeul */;
-		};
-		CA793BF62D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Test/TikkeulTests/TikkeulTests.swift,
-			);
-			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
 		};
 		CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -67,7 +66,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */,
-				CA793BF62D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
+				CA3638892D54AF1F0052D972 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
 				CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */,
 			);
 			path = Tikkeul;
@@ -201,6 +200,7 @@
 					};
 					CA793BC72D50C4FA0028E7E2 = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 						TestTargetID = CA793BB22D50C4F70028E7E2;
 					};
 					CA793BD12D50C4FB0028E7E2 = {
@@ -479,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
@@ -488,6 +489,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tikkeul.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tikkeul";
@@ -498,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
