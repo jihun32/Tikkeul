@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AddTikkeulUseCase {
-    func addTikkeul(item: TikkeulData) throws -> [TikkeulData]
+    func addTikkeul(item: TikkeulData) -> [TikkeulData]
 }

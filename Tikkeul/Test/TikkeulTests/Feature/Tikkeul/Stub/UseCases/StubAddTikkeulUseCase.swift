@@ -8,7 +8,7 @@
 import Foundation
 
 final class StubAddTikkeulUseCase: AddTikkeulUseCase {
-    func addTikkeul(item: TikkeulData) throws -> [TikkeulData] {
+    func addTikkeul(item: TikkeulData) -> [TikkeulData] {
         var items = TikkeulData.items
         items.append(item)
         return items

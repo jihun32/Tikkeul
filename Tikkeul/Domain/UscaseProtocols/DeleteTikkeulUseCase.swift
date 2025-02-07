@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DeleteTikkeulUseCase {
-    func deleteTikkeul(item: TikkeulData) throws -> [TikkeulData]
+    func deleteTikkeul(item: TikkeulData) -> [TikkeulData]?
 }

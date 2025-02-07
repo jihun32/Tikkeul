@@ -8,9 +8,9 @@
 import Foundation
 
 final class StubDeleteTikkeulUseCase: DeleteTikkeulUseCase {
-    func deleteTikkeul(item: TikkeulData) throws -> [TikkeulData] {
+    func deleteTikkeul(item: TikkeulData) -> [TikkeulData]? {
         var items = TikkeulData.items
-        guard let deleteIndex = items.firstIndex(where: { $0.id == item.id }) else { return  [] }
+        guard let deleteIndex = items.firstIndex(where: { $0.id == item.id }) else { return nil }
         
         items.remove(at: deleteIndex)
         

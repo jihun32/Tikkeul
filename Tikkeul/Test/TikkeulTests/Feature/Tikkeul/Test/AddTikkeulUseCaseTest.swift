@@ -36,7 +36,7 @@ final class AddTikkeulUseCaseTest: XCTestCase {
         let initialItems = TikkeulData.items
         
         // When
-        let resultItems = try sut.addTikkeul(item: newItem)
+        let resultItems = sut.addTikkeul(item: newItem)
         
         // Then
         XCTAssertEqual(resultItems.count, initialItems.count + 1)

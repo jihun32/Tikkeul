@@ -35,7 +35,7 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
         let deleteItem = TikkeulData(id: "1", money: 1000, category: "shopping", date: Date())
         
         // When
-        let resultItems = try sut.deleteTikkeul(item: deleteItem)
+        let resultItems = sut.deleteTikkeul(item: deleteItem)
         
         // Then
         XCTAssertFalse(resultItems.contains(deleteItem))
