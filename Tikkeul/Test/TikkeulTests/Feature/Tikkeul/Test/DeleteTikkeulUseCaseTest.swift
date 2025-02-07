@@ -24,9 +24,7 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     // MARK: - Setup
     
     private func setupSut() -> StubDeleteTikkeulUseCase {
-        return StubDeleteTikkeulUseCase(
-            repository: StubTikkeulRepository()
-        )
+        return StubDeleteTikkeulUseCase()
     }
     
     // MARK: - Test Function
@@ -34,12 +32,12 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     private func test_deleteTikkeul함수호출시_삭제하고자하는아이템을전달했을때_삭제가올바르게이루어지는지() throws {
         
         // Given
-        let deleteItem = Tikkeul(id: "1", money: 1000, category: "shopping", date: Date())
+        let deleteItem = TikkeulData(id: "1", money: 1000, category: "shopping", date: Date())
         
         // When
-        try sut.deleteTikkeul(item: deleteItem)
+        let resultItems = try sut.deleteTikkeul(item: deleteItem)
         
         // Then
-        XCTAssertFalse(sut.repository.items.contains(deleteItem))
+        XCTAssertFalse(resultItems.contains(deleteItem))
     }
 }

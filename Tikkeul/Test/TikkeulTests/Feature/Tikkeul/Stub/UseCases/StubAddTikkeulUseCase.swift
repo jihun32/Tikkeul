@@ -8,13 +8,9 @@
 import Foundation
 
 final class StubAddTikkeulUseCase: AddTikkeulUseCase {
-    let repository: StubTikkeulRepository
-    
-    init(repository: StubTikkeulRepository) {
-        self.repository = repository
-    }
-    
-    func addTikkeul(item: Tikkeul) throws {
-        try repository.addTikkeul(item: item)
+    func addTikkeul(item: TikkeulData) throws -> [TikkeulData] {
+        var items = TikkeulData.items
+        items.append(item)
+        return items
     }
 }

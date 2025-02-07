@@ -25,23 +25,21 @@ final class AddTikkeulUseCaseTest: XCTestCase {
     // MARK: - Setup
 
     private func setupSut() -> StubAddTikkeulUseCase {
-        return StubAddTikkeulUseCase(
-            repository: StubTikkeulRepository()
-        )
+        return StubAddTikkeulUseCase()
     }
     
     // MARK: - Test Function
 
     func test_addTikkeul함수호출시_새로운티끌을전달했을때_마지막에추가되는지확인() throws {
         // Given
-        let newItem = Tikkeul(id: "100", money: 10000, category: "Snack", date: Date())
-        let initialCount = sut.repository.items.count
+        let newItem = TikkeulData(id: "100", money: 10000, category: "Snack", date: Date())
+        let initialItems = TikkeulData.items
         
         // When
-        try sut.addTikkeul(item: newItem)
+        let resultItems = try sut.addTikkeul(item: newItem)
         
         // Then
-        XCTAssertEqual(sut.repository.items.count, initialCount + 1)
-        XCTAssertEqual(sut.repository.items.last, newItem)
+        XCTAssertEqual(resultItems.count, initialItems.count + 1)
+        XCTAssertEqual(resultItems.last, newItem)
     }
 }

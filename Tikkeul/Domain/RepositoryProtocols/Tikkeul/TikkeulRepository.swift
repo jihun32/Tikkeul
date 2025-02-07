@@ -8,8 +8,8 @@
 import Foundation
 
 protocol TikkeulRepository {
-    func addTikkeul(item: Tikkeul) throws
-    func deleteTikkeul(item: Tikkeul) throws
-    func updateTikkeul(item: Tikkeul) throws
-    func fetchTikkeul(item: Tikkeul) throws -> [Tikkeul] 
+    func addTikkeul(item: TikkeulData) throws -> [TikkeulData]
+    func deleteTikkeul(item: TikkeulData) throws -> [TikkeulData]
+    func updateTikkeul(item: TikkeulData) throws -> [TikkeulData]
+    func fetchTikkeul(item: TikkeulData) throws -> [TikkeulData]
 }

@@ -8,13 +8,12 @@
 import Foundation
 
 final class StubDeleteTikkeulUseCase: DeleteTikkeulUseCase {
-    let repository: StubTikkeulRepository
-    
-    init(repository: StubTikkeulRepository) {
-        self.repository = repository
-    }
-    
-    func deleteTikkeul(item: Tikkeul) throws {
-        try repository.deleteTikkeul(item: item)
+    func deleteTikkeul(item: TikkeulData) throws -> [TikkeulData] {
+        var items = TikkeulData.items
+        guard let deleteIndex = items.firstIndex(where: { $0.id == item.id }) else { return  [] }
+        
+        items.remove(at: deleteIndex)
+        
+        return items
     }
 }
