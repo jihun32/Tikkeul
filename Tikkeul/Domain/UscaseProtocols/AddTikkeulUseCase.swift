@@ -1,5 +1,5 @@
 //
-//  AddTikkeulUsecase.swift
+//  AddTikkeulUseCase.swift
 //  Tikkeul
 //
 //  Created by 정지훈 on 2/6/25.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol AddTikkeulUsecase {
+protocol AddTikkeulUseCase {
     func addTikkeul(item: Tikkeul) throws
 }

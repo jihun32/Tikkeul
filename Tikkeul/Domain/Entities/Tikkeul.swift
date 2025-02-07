@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct Tikkeul {
+struct Tikkeul: Equatable {
     let id: String
     let money: Int
     let category: String
-    let date: String
-    let time: String
+    let date: Date
 }

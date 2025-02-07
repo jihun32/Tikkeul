@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class StubAddTikkeulUseCase: AddTikkeulUsecase {
-    let repository: TikkeulRepository
+final class StubAddTikkeulUseCase: AddTikkeulUseCase {
+    let repository: StubTikkeulRepository
     
-    init(repository: TikkeulRepository) {
+    init(repository: StubTikkeulRepository) {
         self.repository = repository
     }
     

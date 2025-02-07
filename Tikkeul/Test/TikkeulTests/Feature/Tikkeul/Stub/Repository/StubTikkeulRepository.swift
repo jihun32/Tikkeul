@@ -9,8 +9,14 @@ import Foundation
 
 final class StubTikkeulRepository: TikkeulRepository {
     
+    var items: [Tikkeul] = [
+        Tikkeul(id: "1", money: 1000, category: "shopping", date: Date()),
+        Tikkeul(id: "2", money: 2000, category: "shopping", date: Date()),
+        Tikkeul(id: "3", money: 3000, category: "shopping", date: Date())
+    ]
+    
     func addTikkeul(item: Tikkeul) throws {
-        
+        items.append(item)
     }
     
     func deleteTikkeul(item: Tikkeul) throws {
@@ -25,3 +31,6 @@ final class StubTikkeulRepository: TikkeulRepository {
         return []
     }
 }
+
+
+
