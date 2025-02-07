@@ -15,7 +15,7 @@ struct TikkeulData: Equatable {
 }
 
 extension TikkeulData {
-    static let items: [TikkeulData] = [
+    static let dummyData: [TikkeulData] = [
         TikkeulData(id: "1", money: 1000, category: "beauty", date: Date()),
         TikkeulData(id: "2", money: 1000, category: "coffee", date: Date()),
         TikkeulData(id: "3", money: 1000, category: "delivery", date: Date()),

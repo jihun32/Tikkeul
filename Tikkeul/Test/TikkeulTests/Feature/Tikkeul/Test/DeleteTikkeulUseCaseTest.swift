@@ -6,10 +6,11 @@
 //
 
 import XCTest
+@testable import Tikkeul
 
 final class DeleteTikkeulUseCaseTest: XCTestCase {
     
-    var sut: StubDeleteTikkeulUseCase!
+    var sut: DeleteTikkeulUseCase!
     
     // MARK: - Test Cycle
     
@@ -23,19 +24,21 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     
     // MARK: - Setup
     
-    private func setupSut() -> StubDeleteTikkeulUseCase {
-        return StubDeleteTikkeulUseCase()
+    private func setupSut() -> DeleteTikkeulUseCase {
+        return DeleteTikkeulUseCase(
+            repository: StubTikkeulRepository()
+        )
     }
     
     // MARK: - Test Function
     
-    private func test_deleteTikkeul함수호출시_삭제하고자하는아이템을전달했을때_삭제되고난후데이터를반환하는지() throws {
+    func test_deleteTikkeul함수호출시_삭제하고자하는아이템을전달했을때_삭제되고난후데이터를반환하는지() throws {
         
         // Given
         let deleteItem = TikkeulData(id: "1", money: 1000, category: "shopping", date: Date())
         
         // When
-        let resultItems = sut.deleteTikkeul(item: deleteItem)
+        let resultItems = sut.deleteTikkeul(item: deleteItem, items: TikkeulData.dummyData)
         
         // Then
         XCTAssertNotNil(resultItems)
@@ -46,13 +49,13 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
         XCTAssertFalse(items.contains(deleteItem))
     }
     
-    private func test_deleteTikkeul함수호출시_삭제하고자하는아이템이없을시_nil을반환하는지() throws {
+    func test_deleteTikkeul함수호출시_삭제하고자하는아이템이없을시_nil을반환하는지() throws {
         
         // Given
         let deleteItem = TikkeulData(id: "10", money: 1000, category: "shopping", date: Date())
         
         // When
-        let resultItems = sut.deleteTikkeul(item: deleteItem)
+        let resultItems = sut.deleteTikkeul(item: deleteItem, items: TikkeulData.dummyData)
         
         // Then
         XCTAssertNil(resultItems)
