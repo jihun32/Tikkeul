@@ -43,10 +43,13 @@
 				Domain/RepositoryProtocols/Tikkeul/TikkeulRepository.swift,
 				Domain/UscaseProtocols/AddTikkeulUseCase.swift,
 				Domain/UscaseProtocols/DeleteTikkeulUseCase.swift,
+				Domain/UscaseProtocols/UpdateTikkeulUseCase.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubAddTikkeulUseCase.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubDeleteTikkeulUseCase.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubUpdateTikkeulUseCase.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/UpdateTikkeulUseCaseTest.swift,
 			);
 			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
 		};
@@ -55,8 +58,10 @@
 			membershipExceptions = (
 				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubAddTikkeulUseCase.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubDeleteTikkeulUseCase.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubUpdateTikkeulUseCase.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/UpdateTikkeulUseCaseTest.swift,
 				Test/TikkeulUITests/TikkeulUITests.swift,
 				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
 			);
