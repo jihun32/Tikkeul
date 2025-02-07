@@ -39,13 +39,26 @@
 		CA3638892D54AF1F0052D972 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Domain/Entities/Tikkeul.swift,
+				Domain/RepositoryProtocols/Tikkeul/TikkeulRepository.swift,
+				Domain/UscaseProtocols/AddTikkeulUseCase.swift,
+				Domain/UscaseProtocols/DeleteTikkeulUseCase.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/Repository/StubTikkeulRepository.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubAddTikkeulUseCase.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubDeleteTikkeulUseCase.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
 			);
 			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
 		};
 		CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Test/TikkeulTests/Feature/Tikkeul/Stub/Repository/StubTikkeulRepository.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubAddTikkeulUseCase.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Stub/UseCases/StubDeleteTikkeulUseCase.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
 				Test/TikkeulUITests/TikkeulUITests.swift,
 				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
 			);

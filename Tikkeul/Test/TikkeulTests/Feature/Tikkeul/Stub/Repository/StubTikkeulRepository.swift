@@ -20,7 +20,8 @@ final class StubTikkeulRepository: TikkeulRepository {
     }
     
     func deleteTikkeul(item: Tikkeul) throws {
-        
+        guard let deleteIndex = items.firstIndex(where: { item.id == $0.id }) else { return }
+        items.remove(at: deleteIndex)
     }
     
     func updateTikkeul(item: Tikkeul) throws {
