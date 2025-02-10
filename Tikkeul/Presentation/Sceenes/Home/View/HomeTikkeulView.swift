@@ -24,12 +24,12 @@ struct HomeTikkeulView: View {
                     
                     Spacer()
                     
-                    if !store.tikkeulList.isEmpty {
+                    if !store.isEmptyTikkeulList {
                         HomeTikkeulList(tikkeulList: store.tikkeulList)
                     }
                 }
                 
-                if store.tikkeulList.isEmpty {
+                if store.isEmptyTikkeulList {
                     homeTikkeulEmptyView
                 }
                 
@@ -58,7 +58,7 @@ extension HomeTikkeulView {
     }
     
     private var todayTikkeulMoney: Text {
-        Text("18,000원")
+        Text("\(store.totalTikkeul)원")
             .font(.system(size: 60, weight: .regular))
             .foregroundColor(Color.primaryMain)
     }

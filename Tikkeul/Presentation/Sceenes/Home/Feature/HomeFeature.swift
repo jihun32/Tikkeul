@@ -15,6 +15,16 @@ struct HomeFeature {
     @ObservableState
     struct State {
         var tikkeulList: [HomeTikkeulData] = HomeTikkeulData.data
+        
+        var isEmptyTikkeulList: Bool {
+            tikkeulList.isEmpty
+        }
+        
+        var totalTikkeul: Int {
+            tikkeulList
+                .map { $0.money }
+                .reduce(0, +)
+        }
     }
     
     enum Action {
@@ -30,5 +40,3 @@ struct HomeFeature {
     }
     
 }
-
-
