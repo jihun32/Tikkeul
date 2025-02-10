@@ -17,12 +17,12 @@ enum TabDestination {
 
 struct MainTabView: View {
     
-    @Bindable var store: StoreOf<MainTabFeature>
+    @Perception.Bindable var store: StoreOf<MainTabFeature>
     
     var body: some View {
         TabView(selection: $store.selectedTab.sending(\.selectedTabChanged)) {
             
-            HomeRootView()
+            HomeTikkeulView(store: store.scope(state: \.homeState, action: \.homeAction))
                 .tag(TabDestination.home)
                 .tabItem {
                     Label("홈", systemImage: "house")

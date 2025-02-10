@@ -14,7 +14,7 @@ struct HomeFeature {
     
     @ObservableState
     struct State {
-        
+        var tikkeulList: [HomeTikkeulData] = HomeTikkeulData.data
     }
     
     enum Action {
