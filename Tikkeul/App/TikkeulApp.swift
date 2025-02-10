@@ -7,8 +7,16 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 @main
 struct TikkeulApp: App {
+    
+    let store: StoreOf<TikkeulAppFeature> = Store(
+        initialState: TikkeulAppFeature.State(), {
+            TikkeulAppFeature()
+        })
+    
     var body: some Scene {
         WindowGroup {
             TikkeulRootView()
