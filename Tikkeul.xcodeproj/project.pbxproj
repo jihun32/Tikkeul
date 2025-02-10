@@ -36,9 +36,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA5CE4222D59E1AE000C73D3 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/UpdateTikkeulUseCaseTest.swift,
+			);
+			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
+		};
 		CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/UpdateTikkeulUseCaseTest.swift,
 				Test/TikkeulUITests/TikkeulUITests.swift,
 				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
 			);
@@ -59,6 +71,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */,
+				CA5CE4222D59E1AE000C73D3 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
 				CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */,
 			);
 			path = Tikkeul;
@@ -422,6 +435,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,6 +465,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
