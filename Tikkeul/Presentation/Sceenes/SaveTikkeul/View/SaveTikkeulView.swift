@@ -10,10 +10,8 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SaveTikkeulView: View {
-    @State var money: String = ""
-    @State var content: String = ""
     
-    var store: StoreOf<SaveTikkeulFeature>
+    @Perception.Bindable var store: StoreOf<SaveTikkeulFeature>
     
     var body: some View {
         VStack(spacing: 0) {
@@ -68,7 +66,7 @@ extension SaveTikkeulView {
     
     private var moneyTextField: some View {
         HStack(spacing: 5) {
-            TextField("0", text: $money)
+            TextField("0", text: $store.moneyText.sending(\.moneyTextFieldDidChange))
                 .font(.system(size: 60, weight: .medium))
                 .multilineTextAlignment(.trailing)
                 .fixedSize()
@@ -104,11 +102,10 @@ extension SaveTikkeulView {
             
             TextField(
                 "",
-                text: $content,
+                text: $store.memoText.sending(\.memoTextFieldDidChange),
                 prompt: Text("지출하지 않은 내용 작성")
                     .foregroundColor(.gray.opacity(0.5))
             )
-            .font(.title3)
             .multilineTextAlignment(.leading)
         }
     }
