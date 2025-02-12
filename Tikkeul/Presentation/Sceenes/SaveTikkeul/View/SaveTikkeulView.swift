@@ -75,13 +75,17 @@ extension SaveTikkeulView {
         }
     }
     
-    private var moneyTextField: some View {
+    private var moneyTextField: some View { 
         HStack(spacing: 5) {
-            TextField("0", text: $store.moneyText.sending(\.moneyTextFieldDidChange))
-                .font(.system(size: 60, weight: .medium))
-                .multilineTextAlignment(.trailing)
+            
+            CommaFomattedUITextField(
+                text: $store.moneyText.sending(\.moneyTextFieldDidChange),
+                placeholder: "0",
+                maxCount: 8,
+                font: UIFont.systemFont(ofSize: 60, weight: .medium),
+                textAlignment: .right
+            )
                 .fixedSize()
-                .keyboardType(.numberPad)
 
             
             Text("원")
