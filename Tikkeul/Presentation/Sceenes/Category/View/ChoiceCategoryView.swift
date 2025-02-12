@@ -30,20 +30,17 @@ extension ChoiceCategoryView {
                 store.send(.categoryItemTapped(category: category))
             } label: {
                 VStack(spacing: 5) {
-                    categoryItem
+                    
+                    Text(category.emoji)
+                        .font(.system(size: 40))
+                    
+                    Text(category.title)
+                        .font(.caption)
+                        .bold()
+                        .foregroundStyle(.black)
                 }
             }
         }
-    }
-    
-    private var categoryItem: some View {
-        Text(category.emoji)
-            .font(.system(size: 40))
-        
-        Text(category.title)
-            .font(.caption)
-            .bold()
-            .foregroundStyle(.black)
     }
 }
 
