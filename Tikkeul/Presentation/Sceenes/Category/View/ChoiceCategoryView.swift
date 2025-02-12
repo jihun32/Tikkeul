@@ -16,24 +16,34 @@ struct ChoiceCategoryView: View {
 
     var body: some View {
         LazyVGrid(columns: columns, spacing: 10) {
-            ForEach(store.categories, id: \.title) { category in
-                Button {
-                    store.send(.categoryItemTapped(category: category))
-                } label: {
-                    VStack(spacing: 5) {
-                        
-                        Text(category.emoji)
-                            .font(.system(size: 40))
-                        
-                        Text(category.title)
-                            .font(.caption)
-                            .bold()
-                            .foregroundStyle(.black)
-                    }
+            categoryItems
+        }
+        .padding()
+    }
+}
+
+// MARK: - UI Components
+extension ChoiceCategoryView {
+    private var categoryItems: some View {
+        ForEach(store.categories, id: \.title) { category in
+            Button {
+                store.send(.categoryItemTapped(category: category))
+            } label: {
+                VStack(spacing: 5) {
+                    categoryItem
                 }
             }
         }
-        .padding()
+    }
+    
+    private var categoryItem: some View {
+        Text(category.emoji)
+            .font(.system(size: 40))
+        
+        Text(category.title)
+            .font(.caption)
+            .bold()
+            .foregroundStyle(.black)
     }
 }
 
