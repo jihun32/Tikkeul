@@ -14,14 +14,23 @@ struct SaveTikkeulFeature {
     
     @ObservableState
     struct State {
+        // Present State
+        @Presents var choiceCategory: ChoiceCategoryFeature.State?
+        
+        // UI State
         var moneyText: String = ""
         var memoText: String = ""
     }
     
     enum Action {
+        
+        // Present Action
+        case choiceCategory(PresentationAction<ChoiceCategoryFeature.Action>)
+        
         // User Action
         case moneyTextFieldDidChange(money: String)
         case memoTextFieldDidChange(memo: String)
+        case categoryButtonTapped
     }
     
     var body: some ReducerOf<Self> {
@@ -36,7 +45,20 @@ struct SaveTikkeulFeature {
                 state.memoText = memo
                 
                 return .none
+                
+            case .categoryButtonTapped:
+                state.choiceCategory = ChoiceCategoryFeature.State()
+                
+                return .none
+                
+                
+                // Other Feature Action
+            case .choiceCategory:
+                return .none
             }
+        }
+        .ifLet(\.$choiceCategory, action: \.choiceCategory) {
+            ChoiceCategoryFeature()
         }
     }
 }

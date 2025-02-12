@@ -7,14 +7,16 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct ChoiceCategoryView: View {
-    let categories: [TikkeulCategory] = TikkeulCategory.allCases
     
+    let store: StoreOf<ChoiceCategoryFeature>
     let columns = Array(repeating: GridItem(.flexible()), count: 4)
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 16) {
-            ForEach(categories, id: \.title) { category in
+        LazyVGrid(columns: columns, spacing: 10) {
+            ForEach(store.categories, id: \.title) { category in
                 VStack(spacing: 5) {
                     
                     Text(category.emoji)
@@ -31,5 +33,7 @@ struct ChoiceCategoryView: View {
 }
 
 #Preview {
-    ChoiceCategoryView()
+    ChoiceCategoryView(store: Store(initialState: ChoiceCategoryFeature.State()) {
+        ChoiceCategoryFeature()
+    })
 }

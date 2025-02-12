@@ -44,6 +44,17 @@ struct SaveTikkeulView: View {
         }
         .padding(.horizontal, 20)
         .background(Color.background)
+        .sheet(
+            item: $store.scope(
+                state: \.choiceCategory,
+                action: \.choiceCategory
+            )) { choiceCategoryFeature in
+                ChoiceCategoryView(
+                    store: choiceCategoryFeature
+                )
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.height(280)])
+            }
     }
 }
 
@@ -86,7 +97,7 @@ extension SaveTikkeulView {
                 .frame(width: 60)
             
             Button(action: {
-                
+                store.send(.categoryButtonTapped)
             }) {
                 Text("미분류")
                     .foregroundStyle(.gray.opacity(0.5))
