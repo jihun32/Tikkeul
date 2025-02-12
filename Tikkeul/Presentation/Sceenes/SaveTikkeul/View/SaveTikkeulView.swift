@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct SaveTikkeulView: View {
     @State var money: String = ""
     @State var content: String = ""
+    
+    var store: StoreOf<SaveTikkeulFeature>
     
     var body: some View {
         VStack(spacing: 0) {
@@ -112,5 +116,7 @@ extension SaveTikkeulView {
 }
 
 #Preview {
-    SaveTikkeulView()
+    SaveTikkeulView(store: Store(initialState: SaveTikkeulFeature.State(), reducer: {
+        SaveTikkeulFeature()
+    }))
 }

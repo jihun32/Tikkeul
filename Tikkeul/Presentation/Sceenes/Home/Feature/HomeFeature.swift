@@ -14,12 +14,14 @@ struct HomeFeature {
     
     @ObservableState
     struct State {
-        var tikkeulList: [HomeTikkeulData] = HomeTikkeulData.data
+        // Present
+        @Presents var saveTikkeul: SaveTikkeulFeature.State?
         
+        // UI State
+        var tikkeulList: [HomeTikkeulData] = HomeTikkeulData.data
         var isEmptyTikkeulList: Bool {
             tikkeulList.isEmpty
         }
-        
         var totalTikkeul: Int {
             tikkeulList
                 .map { $0.money }
@@ -28,14 +30,28 @@ struct HomeFeature {
     }
     
     enum Action {
+        // Other Feature
+        case saveTikkeul(PresentationAction<SaveTikkeulFeature.Action>)
         
+        // User Action
+        case addTikkeulButtonTapped
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case .addTikkeulButtonTapped:
+                state.saveTikkeul = SaveTikkeulFeature.State()
                 
+                return .none
+                
+                // Other Feature Action
+            case .saveTikkeul:
+                return .none
             }
+        }
+        .ifLet(\.$saveTikkeul, action: \.saveTikkeul) {
+            SaveTikkeulFeature()
         }
     }
     

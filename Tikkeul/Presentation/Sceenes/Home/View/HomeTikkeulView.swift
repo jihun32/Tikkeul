@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 struct HomeTikkeulView: View {
     
-    let store: StoreOf<HomeFeature>
+    @Perception.Bindable var store: StoreOf<HomeFeature>
     
     var body: some View {
         NavigationStack {
@@ -44,6 +44,14 @@ struct HomeTikkeulView: View {
             .background(Color.background)
             .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.large)
+            .fullScreenCover(
+                item: $store.scope(
+                    state: \.saveTikkeul,
+                    action: \.saveTikkeul
+                )
+            ) { saveTikkeulStore in
+                SaveTikkeulView(store: saveTikkeulStore)
+            }
         }
     }
 }
@@ -65,7 +73,7 @@ extension HomeTikkeulView {
     
     private var addTikkeulButton: some View {
         Button {
-            
+            store.send(.addTikkeulButtonTapped)
         } label: {
             Label("티끌 모으기", systemImage: "plus")
                 .font(.headline)

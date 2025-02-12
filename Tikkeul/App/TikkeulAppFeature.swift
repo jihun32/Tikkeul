@@ -14,7 +14,7 @@ struct TikkeulAppFeature {
     
     @ObservableState
     struct State {
-        var mainTabState: MainTabFeature.State?
+        var mainTabState: MainTabFeature.State? = MainTabFeature.State()
     }
     
     enum Action {
@@ -24,7 +24,6 @@ struct TikkeulAppFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
-                
             case .mainTabAction:
                 return .none
             }

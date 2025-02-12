@@ -39,7 +39,6 @@ struct MainTabView: View {
                 .tabItem {
                     Label("설정", systemImage: "gearshape")
                 }
-               
         }
         .tint(.black)
     }
