@@ -7,39 +7,52 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct HomeTikkeulView: View {
-    let tikkeulList: [HomeTikkeulData]
+    
+    @Perception.Bindable var store: StoreOf<HomeFeature>
+    
     var body: some View {
-        
-        ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-                todayTikkeulMoney
+        NavigationStack {
+            ZStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    todayTikkeulMoney
+                    
+                    Divider()
+                        .padding(.top, 5)
+                    
+                    Spacer()
+                    
+                    if !store.isEmptyTikkeulList {
+                        HomeTikkeulList(tikkeulList: store.tikkeulList)
+                    }
+                }
                 
-                Divider()
-                    .padding(.top, 5)
+                if store.isEmptyTikkeulList {
+                    homeTikkeulEmptyView
+                }
                 
-                Spacer()
-                
-                if !tikkeulList.isEmpty {
-                    HomeTikkeulList(tikkeulList: tikkeulList)
+                VStack {
+                    Spacer()
+                    
+                    addTikkeulButton
+                        .padding(.bottom, 10)
                 }
             }
-            
-            if tikkeulList.isEmpty {
-                homeTikkeulEmptyView
-            }
-            
-            VStack {
-                Spacer()
-                
-                addTikkeulButton
-                    .padding(.bottom, 10)
+            .padding(.horizontal, 20)
+            .background(Color.background)
+            .navigationTitle(navigationTitle)
+            .navigationBarTitleDisplayMode(.large)
+            .fullScreenCover(
+                item: $store.scope(
+                    state: \.saveTikkeul,
+                    action: \.saveTikkeul
+                )
+            ) { saveTikkeulStore in
+                SaveTikkeulView(store: saveTikkeulStore)
             }
         }
-        .padding(.horizontal, 20)
-        .background(Color.background)
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.large)
     }
 }
 
@@ -53,14 +66,14 @@ extension HomeTikkeulView {
     }
     
     private var todayTikkeulMoney: Text {
-        Text("18,000원")
+        Text("\(store.totalTikkeul)원")
             .font(.system(size: 60, weight: .regular))
             .foregroundColor(Color.primaryMain)
     }
     
     private var addTikkeulButton: some View {
         Button {
-            
+            store.send(.addTikkeulButtonTapped)
         } label: {
             Label("티끌 모으기", systemImage: "plus")
                 .font(.headline)
@@ -93,5 +106,7 @@ extension HomeTikkeulView {
 
 
 #Preview {
-    HomeTikkeulView(tikkeulList: HomeTikkeulData.data)
+    HomeTikkeulView(store: Store(initialState: HomeFeature.State(), reducer: {
+        HomeFeature()
+    }))
 }

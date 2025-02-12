@@ -7,14 +7,17 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct SaveTikkeulView: View {
-    @State var money: String = ""
-    @State var content: String = ""
+    
+    @Perception.Bindable var store: StoreOf<SaveTikkeulFeature>
     
     var body: some View {
         VStack(spacing: 0) {
             
             dismissButton
+                .padding(.top, 16)
             
             Spacer()
             
@@ -24,12 +27,12 @@ struct SaveTikkeulView: View {
                 categorySection
                 
                 Divider()
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 4)
                 
                 memoSection
                 
                 Divider()
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 4)
             }
             .padding(.top, 60)
             
@@ -41,6 +44,17 @@ struct SaveTikkeulView: View {
         }
         .padding(.horizontal, 20)
         .background(Color.background)
+        .sheet(
+            item: $store.scope(
+                state: \.choiceCategory,
+                action: \.choiceCategory
+            )) { choiceCategoryFeature in
+                ChoiceCategoryView(
+                    store: choiceCategoryFeature
+                )
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.height(280)])
+            }
     }
 }
 
@@ -61,13 +75,17 @@ extension SaveTikkeulView {
         }
     }
     
-    private var moneyTextField: some View {
+    private var moneyTextField: some View { 
         HStack(spacing: 5) {
-            TextField("0", text: $money)
-                .font(.system(size: 60, weight: .medium))
-                .multilineTextAlignment(.trailing)
+            
+            CommaFomattedUITextField(
+                text: $store.moneyText.sending(\.moneyTextFieldDidChange),
+                placeholder: "0",
+                maxCount: 8,
+                font: UIFont.systemFont(ofSize: 60, weight: .medium),
+                textAlignment: .right
+            )
                 .fixedSize()
-                .keyboardType(.numberPad)
 
             
             Text("원")
@@ -83,11 +101,10 @@ extension SaveTikkeulView {
                 .frame(width: 60)
             
             Button(action: {
-                
+                store.send(.categoryButtonTapped)
             }) {
-                Text("미분류")
-                    .font(.title3)
-                    .foregroundStyle(.gray.opacity(0.5))
+                Text(store.categoryText ?? "미분류")
+                    .foregroundStyle(store.categoryText == nil ? .gray.opacity(0.5) : .black)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
@@ -100,17 +117,17 @@ extension SaveTikkeulView {
             
             TextField(
                 "",
-                text: $content,
+                text: $store.memoText.sending(\.memoTextFieldDidChange),
                 prompt: Text("지출하지 않은 내용 작성")
-                    .font(.title3)
                     .foregroundColor(.gray.opacity(0.5))
             )
-            .font(.title3)
             .multilineTextAlignment(.leading)
         }
     }
 }
 
 #Preview {
-    SaveTikkeulView()
+    SaveTikkeulView(store: Store(initialState: SaveTikkeulFeature.State(), reducer: {
+        SaveTikkeulFeature()
+    }))
 }
