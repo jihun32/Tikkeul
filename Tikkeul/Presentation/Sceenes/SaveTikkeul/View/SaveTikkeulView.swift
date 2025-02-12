@@ -19,6 +19,7 @@ struct SaveTikkeulView: View {
         VStack(spacing: 0) {
             
             dismissButton
+                .padding(.top, 16)
             
             Spacer()
             
@@ -28,12 +29,12 @@ struct SaveTikkeulView: View {
                 categorySection
                 
                 Divider()
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 4)
                 
                 memoSection
                 
                 Divider()
-                    .padding(.vertical, 8)
+                    .padding(.vertical, 4)
             }
             .padding(.top, 60)
             
@@ -90,7 +91,6 @@ extension SaveTikkeulView {
                 
             }) {
                 Text("미분류")
-                    .font(.title3)
                     .foregroundStyle(.gray.opacity(0.5))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -106,7 +106,6 @@ extension SaveTikkeulView {
                 "",
                 text: $content,
                 prompt: Text("지출하지 않은 내용 작성")
-                    .font(.title3)
                     .foregroundColor(.gray.opacity(0.5))
             )
             .font(.title3)
