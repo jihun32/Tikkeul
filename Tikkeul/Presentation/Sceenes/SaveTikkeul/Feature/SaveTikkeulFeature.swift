@@ -20,6 +20,7 @@ struct SaveTikkeulFeature {
         // UI State
         var moneyText: String = ""
         var memoText: String = ""
+        var categoryText: String?
     }
     
     enum Action {
@@ -53,6 +54,12 @@ struct SaveTikkeulFeature {
                 
                 
                 // Other Feature Action
+            case let .choiceCategory(.presented(.delegate(.choiceCategory(category)))):
+                state.categoryText = category.emoji + category.title
+                state.choiceCategory = nil
+                
+                return .none
+                
             case .choiceCategory:
                 return .none
             }

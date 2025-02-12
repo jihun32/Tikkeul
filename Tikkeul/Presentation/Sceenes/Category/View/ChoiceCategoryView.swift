@@ -17,14 +17,19 @@ struct ChoiceCategoryView: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: 10) {
             ForEach(store.categories, id: \.title) { category in
-                VStack(spacing: 5) {
-                    
-                    Text(category.emoji)
-                        .font(.system(size: 40))
-                    
-                    Text(category.title)
-                        .font(.caption)
-                        .bold()
+                Button {
+                    store.send(.categoryItemTapped(category: category))
+                } label: {
+                    VStack(spacing: 5) {
+                        
+                        Text(category.emoji)
+                            .font(.system(size: 40))
+                        
+                        Text(category.title)
+                            .font(.caption)
+                            .bold()
+                            .foregroundStyle(.black)
+                    }
                 }
             }
         }

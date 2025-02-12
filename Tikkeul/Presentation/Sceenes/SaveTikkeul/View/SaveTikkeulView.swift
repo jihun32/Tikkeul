@@ -99,8 +99,8 @@ extension SaveTikkeulView {
             Button(action: {
                 store.send(.categoryButtonTapped)
             }) {
-                Text("미분류")
-                    .foregroundStyle(.gray.opacity(0.5))
+                Text(store.categoryText ?? "미분류")
+                    .foregroundStyle(store.categoryText == nil ? .gray.opacity(0.5) : .black)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
