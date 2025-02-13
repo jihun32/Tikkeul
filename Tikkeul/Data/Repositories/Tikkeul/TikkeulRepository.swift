@@ -30,6 +30,17 @@ final class StubTikkeulRepository: TikkeulRepositoryProtocol {
     }
     
     func updateTikkeul(item: TikkeulData) throws {
+        let fetchRequest: NSFetchRequest<Tikkeul> = Tikkeul.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", item.id as CVarArg)
+        guard let objectToUpdate = try context.fetch(fetchRequest).first else {
+            throw RepositoryError.itemNotFound
+        }
+        
+        objectToUpdate.money = Int32(item.money)
+        objectToUpdate.category = item.category
+        objectToUpdate.date = item.date
+        objectToUpdate.memo = item.memo
+        
         try context.save()
     }
     

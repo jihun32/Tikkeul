@@ -8,7 +8,7 @@
 import XCTest
 @testable import Tikkeul
 
-final class AddTikkeulUseCaseTest: XCTestCase {
+final class SaveTikkeulUseCaseTest: XCTestCase {
 
     var sut: AddTikkeulUseCase!
 

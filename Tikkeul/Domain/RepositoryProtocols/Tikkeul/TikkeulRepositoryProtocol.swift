@@ -18,7 +18,7 @@ extension TikkeulRepositoryProtocol {
     func toContextItem(item: TikkeulData, context: NSManagedObjectContext) -> Tikkeul {
         let newItem = Tikkeul(context: context)
         newItem.id = item.id
-        newItem.money = Int16(item.money)
+        newItem.money = Int32(item.money)
         newItem.category = item.category
         newItem.memo = item.memo
         newItem.date = item.date

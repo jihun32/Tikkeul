@@ -67,7 +67,7 @@ final class PersistenceTests: XCTestCase {
         for i in 1...2 {
             let item = Tikkeul(context: context)
             item.id = UUID()
-            item.money = Int16(1000 * i)
+            item.money = Int32(1000 * i)
             item.category = "Category\(i)"
             item.memo = "Memo \(i)"
             item.date = Date()

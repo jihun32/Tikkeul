@@ -15,12 +15,12 @@ extension PersistenceController {
         let controller = PersistenceController(inMemory: true)
         let context = controller.container.viewContext
         
-        let items = TikkeulData.dummyData
+        var items = TikkeulData.dummyData
         
         items.forEach {
             let item = Tikkeul(context: context)
             item.id = $0.id
-            item.money = Int16($0.money)
+            item.money = Int32($0.money)
             item.category = $0.category
             item.memo = $0.memo
             item.date = $0.date

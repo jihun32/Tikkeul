@@ -9,9 +9,9 @@ import Foundation
 
 struct TikkeulData: Equatable {
     let id: UUID
-    let money: Int
-    let category: String
-    let date: Date
+    var money: Int
+    var category: String
+    var date: Date?
     var memo: String?
 }
 
