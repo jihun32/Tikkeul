@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UpdateTikkeulUseCaseProtocol {
-    func updateTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData]?
+    func updateTikkeul(item: TikkeulData) throws
 }
