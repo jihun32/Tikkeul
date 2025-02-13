@@ -27,7 +27,7 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     private func setupSut() -> DeleteTikkeulUseCase {
         return DeleteTikkeulUseCase(
             repository: StubTikkeulRepository(
-                persistenceController: .previewValue
+                persistenceController: .testValue
             )
         )
     }
@@ -40,15 +40,12 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
         let deleteItem = TikkeulData(id: UUID(), money: 1000, category: "shopping", date: Date())
         
         // When
-        let resultItems = try sut.deleteTikkeul(item: deleteItem)
+        try sut.deleteTikkeul(item: deleteItem)
         
         // Then
-        XCTAssertNotNil(resultItems)
-        guard let items = resultItems else {
-            XCTFail("resultItems은 nil이어선 안 됩니다.")
-            return
-        }
-        XCTAssertFalse(items.contains(deleteItem))
+        let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
+        let deletedItems = try stubRepository.fetchTikkeul()
+        XCTAssertFalse(deletedItems.contains(deleteItem))
     }
     
     func test_deleteTikkeul함수호출시_삭제하고자하는아이템이없을시_nil을반환하는지() throws {
@@ -56,10 +53,13 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
         // Given
         let deleteItem = TikkeulData(id: UUID(), money: 1000, category: "shopping", date: Date())
         
-        // When
-        let resultItems = try? sut.deleteTikkeul(item: deleteItem)
-        
-        // Then
-        XCTAssertNil(resultItems)
+        // When & Then
+        XCTAssertThrowsError(try sut.deleteTikkeul(item: deleteItem)) { error in
+            guard let resultError = error as? RepositoryError else {
+                XCTFail("예상하지 않은 에러 타입: \(error)")
+                return
+            }
+            XCTAssertEqual(resultError, RepositoryError.itemNotFound)
+        }
     }
 }

@@ -40,7 +40,6 @@
 		CA5CE4222D59E1AE000C73D3 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Test/TikkeulTests/Feature/CoreData/PersistenceTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/FetchTikkeulUseCaseTest.swift,
@@ -51,7 +50,6 @@
 		CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Test/TikkeulTests/Feature/CoreData/PersistenceTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/FetchTikkeulUseCaseTest.swift,

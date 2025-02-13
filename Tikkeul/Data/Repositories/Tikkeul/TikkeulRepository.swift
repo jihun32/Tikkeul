@@ -24,8 +24,14 @@ final class StubTikkeulRepository: TikkeulRepositoryProtocol {
     }
     
     func deleteTikkeul(item: TikkeulData) throws {
-        let deletedItem = toContextItem(item: item, context: context)
-        context.delete(deletedItem)
+        let fetchRequest: NSFetchRequest<Tikkeul> = Tikkeul.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", item.id as CVarArg)
+        
+        guard let objectToDelete = try context.fetch(fetchRequest).first else {
+            throw RepositoryError.itemNotFound
+        }
+        
+        context.delete(objectToDelete)
         try context.save()
     }
     
