@@ -12,6 +12,7 @@ struct TikkeulData: Equatable {
     let money: Int
     let category: String
     let date: Date
+    var memo: String?
 }
 
 extension TikkeulData {
