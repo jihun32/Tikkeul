@@ -28,7 +28,9 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     
     private func setupSut() -> UpdateTikkeulUseCase {
         return UpdateTikkeulUseCase(
-            repository: StubTikkeulRepository()
+            repository: StubTikkeulRepository(
+                persistenceController: .previewValue
+            )
         )
     }
     
@@ -37,12 +39,12 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     func test_updateTikkeul함수호출시_변경할아이템을전달할때_업데이트된아이템배열을반환하는지() throws {
         
         // Given
-        let updateItem = TikkeulData(id: "1", money: 5000, category: "Snack", date: Date())
+        let updateItem = TikkeulData(id: UUID(), money: 5000, category: "Snack", date: Date())
         var expectedResult = TikkeulData.dummyData
         expectedResult[0] = updateItem
         
         // When
-        let resultItems = sut.updateTikkeul(item: updateItem, items: TikkeulData.dummyData)
+        let resultItems = sut.updateTikkeul(item: updateItem)
         
         // Then
         XCTAssertEqual(resultItems, expectedResult)
@@ -51,10 +53,10 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     func test_updateTikkeul함수호출시_존재하지않는Id아이템을전달할때_nil을반환하는지() throws {
         
         // Given
-        let updateItem = TikkeulData(id: "100", money: 5000, category: "Snack", date: Date())
+        let updateItem = TikkeulData(id: UUID(), money: 5000, category: "Snack", date: Date())
         
         // When
-        let resultItems = sut.updateTikkeul(item: updateItem, items: TikkeulData.dummyData)
+        let resultItems = sut.updateTikkeul(item: updateItem)
         
         // Then
         XCTAssertNil(resultItems)
