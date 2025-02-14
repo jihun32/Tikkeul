@@ -39,8 +39,9 @@ struct SaveTikkeulView: View {
             Spacer()
             
             BottomButton {
-                
+                store.send(.delegate(.saveButtonTapped))
             }
+            .disabled(!store.isEnableSaveButton)
         }
         .padding(.horizontal, 20)
         .background(Color.background)
@@ -66,7 +67,7 @@ extension SaveTikkeulView {
             Spacer()
             
             Button {
-                
+                store.send(.delegate(.dismissButtonTapped))
             } label: {
                 Image(systemName: "xmark")
                     .frame(width: 20, height: 20)

@@ -12,9 +12,9 @@ struct BottomButton: View {
     var onTapped: () -> Void
     
     var body: some View {
-        Button(action: {
-            
-        }) {
+        Button {
+            onTapped()
+        } label: {
             Text("저장")
                 .foregroundStyle(.white)
         }

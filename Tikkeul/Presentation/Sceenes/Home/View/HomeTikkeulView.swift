@@ -109,7 +109,23 @@ extension HomeTikkeulView {
 
 
 #Preview {
-    HomeTikkeulView(store: Store(initialState: HomeFeature.State(), reducer: {
-        HomeFeature()
-    }))
+    withDependencies {
+        $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
+            repository: StubTikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        $0.addTikkeulUseCase = AddTikkeulUseCase(
+            repository: StubTikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+    } operation: {
+        HomeTikkeulView(
+            store: Store(
+                initialState: HomeFeature.State(),
+                reducer: { HomeFeature() }
+            )
+        )
+    }
 }

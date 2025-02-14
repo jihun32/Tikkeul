@@ -47,6 +47,7 @@ struct HomeFeature {
     }
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
+    @Dependency(\.addTikkeulUseCase) var addTikkeulUseCase
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -60,7 +61,7 @@ struct HomeFeature {
                 return .run { send in
                     let date = Date()
                     let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
-                    
+                
                     let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
                         guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
                         
@@ -87,8 +88,35 @@ struct HomeFeature {
                 return .none
                 
                 // Other Feature Action
+            case .saveTikkeul(.presented(.delegate(.saveButtonTapped))):
+                guard let addableTikkeul = state.saveTikkeul?.addableTikkeul else { return .none }
+                state.saveTikkeul = nil
+                return .run { send in
+                    let date = Date()
+                    try addTikkeulUseCase.addTikkeul(item: addableTikkeul)
+                    
+                    let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+                    
+                    let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
+                        guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
+                        
+                        return HomeTikkeulData(
+                            id: data.id,
+                            money: data.money,
+                            category: category,
+                            time: data.date.formattedString(dateFormat: .timeAMorPM)
+                        )
+                    }
+                    await send(.updateTikkeulList(items: tikkeulList))
+                }
+
+            case .saveTikkeul(.presented(.delegate(.dismissButtonTapped))):
+                state.saveTikkeul = nil
+                return .none
+                
             case .saveTikkeul:
                 return .none
+                
             }
         }
         .ifLet(\.$saveTikkeul, action: \.saveTikkeul) {

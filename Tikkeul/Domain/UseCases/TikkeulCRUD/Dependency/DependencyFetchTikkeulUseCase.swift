@@ -11,18 +11,11 @@ import ComposableArchitecture
 
 private enum FetchTikkeulUseCaseKey: DependencyKey {
     static let liveValue: FetchTikkeulUseCaseProtocol = FetchTikkeulUseCase(
-        repository: StubTikkeulRepository(
+        repository: TikkeulRepository(
             persistenceController: .liveValue
         )
     )
-    
-    static let testValue: FetchTikkeulUseCaseProtocol = FetchTikkeulUseCase(
-        repository: StubTikkeulRepository(
-            persistenceController: .testValue
-        )
-    )
 }
-
 
 extension DependencyValues {
     var fetchTikkeulUseCase: FetchTikkeulUseCaseProtocol {
