@@ -54,4 +54,10 @@ extension Date {
         }
         return end
     }
+    
+    
+    func formattedString(dateFormat: DateFormat) -> String {
+        // ✅ 딕셔너리로 캐싱된 DateFormatter 를 재사용
+        return dateFormat.formatter.string(from: self)
+    }
 }
