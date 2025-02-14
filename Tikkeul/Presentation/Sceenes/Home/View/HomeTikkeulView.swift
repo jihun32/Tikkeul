@@ -44,6 +44,9 @@ struct HomeTikkeulView: View {
             .background(Color.background)
             .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.large)
+            .onAppear {
+                store.send(.onAppear)
+            }
             .fullScreenCover(
                 item: $store.scope(
                     state: \.saveTikkeul,

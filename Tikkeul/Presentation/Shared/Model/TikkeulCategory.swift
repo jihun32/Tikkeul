@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum TikkeulCategory: CaseIterable {
+enum TikkeulCategory: String, CaseIterable {
     case snack
     case coffee
     case drink

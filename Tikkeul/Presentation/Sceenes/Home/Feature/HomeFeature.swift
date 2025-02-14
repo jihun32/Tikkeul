@@ -30,16 +30,57 @@ struct HomeFeature {
     }
     
     enum Action {
-        // Other Feature
-        case saveTikkeul(PresentationAction<SaveTikkeulFeature.Action>)
+        // LifeCycle
+        case onAppear
         
         // User Action
         case addTikkeulButtonTapped
+        
+        // Fetch Data
+        case fetchTikkeulList
+        
+        // Update State
+        case updateTikkeulList(items: [HomeTikkeulData])
+        
+        // Other Feature
+        case saveTikkeul(PresentationAction<SaveTikkeulFeature.Action>)
     }
+    
+    @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                // LifeCycle
+            case .onAppear:
+                return .send(.fetchTikkeulList)
+                
+                // Fetch Data
+            case .fetchTikkeulList:
+                return .run { send in
+                    let date = Date()
+                    let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+                    
+                    let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
+                        guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
+                        
+                        return HomeTikkeulData(
+                            id: data.id,
+                            money: data.money,
+                            category: category,
+                            time: data.date.formattedString(dateFormat: .timeAMorPM)
+                        )
+                    }
+                    
+                    await send(.updateTikkeulList(items: tikkeulList))
+                }
+                
+                // Update State:
+            case let.updateTikkeulList(items):
+                state.tikkeulList = items
+                return .none
+                
+                // User Action
             case .addTikkeulButtonTapped:
                 state.saveTikkeul = SaveTikkeulFeature.State()
                 
