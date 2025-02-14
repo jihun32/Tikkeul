@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import ComposableArchitecture
 
 extension PersistenceController {
     static let liveValue = PersistenceController.shared

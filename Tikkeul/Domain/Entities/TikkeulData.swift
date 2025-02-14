@@ -11,7 +11,7 @@ struct TikkeulData: Equatable {
     let id: UUID
     var money: Int
     var category: String
-    var date: Date?
+    var date: Date
     var memo: String?
 }
 

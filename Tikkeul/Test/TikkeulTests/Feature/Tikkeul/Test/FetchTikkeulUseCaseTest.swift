@@ -36,7 +36,6 @@ final class FetchTikkeulUseCaseTest: XCTestCase {
     
     func test_fetchTikkeul함수호출시_오늘의데이터를받아오는지() throws {
         // Given
-        let initialItems = TikkeulData.dummyData
         let date = Date()
         let expectedItems = getFilteredItemsByRange(by: date.startOfDay..<date.endOfDay, items: TikkeulData.dummyData)
         
@@ -44,13 +43,12 @@ final class FetchTikkeulUseCaseTest: XCTestCase {
         let resultItems = try sut.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         
         // Then
-        XCTAssertEqual(resultItems, initialItems)
+        XCTAssertEqual(resultItems, expectedItems)
     }
     
     private func getFilteredItemsByRange(by range: Range<Date>, items: [TikkeulData]) -> [TikkeulData] {
         return items.filter { data in
-            guard let date = data.date else { return false }
-            return date >= range.lowerBound && date < range.upperBound
-        }.sorted { ($0.date ?? Date()) < ($1.date ?? Date()) }
+            return data.date >= range.lowerBound && data.date < range.upperBound
+        }.sorted { ($0.date) < ($1.date) }
     }
 }
