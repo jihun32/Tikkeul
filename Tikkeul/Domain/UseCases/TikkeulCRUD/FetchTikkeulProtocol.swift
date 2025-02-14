@@ -15,7 +15,7 @@ final class FetchTikkeulUseCase: FetchTikkeulUseCaseProtocol {
         self.repository = repository
     }
     
-    func fetchTikkeul() throws -> [TikkeulData] {
-        try repository.fetchTikkeul()
+    func fetchTikkeul(from startDate: Date, to endDate: Date) throws -> [TikkeulData] {
+        try repository.fetchTikkeul(from: startDate, to: endDate)
     }
 }

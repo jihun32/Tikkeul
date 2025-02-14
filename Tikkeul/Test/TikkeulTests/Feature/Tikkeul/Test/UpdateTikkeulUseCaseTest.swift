@@ -40,14 +40,15 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
         
         // Given
         let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
-        var fetchedItems = try stubRepository.fetchTikkeul()
+        let date = Date()
+        var fetchedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         
         // When
         fetchedItems[0].money = 100000
         try sut.updateTikkeul(item: fetchedItems[0])
         
         // Then
-        let resultItems = try stubRepository.fetchTikkeul()
+        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         XCTAssertEqual(resultItems, fetchedItems)
     }
     

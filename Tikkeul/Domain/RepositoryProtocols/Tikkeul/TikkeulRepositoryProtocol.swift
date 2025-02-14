@@ -11,7 +11,7 @@ protocol TikkeulRepositoryProtocol {
     func addTikkeul(item: TikkeulData) throws
     func deleteTikkeul(item: TikkeulData) throws
     func updateTikkeul(item: TikkeulData) throws
-    func fetchTikkeul() throws -> [TikkeulData] 
+    func fetchTikkeul(from startDate: Date, to endDate: Date) throws -> [TikkeulData] 
 }
 
 extension TikkeulRepositoryProtocol {

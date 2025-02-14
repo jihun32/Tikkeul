@@ -50,20 +50,19 @@ final class StubTikkeulRepository: TikkeulRepositoryProtocol {
         try context.save()
     }
     
-    func fetchTikkeul() throws -> [TikkeulData] {
+    func fetchTikkeul(from startDate: Date, to endDate: Date) throws -> [TikkeulData] {
         let fetchRequest: NSFetchRequest<Tikkeul> = Tikkeul.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "date >= %@ AND date < %@", startDate as NSDate, endDate as NSDate)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         
         let fetchedDatas = try context.fetch(fetchRequest)
         return try fetchedDatas.map { model in
             guard let id = model.id,
                   let category = model.category,
-                  let date = model.date
-            else {
+                  let date = model.date else {
                 throw RepositoryError.missingRequiredProperty
             }
             
-            // Persistence Tikkeul Entity에 toDomain함수를 만들 수 없어 직접 맵핑
             return TikkeulData(
                 id: id,
                 money: Int(model.money),

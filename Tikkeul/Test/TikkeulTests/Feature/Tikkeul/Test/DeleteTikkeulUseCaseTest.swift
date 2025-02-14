@@ -37,14 +37,15 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     func test_deleteTikkeul함수호출시_삭제하고자하는아이템을전달했을때_삭제되고난후데이터를반환하는지() throws {
         
         // Given
-        let deleteItem = TikkeulData(id: UUID(), money: 1000, category: "shopping", date: Date())
+        let deleteItem = TikkeulData.dummyData[0]
         
         // When
         try sut.deleteTikkeul(item: deleteItem)
         
         // Then
         let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
-        let deletedItems = try stubRepository.fetchTikkeul()
+        let date = Date()
+        let deletedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         XCTAssertFalse(deletedItems.contains(deleteItem))
     }
     

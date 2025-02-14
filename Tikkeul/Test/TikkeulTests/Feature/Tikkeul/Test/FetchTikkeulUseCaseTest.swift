@@ -37,9 +37,10 @@ final class FetchTikkeulUseCaseTest: XCTestCase {
     func test_fetchTikkeul함수호출시_Tikkeul데이터를받아오는지() throws {
         // Given
         let initialItems = TikkeulData.dummyData
+        let date = Date()
         
         // When
-        let resultItems = try sut.fetchTikkeul()
+        let resultItems = try sut.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         
         // Then
         XCTAssertEqual(resultItems, initialItems)

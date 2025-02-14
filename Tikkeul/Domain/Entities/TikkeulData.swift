@@ -19,10 +19,10 @@ extension TikkeulData {
     static let dummyData: [TikkeulData] = {
         let baseDate = Date()
         return [
-            TikkeulData(id: UUID(), money: 1000, category: "beauty", date: baseDate),
-            TikkeulData(id: UUID(), money: 1000, category: "coffee", date: Calendar.current.date(byAdding: .hour, value: -1, to: baseDate)!),
+            TikkeulData(id: UUID(), money: 1000, category: "coffee", date: Calendar.current.date(byAdding: .hour, value: -3, to: baseDate)!),
             TikkeulData(id: UUID(), money: 1000, category: "delivery", date: Calendar.current.date(byAdding: .hour, value: -2, to: baseDate)!),
-            TikkeulData(id: UUID(), money: 1000, category: "drink", date: Calendar.current.date(byAdding: .hour, value: -3, to: baseDate)!, memo: "test")
+            TikkeulData(id: UUID(), money: 1000, category: "drink", date: Calendar.current.date(byAdding: .hour, value: -1, to: baseDate)!, memo: "test"),
+            TikkeulData(id: UUID(), money: 1000, category: "beauty", date: baseDate)
         ]
     }()
 }

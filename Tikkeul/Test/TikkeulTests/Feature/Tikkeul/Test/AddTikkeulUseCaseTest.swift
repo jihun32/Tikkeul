@@ -8,7 +8,7 @@
 import XCTest
 @testable import Tikkeul
 
-final class SaveTikkeulUseCaseTest: XCTestCase {
+final class AddTikkeulUseCaseTest: XCTestCase {
 
     var sut: AddTikkeulUseCase!
 
@@ -42,7 +42,8 @@ final class SaveTikkeulUseCaseTest: XCTestCase {
         
         // When
         try sut.addTikkeul(item: newItem)
-        let resultItems = try stubRepository.fetchTikkeul()
+        let date = Date()
+        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         // Then
         XCTAssertEqual(resultItems.count, initialItems.count + 1)
         XCTAssertEqual(resultItems.last, newItem)

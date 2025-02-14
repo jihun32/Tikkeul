@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FetchTikkeulUseCaseProtocol {
-    func fetchTikkeul() throws -> [TikkeulData]
+    func fetchTikkeul(from startDate: Date, to endDate: Date) throws -> [TikkeulData]
 }
