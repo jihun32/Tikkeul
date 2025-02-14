@@ -28,7 +28,9 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     
     private func setupSut() -> UpdateTikkeulUseCase {
         return UpdateTikkeulUseCase(
-            repository: StubTikkeulRepository()
+            repository: StubTikkeulRepository(
+                persistenceController: .testValue
+            )
         )
     }
     
@@ -37,26 +39,31 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     func test_updateTikkeul함수호출시_변경할아이템을전달할때_업데이트된아이템배열을반환하는지() throws {
         
         // Given
-        let updateItem = TikkeulData(id: "1", money: 5000, category: "Snack", date: Date())
-        var expectedResult = TikkeulData.dummyData
-        expectedResult[0] = updateItem
+        let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
+        let date = Date()
+        var fetchedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         
         // When
-        let resultItems = sut.updateTikkeul(item: updateItem, items: TikkeulData.dummyData)
+        fetchedItems[0].money = 100000
+        try sut.updateTikkeul(item: fetchedItems[0])
         
         // Then
-        XCTAssertEqual(resultItems, expectedResult)
+        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+        XCTAssertEqual(resultItems, fetchedItems)
     }
     
-    func test_updateTikkeul함수호출시_존재하지않는Id아이템을전달할때_nil을반환하는지() throws {
+    func test_updateTikkeul함수호출시_존재하지않는Id아이템을전달할때_itemNotFound에러를반환하는지() throws {
         
         // Given
-        let updateItem = TikkeulData(id: "100", money: 5000, category: "Snack", date: Date())
+        let updateItem = TikkeulData(id: UUID(), money: 5000, category: "Snack", date: Date())
         
-        // When
-        let resultItems = sut.updateTikkeul(item: updateItem, items: TikkeulData.dummyData)
-        
-        // Then
-        XCTAssertNil(resultItems)
+        // When & Then
+        XCTAssertThrowsError(try sut.updateTikkeul(item: updateItem)) { error in
+            guard let repositoryError = error as? RepositoryError else {
+                XCTFail("예상하지 않은 에러 타입: \(error)")
+                return
+            }
+            XCTAssertEqual(repositoryError, RepositoryError.itemNotFound)
+        }
     }
 }

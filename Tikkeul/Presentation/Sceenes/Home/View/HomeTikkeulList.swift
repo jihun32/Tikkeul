@@ -35,5 +35,5 @@ extension HomeTikkeulList {
 }
 
 #Preview {
-    HomeTikkeulList(tikkeulList: HomeTikkeulData.data)
+    HomeTikkeulList(tikkeulList: [HomeTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM")])
 }

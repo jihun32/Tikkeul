@@ -15,7 +15,7 @@ final class UpdateTikkeulUseCase: UpdateTikkeulUseCaseProtocol {
         self.repository = repository
     }
 
-    func updateTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData]? {
-        repository.updateTikkeul(item: item, items: items)
+    func updateTikkeul(item: TikkeulData) throws {
+        try repository.updateTikkeul(item: item)
     }
 }

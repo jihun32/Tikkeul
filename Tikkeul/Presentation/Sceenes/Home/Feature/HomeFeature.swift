@@ -18,7 +18,7 @@ struct HomeFeature {
         @Presents var saveTikkeul: SaveTikkeulFeature.State?
         
         // UI State
-        var tikkeulList: [HomeTikkeulData] = HomeTikkeulData.data
+        var tikkeulList: [HomeTikkeulData] = []
         var isEmptyTikkeulList: Bool {
             tikkeulList.isEmpty
         }

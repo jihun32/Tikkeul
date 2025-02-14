@@ -15,7 +15,7 @@ final class DeleteTikkeulUseCase: DeleteTikkeulUseCaseProtocol {
         self.repository = repository
     }
     
-    func deleteTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData]? {
-        repository.deleteTikkeul(item: item, items: items)
+    func deleteTikkeul(item: TikkeulData) throws {
+        try repository.deleteTikkeul(item: item)
     }
 }

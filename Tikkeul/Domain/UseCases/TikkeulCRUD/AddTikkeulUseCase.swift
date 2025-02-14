@@ -15,7 +15,7 @@ final class AddTikkeulUseCase: AddTikkeulUseCaseProtocol {
         self.repository = repository
     }
     
-    func addTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData] {
-        repository.addTikkeul(item: item, items: items)
+    func addTikkeul(item: TikkeulData) throws {
+        try repository.addTikkeul(item: item)
     }
 }

@@ -23,5 +23,6 @@ struct TikkeulApp: App {
                 MainTabView(store: tabViewStore)
             }
         }
+        
     }
 }
