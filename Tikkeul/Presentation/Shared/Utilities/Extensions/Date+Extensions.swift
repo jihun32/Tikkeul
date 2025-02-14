@@ -30,6 +30,14 @@ extension Date {
         return start
     }
     
+    /// 현재 날짜가 속한 주의 종료 시각(다음 주 시작)을 반환합니다.
+    var endOfWeek: Date {
+        guard let end = Calendar.current.date(byAdding: .day, value: 7, to: startOfWeek) else {
+            fatalError("주 종료 날짜 계산 실패")
+        }
+        return end
+    }
+    
     /// 현재 날짜가 속한 월의 시작 날짜를 반환합니다.
     var startOfMonth: Date {
         let components = Calendar.current.dateComponents([.year, .month], from: self)
