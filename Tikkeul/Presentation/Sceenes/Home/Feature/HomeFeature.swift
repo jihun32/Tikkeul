@@ -15,7 +15,7 @@ struct HomeFeature {
     @ObservableState
     struct State {
         // Present
-        @Presents var saveTikkeul: SaveTikkeulFeature.State?
+        var path = StackState<SaveTikkeulFeature.State>()
         
         // UI State
         var tikkeulList: [HomeTikkeulData] = []
@@ -42,8 +42,9 @@ struct HomeFeature {
         // Update State
         case updateTikkeulList(items: [HomeTikkeulData])
         
-        // Other Feature
-        case saveTikkeul(PresentationAction<SaveTikkeulFeature.Action>)
+        // Present
+        case path(StackAction<SaveTikkeulFeature.State, SaveTikkeulFeature.Action>)
+            
     }
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
@@ -67,34 +68,27 @@ struct HomeFeature {
                 
                 // User Action
             case .addTikkeulButtonTapped:
-                state.saveTikkeul = SaveTikkeulFeature.State()
-                
+                state.path.append(SaveTikkeulFeature.State())
                 return .none
                 
                 // Other Feature Action
-            case .saveTikkeul(.presented(.delegate(.saveButtonTapped))):
-                guard let addableTikkeul = state.saveTikkeul?.addableTikkeul else { return .none }
-                state.saveTikkeul = nil
+            case .path(.element(id: _, action: .delegate(.saveButtonTapped))):
+                guard let addableTikkeul = state.path.last?.addableTikkeul else { return .none }
+                state.path.removeLast()
                 return .run { send in
-                    let date = Date()
                     try addTikkeulUseCase.addTikkeul(item: addableTikkeul)
                     await send(.fetchTikkeulList)
                 }
-
-            case .saveTikkeul(.presented(.delegate(.dismissButtonTapped))):
-                state.saveTikkeul = nil
-                return .none
                 
-            case .saveTikkeul:
+            case .path:
                 return .none
                 
             }
         }
-        .ifLet(\.$saveTikkeul, action: \.saveTikkeul) {
+        .forEach(\.path, action: \.path) {
             SaveTikkeulFeature()
         }
     }
-    
 }
 
 

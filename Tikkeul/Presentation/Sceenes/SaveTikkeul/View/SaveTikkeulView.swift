@@ -16,9 +16,6 @@ struct SaveTikkeulView: View {
     var body: some View {
         VStack(spacing: 0) {
             
-            dismissButton
-                .padding(.top, 16)
-            
             Spacer()
             
             moneyTextField
@@ -42,6 +39,17 @@ struct SaveTikkeulView: View {
         }
         .padding(.horizontal, 20)
         .background(Color.background)
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundStyle(.black)
+                }
+            }
+        }
         .sheet(
             item: $store.scope(
                 state: \.choiceCategory,
@@ -57,21 +65,6 @@ struct SaveTikkeulView: View {
 }
 
 extension SaveTikkeulView {
-    
-    private var dismissButton: some View {
-        HStack {
-            
-            Spacer()
-            
-            Button {
-                store.send(.delegate(.dismissButtonTapped))
-            } label: {
-                Image(systemName: "xmark")
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(.black)
-            }
-        }
-    }
     
     private var moneyTextField: some View { 
         HStack(spacing: 5) {

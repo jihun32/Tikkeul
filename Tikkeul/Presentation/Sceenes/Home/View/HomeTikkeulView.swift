@@ -14,7 +14,7 @@ struct HomeTikkeulView: View {
     @Perception.Bindable var store: StoreOf<HomeFeature>
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
             ZStack {
                 VStack(alignment: .leading, spacing: 0) {
                     todayTikkeulMoney
@@ -47,14 +47,8 @@ struct HomeTikkeulView: View {
             .onAppear {
                 store.send(.onAppear)
             }
-            .fullScreenCover(
-                item: $store.scope(
-                    state: \.saveTikkeul,
-                    action: \.saveTikkeul
-                )
-            ) { saveTikkeulStore in
-                SaveTikkeulView(store: saveTikkeulStore)
-            }
+        } destination: { store in
+            SaveTikkeulView(store: store)
         }
     }
 }
