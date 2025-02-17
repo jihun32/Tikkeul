@@ -38,7 +38,9 @@ struct SaveTikkeulView: View {
             
             Spacer()
             
-            BottomButton {
+            BottomButton(
+                title: "저장",
+                backgroundColor: store.isEnableSaveButton ? .primaryMain : .gray.opacity(0.3)) {
                 store.send(.delegate(.saveButtonTapped))
             }
             .disabled(!store.isEnableSaveButton)

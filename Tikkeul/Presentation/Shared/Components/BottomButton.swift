@@ -9,23 +9,26 @@ import SwiftUI
 
 struct BottomButton: View {
     
+    var title: String
+    var backgroundColor: Color
+    
     var onTapped: () -> Void
     
     var body: some View {
         Button {
             onTapped()
         } label: {
-            Text("저장")
+            Text(title)
                 .foregroundStyle(.white)
         }
         .frame(maxWidth: .infinity)
         .frame(height: 60)
-        .background(.primaryMain)
+        .background(backgroundColor)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding(.bottom, 10)
     }
 }
 
 #Preview {
-    BottomButton(onTapped: { })
+    BottomButton(title: "저장", backgroundColor: .primaryMain , onTapped: { })
 }
