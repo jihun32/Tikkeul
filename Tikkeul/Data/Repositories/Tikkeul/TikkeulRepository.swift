@@ -7,8 +7,8 @@
 
 import CoreData
 
-// MARK: - Stub
-final class StubTikkeulRepository: TikkeulRepositoryProtocol {
+// MARK: - Live
+final class TikkeulRepository: TikkeulRepositoryProtocol {
     
     private let persistenceController: PersistenceController
     private let context: NSManagedObjectContext

@@ -38,9 +38,7 @@ struct SaveTikkeulView: View {
             
             Spacer()
             
-            BottomButton {
-                
-            }
+            saveButton
         }
         .padding(.horizontal, 20)
         .background(Color.background)
@@ -66,7 +64,7 @@ extension SaveTikkeulView {
             Spacer()
             
             Button {
-                
+                store.send(.delegate(.dismissButtonTapped))
             } label: {
                 Image(systemName: "xmark")
                     .frame(width: 20, height: 20)
@@ -122,7 +120,25 @@ extension SaveTikkeulView {
                     .foregroundColor(.gray.opacity(0.5))
             )
             .multilineTextAlignment(.leading)
+            .onChange(of: store.memoText) { newValue in
+                if newValue.count > 10 {
+                    store.send(.memoTextFieldDidChange(memo: String(newValue.prefix(10))))
+                }
+            }
+            
+            Spacer()
+            
+            Text(store.memoCountText)
         }
+    }
+    
+    private var saveButton: some View {
+        BottomButton(
+            title: "저장",
+            backgroundColor: store.isEnableSaveButton ? .primaryMain : .gray.opacity(0.3)) {
+            store.send(.delegate(.saveButtonTapped))
+        }
+        .disabled(!store.isEnableSaveButton)
     }
 }
 

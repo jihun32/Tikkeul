@@ -33,7 +33,6 @@
 		CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikkeulUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA793BE52D50C9FD0028E7E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		CA8B6FB12D5DD68D00DA5948 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -113,7 +112,6 @@
 			children = (
 				CA793BE52D50C9FD0028E7E2 /* .gitignore */,
 				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
-				CA8B6FB02D5DD68C00DA5948 /* Frameworks */,
 				CA793BB42D50C4F70028E7E2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,14 +124,6 @@
 				CA793BD22D50C4FB0028E7E2 /* TikkeulUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CA8B6FB02D5DD68C00DA5948 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CA8B6FB12D5DD68D00DA5948 /* XCTest.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
@@ -514,6 +505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WBG9V97XP4;

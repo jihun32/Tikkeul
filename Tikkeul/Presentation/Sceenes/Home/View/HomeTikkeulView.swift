@@ -44,6 +44,9 @@ struct HomeTikkeulView: View {
             .background(Color.background)
             .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.large)
+            .onAppear {
+                store.send(.onAppear)
+            }
             .fullScreenCover(
                 item: $store.scope(
                     state: \.saveTikkeul,
@@ -106,7 +109,23 @@ extension HomeTikkeulView {
 
 
 #Preview {
-    HomeTikkeulView(store: Store(initialState: HomeFeature.State(), reducer: {
-        HomeFeature()
-    }))
+    withDependencies {
+        $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        $0.addTikkeulUseCase = AddTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+    } operation: {
+        HomeTikkeulView(
+            store: Store(
+                initialState: HomeFeature.State(),
+                reducer: { HomeFeature() }
+            )
+        )
+    }
 }

@@ -20,6 +20,7 @@ struct HomeTikkeulList: View {
                     HomeTikkeulRow(tikkeul: tikkeul)
                 }
             }
+                .padding(.bottom, 60)
         }
     }
 }

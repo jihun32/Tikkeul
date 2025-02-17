@@ -28,7 +28,7 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     
     private func setupSut() -> UpdateTikkeulUseCase {
         return UpdateTikkeulUseCase(
-            repository: StubTikkeulRepository(
+            repository: TikkeulRepository(
                 persistenceController: .testValue
             )
         )
@@ -39,7 +39,7 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
     func test_updateTikkeul함수호출시_변경할아이템을전달할때_업데이트된아이템배열을반환하는지() throws {
         
         // Given
-        let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
+        let stubRepository = TikkeulRepository(persistenceController: .testValue)
         let date = Date()
         var fetchedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         
