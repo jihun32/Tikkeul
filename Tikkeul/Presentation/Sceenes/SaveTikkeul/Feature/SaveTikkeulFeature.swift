@@ -23,6 +23,7 @@ struct SaveTikkeulFeature {
         var categoryText: String?
         var category: TikkeulCategory?
         var isEnableSaveButton: Bool = false
+        var memoCountText: String = "0/10"
         
         // Delegate State
         var addableTikkeul: TikkeulData?
@@ -58,7 +59,7 @@ struct SaveTikkeulFeature {
                 
             case let .memoTextFieldDidChange(memo):
                 state.memoText = memo
-                
+                state.memoCountText = "\(state.memoText.count)/10"
                 return .none
                 
             case .categoryButtonTapped:
