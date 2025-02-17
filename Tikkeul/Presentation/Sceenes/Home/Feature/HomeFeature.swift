@@ -38,9 +38,11 @@ struct HomeFeature {
         
         // Fetch Data
         case fetchTikkeulList
+        case addTikkeulList(item: TikkeulData)
+        case updateTikkeulList(item: TikkeulData)
         
         // Update State
-        case updateTikkeulList(items: [HomeTikkeulData])
+        case setTikkeulList(items: [HomeTikkeulData])
         
         // Present
         case path(StackAction<SaveTikkeulFeature.State, SaveTikkeulFeature.Action>)
@@ -49,6 +51,7 @@ struct HomeFeature {
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
     @Dependency(\.addTikkeulUseCase) var addTikkeulUseCase
+    @Dependency(\.updateTikkeulUseCase) var updateTikkeulUseCase
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -61,8 +64,18 @@ struct HomeFeature {
             case .fetchTikkeulList:
                 return fetchTikkeulListEffect()
                 
+            case let .updateTikkeulList(item):
+                return .run { send in
+                    try updateTikkeulUseCase.updateTikkeul(item: item)
+                    await send(.fetchTikkeulList)
+                }
+            case let .addTikkeulList(item):
+                return .run { send in
+                    try addTikkeulUseCase.addTikkeul(item: item)
+                    await send(.fetchTikkeulList)
+                }
                 // Update State:
-            case let.updateTikkeulList(items):
+            case let.setTikkeulList(items):
                 state.tikkeulList = items
                 return .none
                 
@@ -73,11 +86,16 @@ struct HomeFeature {
                 
                 // Other Feature Action
             case .path(.element(id: _, action: .delegate(.saveButtonTapped))):
-                guard let addableTikkeul = state.path.last?.addableTikkeul else { return .none }
+                
+                guard let saveState = state.path.last,
+                      let tikkeul = saveState.addableTikkeul else { return .none }
+                
                 state.path.removeLast()
-                return .run { send in
-                    try addTikkeulUseCase.addTikkeul(item: addableTikkeul)
-                    await send(.fetchTikkeulList)
+                
+                if saveState.isEdit {
+                    return .send(.updateTikkeulList(item: tikkeul))
+                } else {
+                    return .send(.addTikkeulList(item: tikkeul))
                 }
                 
             case .path(.element(id: _, action: .delegate(.backButtonTapped))):
@@ -114,8 +132,7 @@ extension HomeFeature {
                     memo: data.memo
                 )
             }
-            
-            await send(.updateTikkeulList(items: tikkeulList))
+            await send(.setTikkeulList(items: tikkeulList))
         }
     }
 }

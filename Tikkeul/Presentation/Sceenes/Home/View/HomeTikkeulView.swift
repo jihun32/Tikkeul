@@ -114,6 +114,12 @@ extension HomeTikkeulView {
                 persistenceController: .testValue
             )
         )
+        
+        $0.updateTikkeulUseCase = UpdateTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
     } operation: {
         HomeTikkeulView(
             store: Store(

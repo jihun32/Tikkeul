@@ -15,12 +15,6 @@ private enum AddTikkeulUseCaseKey: DependencyKey {
             persistenceController: .liveValue
         )
     )
-    
-    static let testValue: AddTikkeulUseCaseProtocol = AddTikkeulUseCase(
-        repository: TikkeulRepository(
-            persistenceController: .testValue
-        )
-    )
 }
 
 

@@ -64,6 +64,7 @@ struct SaveTikkeulFeature {
                 state.moneyText = String(tikkeulData.money)
                 state.isEnableSaveButton = true
                 state.categoryText = tikkeulData.category.emoji + tikkeulData.category.title
+                state.category = tikkeulData.category
                 state.memoText = memo
                 state.memoCountText = "\(memo.count)/10"
                 state.isEdit = true
@@ -91,11 +92,13 @@ struct SaveTikkeulFeature {
                 guard let money = Int(state.moneyText.filter { $0.isNumber }),
                       let category = state.category?.rawValue
                 else { return .none }
+                
+                
                 state.addableTikkeul = TikkeulData(
-                    id: UUID(),
+                    id: state.tikkeulData?.id ?? UUID(),
                     money: money,
                     category: category,
-                    date: Date(),
+                    date: state.tikkeulData?.time.toDate(on: Date(), with: .timeAMorPM) ?? Date(),
                     memo: state.memoText
                 )
                 return .none
