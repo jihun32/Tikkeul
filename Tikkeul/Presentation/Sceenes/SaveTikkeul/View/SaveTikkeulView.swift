@@ -41,13 +41,8 @@ struct SaveTikkeulView: View {
         .background(Color.background)
         .navigationBarBackButtonHidden()
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Button {
-                    
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(.black)
-                }
+            NavigationBackButton {
+                
             }
         }
         .sheet(
