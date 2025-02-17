@@ -58,24 +58,7 @@ struct HomeFeature {
                 
                 // Fetch Data
             case .fetchTikkeulList:
-                return .run { send in
-                    let date = Date()
-                    let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
-                
-                    let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
-                        guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
-                        
-                        return HomeTikkeulData(
-                            id: data.id,
-                            money: data.money,
-                            category: category,
-                            time: data.date.formattedString(dateFormat: .timeAMorPM),
-                            memo: data.memo
-                        )
-                    }
-                    
-                    await send(.updateTikkeulList(items: tikkeulList))
-                }
+                return fetchTikkeulListEffect()
                 
                 // Update State:
             case let.updateTikkeulList(items):
@@ -95,21 +78,7 @@ struct HomeFeature {
                 return .run { send in
                     let date = Date()
                     try addTikkeulUseCase.addTikkeul(item: addableTikkeul)
-                    
-                    let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
-                    
-                    let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
-                        guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
-                        
-                        return HomeTikkeulData(
-                            id: data.id,
-                            money: data.money,
-                            category: category,
-                            time: data.date.formattedString(dateFormat: .timeAMorPM),
-                            memo: data.memo
-                        )
-                    }
-                    await send(.updateTikkeulList(items: tikkeulList))
+                    await send(.fetchTikkeulList)
                 }
 
             case .saveTikkeul(.presented(.delegate(.dismissButtonTapped))):
@@ -126,4 +95,28 @@ struct HomeFeature {
         }
     }
     
+}
+
+
+extension HomeFeature {
+    private func fetchTikkeulListEffect() -> Effect<Action> {
+        return .run { send in
+            let date = Date()
+            let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+            
+            let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
+                guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
+                
+                return HomeTikkeulData(
+                    id: data.id,
+                    money: data.money,
+                    category: category,
+                    time: data.date.formattedString(dateFormat: .timeAMorPM),
+                    memo: data.memo
+                )
+            }
+            
+            await send(.updateTikkeulList(items: tikkeulList))
+        }
+    }
 }
