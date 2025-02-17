@@ -40,24 +40,7 @@ struct SaveTikkeulView: View {
         .padding(.horizontal, 20)
         .background(Color.background)
         .navigationBarBackButtonHidden()
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                NavigationBackButton {
-                    store.send(.delegate(.backButtonTapped))
-                }
-            }
-            
-            if store.isEdit {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Text("삭제")
-                            .foregroundStyle(.red)
-                    }
-                }
-            }
-        }
+        .toolbar { toolbarContent }
         .onAppear {
             store.send(.onAppear)
         }
@@ -77,9 +60,8 @@ struct SaveTikkeulView: View {
 
 extension SaveTikkeulView {
     
-    private var moneyTextField: some View { 
+    private var moneyTextField: some View {
         HStack(spacing: 5) {
-            
             CommaFomattedUITextField(
                 text: $store.moneyText.sending(\.moneyTextFieldDidChange),
                 placeholder: "0",
@@ -87,12 +69,10 @@ extension SaveTikkeulView {
                 font: UIFont.systemFont(ofSize: 60, weight: .medium),
                 textAlignment: .right
             )
-                .fixedSize()
+            .fixedSize()
 
-            
             Text("원")
                 .font(.system(size: 20, weight: .medium))
-
         }
         .frame(maxWidth: .infinity, alignment: .center)
     }
@@ -143,6 +123,26 @@ extension SaveTikkeulView {
             store.send(.delegate(.saveButtonTapped))
         }
         .disabled(!store.isEnableSaveButton)
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            NavigationBackButton {
+                store.send(.delegate(.backButtonTapped))
+            }
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
+            if store.isEdit {
+                Button {
+                    // 삭제 버튼 액션
+                } label: {
+                    Text("삭제")
+                        .foregroundStyle(.red)
+                }
+            }
+        }
     }
 }
 
