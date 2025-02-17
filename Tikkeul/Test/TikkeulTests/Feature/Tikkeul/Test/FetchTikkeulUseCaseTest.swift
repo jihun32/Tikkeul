@@ -26,7 +26,7 @@ final class FetchTikkeulUseCaseTest: XCTestCase {
     
     private func setupSut() -> FetchTikkeulUseCase {
         return FetchTikkeulUseCase(
-            repository: StubTikkeulRepository(
+            repository: TikkeulRepository(
                 persistenceController: .testValue
             )
         )

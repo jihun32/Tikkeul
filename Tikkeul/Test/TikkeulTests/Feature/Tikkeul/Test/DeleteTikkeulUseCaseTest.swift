@@ -26,7 +26,7 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     
     private func setupSut() -> DeleteTikkeulUseCase {
         return DeleteTikkeulUseCase(
-            repository: StubTikkeulRepository(
+            repository: TikkeulRepository(
                 persistenceController: .testValue
             )
         )
@@ -43,7 +43,7 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
         try sut.deleteTikkeul(item: deleteItem)
         
         // Then
-        let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
+        let stubRepository = TikkeulRepository(persistenceController: .testValue)
         let date = Date()
         let deletedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
         XCTAssertFalse(deletedItems.contains(deleteItem))

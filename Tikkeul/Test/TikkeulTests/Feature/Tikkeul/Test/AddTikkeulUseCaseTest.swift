@@ -26,7 +26,7 @@ final class AddTikkeulUseCaseTest: XCTestCase {
 
     private func setupSut() -> AddTikkeulUseCase {
         return AddTikkeulUseCase(
-            repository: StubTikkeulRepository(
+            repository: TikkeulRepository(
                 persistenceController: .testValue
             )
         )
@@ -38,7 +38,7 @@ final class AddTikkeulUseCaseTest: XCTestCase {
         // Given
         let newItem = TikkeulData(id: UUID(), money: 10000, category: "Snack", date: Date())
         let initialItems = TikkeulData.dummyData
-        let stubRepository = StubTikkeulRepository(persistenceController: .testValue)
+        let stubRepository = TikkeulRepository(persistenceController: .testValue)
         
         // When
         try sut.addTikkeul(item: newItem)

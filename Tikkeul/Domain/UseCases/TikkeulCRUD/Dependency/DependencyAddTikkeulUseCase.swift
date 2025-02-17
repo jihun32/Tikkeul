@@ -17,7 +17,7 @@ private enum AddTikkeulUseCaseKey: DependencyKey {
     )
     
     static let testValue: AddTikkeulUseCaseProtocol = AddTikkeulUseCase(
-        repository: StubTikkeulRepository(
+        repository: TikkeulRepository(
             persistenceController: .testValue
         )
     )

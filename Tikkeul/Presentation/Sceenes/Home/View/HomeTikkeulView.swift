@@ -111,12 +111,12 @@ extension HomeTikkeulView {
 #Preview {
     withDependencies {
         $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
-            repository: StubTikkeulRepository(
+            repository: TikkeulRepository(
                 persistenceController: .testValue
             )
         )
         $0.addTikkeulUseCase = AddTikkeulUseCase(
-            repository: StubTikkeulRepository(
+            repository: TikkeulRepository(
                 persistenceController: .testValue
             )
         )
