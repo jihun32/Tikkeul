@@ -69,7 +69,8 @@ struct HomeFeature {
                             id: data.id,
                             money: data.money,
                             category: category,
-                            time: data.date.formattedString(dateFormat: .timeAMorPM)
+                            time: data.date.formattedString(dateFormat: .timeAMorPM),
+                            memo: data.memo
                         )
                     }
                     
@@ -104,7 +105,8 @@ struct HomeFeature {
                             id: data.id,
                             money: data.money,
                             category: category,
-                            time: data.date.formattedString(dateFormat: .timeAMorPM)
+                            time: data.date.formattedString(dateFormat: .timeAMorPM),
+                            memo: data.memo
                         )
                     }
                     await send(.updateTikkeulList(items: tikkeulList))

@@ -44,15 +44,23 @@ extension HomeTikkeulRow {
             Text(tikkeul.category.title)
                 .font(.system(size: 20))
             
-            Text(tikkeul.time)
-                .font(.caption)
-                .foregroundStyle(.gray)
+            if let memo = tikkeul.memo {
+                Text(memo)
+                    .font(.caption)
+                    .foregroundStyle(.gray)
+            }
         }
     }
     
     private var priceText: some View {
-        Text("\(tikkeul.money) 원")
-            .font(.system(size: 20))
+        VStack(alignment: .trailing) {
+            Text("\(tikkeul.money) 원")
+                .font(.system(size: 20))
+            
+            Text(tikkeul.time)
+                .font(.caption)
+                .foregroundStyle(.gray)
+        }
     }
 }
 
