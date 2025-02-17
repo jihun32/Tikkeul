@@ -80,6 +80,11 @@ struct HomeFeature {
                     await send(.fetchTikkeulList)
                 }
                 
+            case .path(.element(id: _, action: .delegate(.backButtonTapped))):
+                
+                state.path.removeLast()
+                return .none
+                
             case .path:
                 return .none
                 

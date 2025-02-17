@@ -41,8 +41,10 @@ struct SaveTikkeulView: View {
         .background(Color.background)
         .navigationBarBackButtonHidden()
         .toolbar {
-            NavigationBackButton {
-                
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationBackButton {
+                    store.send(.delegate(.backButtonTapped))
+                }
             }
         }
         .sheet(

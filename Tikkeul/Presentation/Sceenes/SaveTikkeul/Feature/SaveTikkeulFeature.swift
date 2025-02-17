@@ -43,6 +43,7 @@ struct SaveTikkeulFeature {
         case delegate(Delegate)
         enum Delegate {
             case saveButtonTapped
+            case backButtonTapped
         }
     }
     

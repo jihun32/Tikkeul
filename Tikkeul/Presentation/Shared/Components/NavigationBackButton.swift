@@ -11,13 +11,11 @@ struct NavigationBackButton: View {
     var onTapped: () -> Void
     
     var body: some View {
-        ToolbarItem(placement: .topBarLeading) {
-            Button {
-                onTapped()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundStyle(.black)
-            }
+        Button {
+            onTapped()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundStyle(.black)
         }
     }
 }
