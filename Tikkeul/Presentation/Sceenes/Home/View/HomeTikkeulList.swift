@@ -17,7 +17,10 @@ struct HomeTikkeulList: View {
                     .padding(.top, 20)
                 
                 ForEach(tikkeulList) { tikkeul in
-                    NavigationLink(state: SaveTikkeulFeature.State()) {
+                    NavigationLink(
+                        state: SaveTikkeulFeature.State(
+                            tikkeulData: tikkeul
+                        )) {
                         HomeTikkeulRow(tikkeul: tikkeul)
                     }
                 }

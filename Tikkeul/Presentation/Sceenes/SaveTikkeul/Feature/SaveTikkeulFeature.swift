@@ -18,18 +18,23 @@ struct SaveTikkeulFeature {
         @Presents var choiceCategory: ChoiceCategoryFeature.State?
         
         // UI State
+        var tikkeulData: HomeTikkeulData?
         var moneyText: String = ""
         var memoText: String = ""
         var categoryText: String?
         var category: TikkeulCategory?
         var isEnableSaveButton: Bool = false
         var memoCountText: String = "0/10"
+        var isEdit: Bool = false
         
         // Delegate State
         var addableTikkeul: TikkeulData?
     }
     
     enum Action {
+        
+        // LifeCycle
+        case onAppear
         
         // Present Action
         case choiceCategory(PresentationAction<ChoiceCategoryFeature.Action>)
@@ -50,6 +55,20 @@ struct SaveTikkeulFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                // LifeCycle
+            case .onAppear:
+                guard let tikkeulData = state.tikkeulData
+                else { return .none }
+                
+                let memo = tikkeulData.memo ?? ""
+                state.moneyText = String(tikkeulData.money)
+                state.isEnableSaveButton = true
+                state.categoryText = tikkeulData.category.emoji + tikkeulData.category.title
+                state.memoText = memo
+                state.memoCountText = "\(memo.count)/10"
+                state.isEdit = true
+                
+                return .none
                 
                 // User Action
             case let .moneyTextFieldDidChange(money):
@@ -68,7 +87,6 @@ struct SaveTikkeulFeature {
                 return .none
                 
                 // Delegate
-                
             case .delegate(.saveButtonTapped):
                 guard let money = Int(state.moneyText.filter { $0.isNumber }),
                       let category = state.category?.rawValue

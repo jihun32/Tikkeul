@@ -46,6 +46,20 @@ struct SaveTikkeulView: View {
                     store.send(.delegate(.backButtonTapped))
                 }
             }
+            
+            if store.isEdit {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Text("삭제")
+                            .foregroundStyle(.red)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            store.send(.onAppear)
         }
         .sheet(
             item: $store.scope(
