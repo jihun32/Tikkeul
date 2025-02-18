@@ -46,15 +46,17 @@ struct SaveTikkeulView: View {
         }
         .sheet(
             item: $store.scope(
-                state: \.choiceCategory,
-                action: \.choiceCategory
-            )) { choiceCategoryFeature in
-                ChoiceCategoryView(
-                    store: choiceCategoryFeature
-                )
-                .presentationDragIndicator(.visible)
-                .presentationDetents([.height(280)])
-            }
+                state: \.destination?.choiceCategory,
+                action: \.destination.choiceCategory
+            )
+        ) { choiceCategoryStore in
+            ChoiceCategoryView(
+                store: choiceCategoryStore
+            )
+            .presentationDragIndicator(.visible)
+            .presentationDetents([.height(280)])
+        }
+        .alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
     }
 }
 
@@ -136,7 +138,7 @@ extension SaveTikkeulView {
         ToolbarItem(placement: .topBarTrailing) {
             if store.isEdit {
                 Button {
-                    // 삭제 버튼 액션
+                    store.send(.deleteButtonTapped)
                 } label: {
                     Text("삭제")
                         .foregroundStyle(.red)

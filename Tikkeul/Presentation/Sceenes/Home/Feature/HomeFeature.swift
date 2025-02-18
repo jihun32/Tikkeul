@@ -14,7 +14,7 @@ struct HomeFeature {
     
     @ObservableState
     struct State {
-        // Present
+        // Navigation
         var path = StackState<SaveTikkeulFeature.State>()
         
         // UI State
@@ -36,15 +36,16 @@ struct HomeFeature {
         // User Action
         case addTikkeulButtonTapped
         
-        // Fetch Data
+        // Data Management
         case fetchTikkeulList
         case addTikkeulList(item: TikkeulData)
         case updateTikkeulList(item: TikkeulData)
+        case deleteTikkeul(id: UUID)
         
         // Update State
         case setTikkeulList(items: [HomeTikkeulData])
         
-        // Present
+        // Navigation
         case path(StackAction<SaveTikkeulFeature.State, SaveTikkeulFeature.Action>)
             
     }
@@ -52,6 +53,7 @@ struct HomeFeature {
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
     @Dependency(\.addTikkeulUseCase) var addTikkeulUseCase
     @Dependency(\.updateTikkeulUseCase) var updateTikkeulUseCase
+    @Dependency(\.deleteTikkeulUseCase) var deleteTikkeulUseCase
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -60,7 +62,12 @@ struct HomeFeature {
             case .onAppear:
                 return .send(.fetchTikkeulList)
                 
-                // Fetch Data
+                // User Action
+            case .addTikkeulButtonTapped:
+                state.path.append(SaveTikkeulFeature.State())
+                return .none
+                
+                // Data Management
             case .fetchTikkeulList:
                 return fetchTikkeulListEffect()
                 
@@ -74,17 +81,19 @@ struct HomeFeature {
                     try addTikkeulUseCase.addTikkeul(item: item)
                     await send(.fetchTikkeulList)
                 }
+                
+            case let .deleteTikkeul(id):
+                return .run { send in
+                    try deleteTikkeulUseCase.deleteTikkeul(id: id)
+                    await send(.fetchTikkeulList)
+                }
+                
                 // Update State:
             case let.setTikkeulList(items):
                 state.tikkeulList = items
                 return .none
                 
-                // User Action
-            case .addTikkeulButtonTapped:
-                state.path.append(SaveTikkeulFeature.State())
-                return .none
-                
-                // Other Feature Action
+                // Navigation
             case .path(.element(id: _, action: .delegate(.saveButtonTapped))):
                 
                 guard let saveState = state.path.last,
@@ -97,6 +106,10 @@ struct HomeFeature {
                 } else {
                     return .send(.addTikkeulList(item: tikkeul))
                 }
+                
+            case let .path(.element(id: _, action: .delegate(.deleteAlertTapped(id)))):
+                state.path.removeLast()
+                return .send(.deleteTikkeul(id: id))
                 
             case .path(.element(id: _, action: .delegate(.backButtonTapped))):
                 

@@ -120,6 +120,12 @@ extension HomeTikkeulView {
                 persistenceController: .testValue
             )
         )
+        
+        $0.deleteTikkeulUseCase = DeleteTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
     } operation: {
         HomeTikkeulView(
             store: Store(

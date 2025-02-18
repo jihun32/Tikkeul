@@ -15,7 +15,7 @@ struct SaveTikkeulFeature {
     @ObservableState
     struct State {
         // Present State
-        @Presents var choiceCategory: ChoiceCategoryFeature.State?
+        @Presents var destination: Destination.State?
         
         // UI State
         var tikkeulData: HomeTikkeulData?
@@ -37,18 +37,25 @@ struct SaveTikkeulFeature {
         case onAppear
         
         // Present Action
-        case choiceCategory(PresentationAction<ChoiceCategoryFeature.Action>)
+        case destination(PresentationAction<Destination.Action>)
         
         // User Action
         case moneyTextFieldDidChange(money: String)
         case memoTextFieldDidChange(memo: String)
         case categoryButtonTapped
+        case deleteButtonTapped
         
         // Delegate
         case delegate(Delegate)
         enum Delegate {
             case saveButtonTapped
             case backButtonTapped
+            case deleteAlertTapped(id: UUID)
+        }
+        
+        // Aleart
+        enum Alert{
+            case confirmDeletion(id: UUID)
         }
     }
     
@@ -83,10 +90,31 @@ struct SaveTikkeulFeature {
                 return .none
                 
             case .categoryButtonTapped:
-                state.choiceCategory = ChoiceCategoryFeature.State()
+                state.destination = .choiceCategory( ChoiceCategoryFeature.State())
                 
                 return .none
                 
+            case .deleteButtonTapped:
+                guard let id = state.tikkeulData?.id else { return .none }
+                state.destination = .alert(
+                    AlertState {
+                        TextState("삭제하시겠어요?")
+                    } actions: {
+                        ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
+                            TextState("삭제하기")
+                        }
+                        
+                        ButtonState(role: .cancel) {
+                            TextState("취소")
+                        }
+                    }
+                )
+                  return .none
+                
+            case let  .destination(.presented(.alert(.confirmDeletion(id)))):
+                
+                return .send(.delegate(.deleteAlertTapped(id: id)))
+                                    
                 // Delegate
             case .delegate(.saveButtonTapped):
                 guard let money = Int(state.moneyText.filter { $0.isNumber }),
@@ -108,21 +136,27 @@ struct SaveTikkeulFeature {
                 
                 
                 // Other Feature Action
-            case let .choiceCategory(.presented(.delegate(.choiceCategory(category)))):
+            case let .destination(.presented(.choiceCategory( .delegate(.choiceCategory(category))))):
                 state.categoryText = category.emoji + category.title
                 state.category = category
-                state.choiceCategory = nil
+                state.destination = nil
                 state.isEnableSaveButton = !state.moneyText.isEmpty && state.categoryText != nil
                 
                 return .none
                 
-            case .choiceCategory:
+            case .destination:
                 return .none
             }
         }
-        .ifLet(\.$choiceCategory, action: \.choiceCategory) {
-            ChoiceCategoryFeature()
-        }
+        .ifLet(\.$destination, action: \.destination)
+    }
+}
+
+extension SaveTikkeulFeature {
+    @Reducer
+    enum Destination {
+        case choiceCategory(ChoiceCategoryFeature)
+        case alert(AlertState<SaveTikkeulFeature.Action.Alert>)
     }
 }
 
