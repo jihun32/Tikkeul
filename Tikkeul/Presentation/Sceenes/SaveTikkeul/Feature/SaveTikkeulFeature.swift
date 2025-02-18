@@ -14,7 +14,7 @@ struct SaveTikkeulFeature {
     
     @ObservableState
     struct State {
-        // Present State
+        // Present
         @Presents var destination: Destination.State?
         
         // UI State
@@ -36,14 +36,14 @@ struct SaveTikkeulFeature {
         // LifeCycle
         case onAppear
         
-        // Present Action
-        case destination(PresentationAction<Destination.Action>)
-        
         // User Action
         case moneyTextFieldDidChange(money: String)
         case memoTextFieldDidChange(memo: String)
         case categoryButtonTapped
         case deleteButtonTapped
+        
+        // Navigation
+        case destination(PresentationAction<Destination.Action>)
         
         // Delegate
         case delegate(Delegate)
@@ -110,10 +110,6 @@ struct SaveTikkeulFeature {
                     }
                 )
                   return .none
-                
-            case let  .destination(.presented(.alert(.confirmDeletion(id)))):
-                
-                return .send(.delegate(.deleteAlertTapped(id: id)))
                                     
                 // Delegate
             case .delegate(.saveButtonTapped):
@@ -135,7 +131,10 @@ struct SaveTikkeulFeature {
                 return .none
                 
                 
-                // Other Feature Action
+                // Navigation
+            case let  .destination(.presented(.alert(.confirmDeletion(id)))):
+                return .send(.delegate(.deleteAlertTapped(id: id)))
+                
             case let .destination(.presented(.choiceCategory( .delegate(.choiceCategory(category))))):
                 state.categoryText = category.emoji + category.title
                 state.category = category
