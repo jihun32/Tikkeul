@@ -37,25 +37,25 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
     func test_deleteTikkeul함수호출시_삭제하고자하는아이템을전달했을때_삭제되고난후데이터를반환하는지() throws {
         
         // Given
-        let deleteItem = TikkeulData.dummyData[0]
+        let deleteItemID = TikkeulData.dummyData[0].id
         
         // When
-        try sut.deleteTikkeul(item: deleteItem)
+        try sut.deleteTikkeul(id: deleteItemID)
         
         // Then
         let stubRepository = TikkeulRepository(persistenceController: .testValue)
         let date = Date()
         let deletedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
-        XCTAssertFalse(deletedItems.contains(deleteItem))
+        XCTAssertFalse(deletedItems.contains(where: { $0.id == deleteItemID }))
     }
     
     func test_deleteTikkeul함수호출시_삭제하고자하는아이템이없을시_nil을반환하는지() throws {
         
         // Given
-        let deleteItem = TikkeulData(id: UUID(), money: 1000, category: "shopping", date: Date())
+        let deleteItemID = UUID()
         
         // When & Then
-        XCTAssertThrowsError(try sut.deleteTikkeul(item: deleteItem)) { error in
+        XCTAssertThrowsError(try sut.deleteTikkeul(id: deleteItemID)) { error in
             guard let resultError = error as? RepositoryError else {
                 XCTFail("예상하지 않은 에러 타입: \(error)")
                 return
