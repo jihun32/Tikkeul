@@ -41,6 +41,7 @@ struct SaveTikkeulFeature {
         case memoTextFieldDidChange(memo: String)
         case categoryButtonTapped
         case deleteButtonTapped
+        case vacantViewTapped
         
         // Navigation
         case destination(PresentationAction<Destination.Action>)
@@ -58,6 +59,8 @@ struct SaveTikkeulFeature {
             case confirmDeletion(id: UUID)
         }
     }
+    
+    @Dependency(\.hideKeyboard) var hideKeyboard
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -91,7 +94,7 @@ struct SaveTikkeulFeature {
                 
             case .categoryButtonTapped:
                 state.destination = .choiceCategory( ChoiceCategoryFeature.State())
-                
+                hideKeyboard.hideKeyboard()
                 return .none
                 
             case .deleteButtonTapped:
@@ -110,6 +113,10 @@ struct SaveTikkeulFeature {
                     }
                 )
                   return .none
+                
+            case .vacantViewTapped:
+                hideKeyboard.hideKeyboard()
+                return .none
                                     
                 // Delegate
             case .delegate(.saveButtonTapped):

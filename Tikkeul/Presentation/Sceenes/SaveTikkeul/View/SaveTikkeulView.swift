@@ -44,6 +44,9 @@ struct SaveTikkeulView: View {
         .onAppear {
             store.send(.onAppear)
         }
+        .onTapGesture {
+            store.send(.vacantViewTapped)
+        }
         .sheet(
             item: $store.scope(
                 state: \.destination?.choiceCategory,
