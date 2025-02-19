@@ -42,13 +42,12 @@ struct HomeTikkeulView: View {
             }
             .padding(.horizontal, 20)
             .background(Color.background)
-            .navigationTitle(navigationTitle)
-            .navigationBarTitleDisplayMode(.large)
             .onAppear {
                 store.send(.onAppear)
             }
         } destination: { store in
             SaveTikkeulView(store: store)
+                .toolbar(.hidden, for: .tabBar)
         }
     }
 }
@@ -57,10 +56,6 @@ struct HomeTikkeulView: View {
 
 // MARK: - UI Components
 extension HomeTikkeulView {
-    
-    private var navigationTitle: Text {
-        Text("오늘의 티끌")
-    }
     
     private var todayTikkeulMoney: Text {
         Text("\(store.totalTikkeul)원")

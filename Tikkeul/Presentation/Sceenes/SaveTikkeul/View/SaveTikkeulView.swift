@@ -60,6 +60,7 @@ struct SaveTikkeulView: View {
             .presentationDetents([.height(280)])
         }
         .alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 
