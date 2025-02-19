@@ -12,12 +12,17 @@ struct HomeTikkeulList: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 historyText
                     .padding(.top, 20)
                 
                 ForEach(tikkeulList) { tikkeul in
-                    HomeTikkeulRow(tikkeul: tikkeul)
+                    NavigationLink(
+                        state: SaveTikkeulFeature.State(
+                            tikkeulData: tikkeul
+                        )) {
+                        HomeTikkeulRow(tikkeul: tikkeul)
+                    }
                 }
             }
                 .padding(.bottom, 60)

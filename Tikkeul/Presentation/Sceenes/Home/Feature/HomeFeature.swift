@@ -14,8 +14,8 @@ struct HomeFeature {
     
     @ObservableState
     struct State {
-        // Present
-        @Presents var saveTikkeul: SaveTikkeulFeature.State?
+        // Navigation
+        var path = StackState<SaveTikkeulFeature.State>()
         
         // UI State
         var tikkeulList: [HomeTikkeulData] = []
@@ -36,18 +36,24 @@ struct HomeFeature {
         // User Action
         case addTikkeulButtonTapped
         
-        // Fetch Data
+        // Data Management
         case fetchTikkeulList
+        case addTikkeulList(item: TikkeulData)
+        case updateTikkeulList(item: TikkeulData)
+        case deleteTikkeul(id: UUID)
         
         // Update State
-        case updateTikkeulList(items: [HomeTikkeulData])
+        case setTikkeulList(items: [HomeTikkeulData])
         
-        // Other Feature
-        case saveTikkeul(PresentationAction<SaveTikkeulFeature.Action>)
+        // Navigation
+        case path(StackAction<SaveTikkeulFeature.State, SaveTikkeulFeature.Action>)
+            
     }
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
     @Dependency(\.addTikkeulUseCase) var addTikkeulUseCase
+    @Dependency(\.updateTikkeulUseCase) var updateTikkeulUseCase
+    @Dependency(\.deleteTikkeulUseCase) var deleteTikkeulUseCase
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -56,45 +62,69 @@ struct HomeFeature {
             case .onAppear:
                 return .send(.fetchTikkeulList)
                 
-                // Fetch Data
+                // User Action
+            case .addTikkeulButtonTapped:
+                state.path.append(SaveTikkeulFeature.State())
+                return .none
+                
+                // Data Management
             case .fetchTikkeulList:
                 return fetchTikkeulListEffect()
                 
+            case let .updateTikkeulList(item):
+                return .run { send in
+                    try updateTikkeulUseCase.updateTikkeul(item: item)
+                    await send(.fetchTikkeulList)
+                }
+            case let .addTikkeulList(item):
+                return .run { send in
+                    try addTikkeulUseCase.addTikkeul(item: item)
+                    await send(.fetchTikkeulList)
+                }
+                
+            case let .deleteTikkeul(id):
+                return .run { send in
+                    try deleteTikkeulUseCase.deleteTikkeul(id: id)
+                    await send(.fetchTikkeulList)
+                }
+                
                 // Update State:
-            case let.updateTikkeulList(items):
+            case let.setTikkeulList(items):
                 state.tikkeulList = items
                 return .none
                 
-                // User Action
-            case .addTikkeulButtonTapped:
-                state.saveTikkeul = SaveTikkeulFeature.State()
+                // Navigation
+            case .path(.element(id: _, action: .delegate(.saveButtonTapped))):
                 
-                return .none
+                guard let saveState = state.path.last,
+                      let tikkeul = saveState.addableTikkeul else { return .none }
                 
-                // Other Feature Action
-            case .saveTikkeul(.presented(.delegate(.saveButtonTapped))):
-                guard let addableTikkeul = state.saveTikkeul?.addableTikkeul else { return .none }
-                state.saveTikkeul = nil
-                return .run { send in
-                    let date = Date()
-                    try addTikkeulUseCase.addTikkeul(item: addableTikkeul)
-                    await send(.fetchTikkeulList)
+                state.path.removeLast()
+                
+                if saveState.isEdit {
+                    return .send(.updateTikkeulList(item: tikkeul))
+                } else {
+                    return .send(.addTikkeulList(item: tikkeul))
                 }
-
-            case .saveTikkeul(.presented(.delegate(.dismissButtonTapped))):
-                state.saveTikkeul = nil
+                
+            case let .path(.element(id: _, action: .delegate(.deleteAlertTapped(id)))):
+                state.path.removeLast()
+                return .send(.deleteTikkeul(id: id))
+                
+            case .path(.element(id: _, action: .delegate(.backButtonTapped))):
+                
+                state.path.removeLast()
                 return .none
                 
-            case .saveTikkeul:
+            case .path:
                 return .none
                 
             }
         }
-        .ifLet(\.$saveTikkeul, action: \.saveTikkeul) {
+        .forEach(\.path, action: \.path) {
             SaveTikkeulFeature()
         }
     }
-    
 }
 
 
@@ -115,8 +145,7 @@ extension HomeFeature {
                     memo: data.memo
                 )
             }
-            
-            await send(.updateTikkeulList(items: tikkeulList))
+            await send(.setTikkeulList(items: tikkeulList))
         }
     }
 }

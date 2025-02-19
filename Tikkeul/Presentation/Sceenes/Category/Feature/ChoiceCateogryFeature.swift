@@ -18,7 +18,8 @@ struct ChoiceCategoryFeature {
     }
     
     enum Action {
-        // User Input
+        
+        // User Action
         case categoryItemTapped(category: TikkeulCategory)
         case delegate(Delegate)
         
@@ -31,9 +32,12 @@ struct ChoiceCategoryFeature {
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+                
+                // User Action
             case let .categoryItemTapped(category):
                 return .send(.delegate(.choiceCategory(category: category)))
                 
+                // Delegate
             case .delegate:
                 return .none
             }

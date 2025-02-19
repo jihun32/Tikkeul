@@ -9,7 +9,7 @@ import CoreData
 
 protocol TikkeulRepositoryProtocol {
     func addTikkeul(item: TikkeulData) throws
-    func deleteTikkeul(item: TikkeulData) throws
+    func deleteTikkeul(id: UUID) throws
     func updateTikkeul(item: TikkeulData) throws
     func fetchTikkeul(from startDate: Date, to endDate: Date) throws -> [TikkeulData] 
 }

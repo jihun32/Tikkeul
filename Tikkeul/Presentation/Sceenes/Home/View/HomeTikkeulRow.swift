@@ -43,6 +43,7 @@ extension HomeTikkeulRow {
         VStack(alignment: .leading, spacing: 4) {
             Text(tikkeul.category.title)
                 .font(.system(size: 20))
+                .foregroundStyle(.black)
             
             if let memo = tikkeul.memo {
                 Text(memo)
@@ -55,6 +56,7 @@ extension HomeTikkeulRow {
     private var priceText: some View {
         VStack(alignment: .trailing) {
             Text("\(tikkeul.money) 원")
+            .foregroundStyle(.black)
                 .font(.system(size: 20))
             
             Text(tikkeul.time)

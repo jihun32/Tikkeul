@@ -16,9 +16,6 @@ struct SaveTikkeulView: View {
     var body: some View {
         VStack(spacing: 0) {
             
-            dismissButton
-                .padding(.top, 16)
-            
             Spacer()
             
             moneyTextField
@@ -42,40 +39,35 @@ struct SaveTikkeulView: View {
         }
         .padding(.horizontal, 20)
         .background(Color.background)
+        .navigationBarBackButtonHidden()
+        .toolbar { toolbarContent }
+        .onAppear {
+            store.send(.onAppear)
+        }
+        .onTapGesture {
+            store.send(.vacantViewTapped)
+        }
         .sheet(
             item: $store.scope(
-                state: \.choiceCategory,
-                action: \.choiceCategory
-            )) { choiceCategoryFeature in
-                ChoiceCategoryView(
-                    store: choiceCategoryFeature
-                )
-                .presentationDragIndicator(.visible)
-                .presentationDetents([.height(280)])
-            }
+                state: \.destination?.choiceCategory,
+                action: \.destination.choiceCategory
+            )
+        ) { choiceCategoryStore in
+            ChoiceCategoryView(
+                store: choiceCategoryStore
+            )
+            .presentationDragIndicator(.visible)
+            .presentationDetents([.height(280)])
+        }
+        .alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 
 extension SaveTikkeulView {
     
-    private var dismissButton: some View {
-        HStack {
-            
-            Spacer()
-            
-            Button {
-                store.send(.delegate(.dismissButtonTapped))
-            } label: {
-                Image(systemName: "xmark")
-                    .frame(width: 20, height: 20)
-                    .foregroundStyle(.black)
-            }
-        }
-    }
-    
-    private var moneyTextField: some View { 
+    private var moneyTextField: some View {
         HStack(spacing: 5) {
-            
             CommaFomattedUITextField(
                 text: $store.moneyText.sending(\.moneyTextFieldDidChange),
                 placeholder: "0",
@@ -83,12 +75,10 @@ extension SaveTikkeulView {
                 font: UIFont.systemFont(ofSize: 60, weight: .medium),
                 textAlignment: .right
             )
-                .fixedSize()
+            .fixedSize()
 
-            
             Text("원")
                 .font(.system(size: 20, weight: .medium))
-
         }
         .frame(maxWidth: .infinity, alignment: .center)
     }
@@ -139,6 +129,26 @@ extension SaveTikkeulView {
             store.send(.delegate(.saveButtonTapped))
         }
         .disabled(!store.isEnableSaveButton)
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            NavigationBackButton {
+                store.send(.delegate(.backButtonTapped))
+            }
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
+            if store.isEdit {
+                Button {
+                    store.send(.deleteButtonTapped)
+                } label: {
+                    Text("삭제")
+                        .foregroundStyle(.red)
+                }
+            }
+        }
     }
 }
 

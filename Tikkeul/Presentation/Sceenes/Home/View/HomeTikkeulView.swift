@@ -14,7 +14,7 @@ struct HomeTikkeulView: View {
     @Perception.Bindable var store: StoreOf<HomeFeature>
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
             ZStack {
                 VStack(alignment: .leading, spacing: 0) {
                     todayTikkeulMoney
@@ -42,19 +42,12 @@ struct HomeTikkeulView: View {
             }
             .padding(.horizontal, 20)
             .background(Color.background)
-            .navigationTitle(navigationTitle)
-            .navigationBarTitleDisplayMode(.large)
             .onAppear {
                 store.send(.onAppear)
             }
-            .fullScreenCover(
-                item: $store.scope(
-                    state: \.saveTikkeul,
-                    action: \.saveTikkeul
-                )
-            ) { saveTikkeulStore in
-                SaveTikkeulView(store: saveTikkeulStore)
-            }
+        } destination: { store in
+            SaveTikkeulView(store: store)
+                .toolbar(.hidden, for: .tabBar)
         }
     }
 }
@@ -63,10 +56,6 @@ struct HomeTikkeulView: View {
 
 // MARK: - UI Components
 extension HomeTikkeulView {
-    
-    private var navigationTitle: Text {
-        Text("오늘의 티끌")
-    }
     
     private var todayTikkeulMoney: Text {
         Text("\(store.totalTikkeul)원")
@@ -116,6 +105,18 @@ extension HomeTikkeulView {
             )
         )
         $0.addTikkeulUseCase = AddTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        
+        $0.updateTikkeulUseCase = UpdateTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        
+        $0.deleteTikkeulUseCase = DeleteTikkeulUseCase(
             repository: TikkeulRepository(
                 persistenceController: .testValue
             )
