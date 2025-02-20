@@ -30,7 +30,7 @@ enum TabDestination {
         case .home:
             return .large
         case .record:
-            return .automatic
+            return .large
         case .settings:
             return .automatic
         }
@@ -51,7 +51,7 @@ struct MainTabView: View {
                         Label("홈", systemImage: "house")
                     }
                 
-                Text("Record")
+                RecordRootView()
                     .tag(TabDestination.record)
                     .tabItem {
                         Label("기록", systemImage: "chart.bar.xaxis.ascending")
