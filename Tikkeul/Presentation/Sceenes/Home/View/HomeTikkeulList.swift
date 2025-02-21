@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeTikkeulList: View {
-    var tikkeulList: [HomeTikkeulData]
+    var tikkeulList: [PresentiableTikkeulData]
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -41,5 +41,5 @@ extension HomeTikkeulList {
 }
 
 #Preview {
-    HomeTikkeulList(tikkeulList: [HomeTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM")])
+    HomeTikkeulList(tikkeulList: [PresentiableTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM")])
 }

@@ -18,7 +18,7 @@ struct HomeFeature {
         var path = StackState<SaveTikkeulFeature.State>()
         
         // UI State
-        var tikkeulList: [HomeTikkeulData] = []
+        var tikkeulList: [PresentiableTikkeulData] = []
         var isEmptyTikkeulList: Bool {
             tikkeulList.isEmpty
         }
@@ -43,7 +43,7 @@ struct HomeFeature {
         case deleteTikkeul(id: UUID)
         
         // Update State
-        case setTikkeulList(items: [HomeTikkeulData])
+        case setTikkeulList(items: [PresentiableTikkeulData])
         
         // Navigation
         case path(StackAction<SaveTikkeulFeature.State, SaveTikkeulFeature.Action>)
@@ -134,10 +134,10 @@ extension HomeFeature {
             let date = Date()
             let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
             
-            let tikkeulList: [HomeTikkeulData] = responseData.compactMap { data in
+            let tikkeulList: [PresentiableTikkeulData] = responseData.compactMap { data in
                 guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
                 
-                return HomeTikkeulData(
+                return PresentiableTikkeulData(
                     id: data.id,
                     money: data.money,
                     category: category,

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeTikkeulRow: View {
-    let tikkeul: HomeTikkeulData
+    let tikkeul: PresentiableTikkeulData
     
     var body: some View {
         HStack(spacing: 16) {
@@ -67,5 +67,5 @@ extension HomeTikkeulRow {
 }
 
 #Preview {
-    HomeTikkeulRow(tikkeul: HomeTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM"))
+    HomeTikkeulRow(tikkeul: PresentiableTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM"))
 }
