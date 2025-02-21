@@ -9,6 +9,7 @@ import Foundation
 
 enum DateFormat: String {
     case timeAMorPM = "hh:mm a"
+    case mm_dd = "MM-dd"
 }
 
 extension DateFormat {

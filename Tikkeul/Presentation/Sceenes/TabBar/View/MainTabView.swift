@@ -30,7 +30,7 @@ enum TabDestination {
         case .home:
             return .large
         case .record:
-            return .large
+            return .inline
         case .settings:
             return .automatic
         }

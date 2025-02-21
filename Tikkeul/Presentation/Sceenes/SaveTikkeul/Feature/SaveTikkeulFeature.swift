@@ -18,7 +18,7 @@ struct SaveTikkeulFeature {
         @Presents var destination: Destination.State?
         
         // UI State
-        var tikkeulData: HomeTikkeulData?
+        var tikkeulData: PresentiableTikkeulData?
         var moneyText: String = ""
         var memoText: String = ""
         var categoryText: String?

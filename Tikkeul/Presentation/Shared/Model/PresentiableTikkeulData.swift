@@ -1,5 +1,5 @@
 //
-//  HomeTikkeulData.swift
+//  PresentiableTikkeulData.swift
 //  Tikkeul
 //
 //  Created by 정지훈 on 2/5/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HomeTikkeulData: Identifiable {
+struct PresentiableTikkeulData: Identifiable {
     let id: UUID
     let money: Int
     let category: TikkeulCategory

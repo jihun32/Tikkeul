@@ -20,9 +20,18 @@ struct RecordRootView: View {
     @State private var selectedTab: RecordTab = .normal
 
     var body: some View {
-        VStack {
+        VStack(spacing: 30) {
             
             RecordTobTabBar(selectedTab: $selectedTab)
+            
+            switch selectedTab {
+                
+            case .normal:
+                NormalRecordView()
+                
+            case .category:
+                Text("카테고리")
+            }
             
             Spacer()
         }
