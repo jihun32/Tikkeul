@@ -15,49 +15,44 @@ extension Date {
     }
     
     /// 현재 날짜의 종료 시각(다음날 자정)을 반환합니다.
-    var endOfDay: Date {
-        guard let end = Calendar.current.date(byAdding: .day, value: 1, to: self.startOfDay) else {
-            fatalError("날짜 계산 실패")
-        }
-        return end
+    var endOfDay: Date? {
+        return Calendar.current.date(byAdding: .day, value: 1, to: self.startOfDay)
     }
     
-    /// 현재 날짜가 속한 주의 시작 날짜(주간 시작)를 반환합니다.
-    var startOfWeek: Date {
-        guard let start = Calendar.current.dateInterval(of: .weekOfYear, for: self)?.start else {
-            fatalError("주 시작 날짜 계산 실패")
+    /// 주 단위 날짜 범위를 반환합니다.
+    /// - Parameter weeksAgo: 0이면 이번 주, 1이면 저번 주, 2이면 저저번 주
+    /// - Returns: 주의 시작 날짜부터 종료 날짜(exclusive)까지의 범위
+    func getWeekRange(weeksAgo: Int) -> Range<Date>? {
+        let calendar = Calendar.current
+        let startOfWeek = calendar.dateInterval(of: .weekOfYear, for: self)?.start
+        guard let startOfTargetWeek = calendar.date(byAdding: .weekOfYear, value: weeksAgo, to: startOfWeek ?? self) else {
+            return nil
         }
-        return start
+        guard let endOfTargetWeek = calendar.date(byAdding: .weekOfYear, value: 1, to: startOfTargetWeek) else {
+            return nil
+        }
+        return startOfTargetWeek..<endOfTargetWeek
     }
     
-    /// 현재 날짜가 속한 주의 종료 시각(다음 주 시작)을 반환합니다.
-    var endOfWeek: Date {
-        guard let end = Calendar.current.date(byAdding: .day, value: 7, to: startOfWeek) else {
-            fatalError("주 종료 날짜 계산 실패")
+    /// 월 단위 날짜 범위를 반환합니다.
+    /// - Parameter monthsAgo: 0이면 이번 달, 1이면 저번 달, 2이면 저저번 달
+    /// - Returns: 월의 시작 날짜부터 종료 날짜(exclusive)까지의 범위
+    func getMonthRange(monthsAgo: Int) -> Range<Date>? {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month], from: self)
+        let startOfMonth =  calendar.date(from: components)
+    
+        guard let startOfTargetMonth = calendar.date(byAdding: .month, value: monthsAgo, to: startOfMonth ?? self) else {
+            return nil
         }
-        return end
+        guard let endOfTargetMonth = calendar.date(byAdding: .month, value: 1, to: startOfTargetMonth) else {
+            return nil
+        }
+        return startOfTargetMonth..<endOfTargetMonth
     }
     
-    /// 현재 날짜가 속한 월의 시작 날짜를 반환합니다.
-    var startOfMonth: Date {
-        let components = Calendar.current.dateComponents([.year, .month], from: self)
-        guard let start = Calendar.current.date(from: components) else {
-            fatalError("월 시작 날짜 계산 실패")
-        }
-        return start
-    }
-    
-    /// 현재 날짜가 속한 월의 종료 시각(다음 달 시작)을 반환합니다.
-    var endOfMonth: Date {
-        guard let end = Calendar.current.date(byAdding: .month, value: 1, to: self.startOfMonth) else {
-            fatalError("다음 달 시작 날짜 계산 실패")
-        }
-        return end
-    }
-    
-    
+    /// 주어진 포맷으로 날짜를 문자열로 변환
     func formattedString(dateFormat: DateFormat) -> String {
-        // 딕셔너리로 캐싱된 DateFormatter 를 재사용
         return dateFormat.formatter.string(from: self)
     }
 }
