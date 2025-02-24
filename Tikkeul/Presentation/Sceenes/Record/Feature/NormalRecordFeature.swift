@@ -10,21 +10,14 @@ import Foundation
 
 @Reducer
 struct NormalRecordFeature {
+    //첫String -> type + ago 두번째 스트링 -> mm-dd
+    typealias TikkeulCache = [String: [String: [PresentiableTikkeulData]]]
     
     @ObservableState
     struct State {
         // UI State
-        var weeklyTikkeuls: [String: [PresentiableTikkeulData]] = [:]
-        var monthlyTikkeuls: [String: [PresentiableTikkeulData]] = [:]
-        var currentDateUnit: RecordDateUnit = .weekly
-        var currentTikkeuls: [String: [PresentiableTikkeulData]] {
-            switch currentDateUnit {
-            case .weekly:
-                return weeklyTikkeuls
-            case .monthly:
-                return monthlyTikkeuls
-            }
-        }
+        var currentDateUnit: RecordDateUnit = .weekly(ago: 0, data: [:])
+        var cachedData: TikkeulCache = [:]
     }
     
     enum Action {
@@ -32,13 +25,15 @@ struct NormalRecordFeature {
         case onAppear
         
         // Data Management
-        case fetchTikkeulList(ago: Int)
+        case fetchTikkeulList
         
         // User Action
         case dateUnitChanged(dateUnit: RecordDateUnit)
+        case previousDate
+        case nextDate
         
         // Update State
-        case setTikkeulList(items: [String: [PresentiableTikkeulData]])
+        case setTikkeulList(data: [String: [PresentiableTikkeulData]])
     }
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
@@ -48,12 +43,40 @@ struct NormalRecordFeature {
             switch action {
                 // LifeCycle
             case .onAppear:
-                return .send(.fetchTikkeulList(ago: 0))
+                return .send(.fetchTikkeulList)
+                
+                // User Action
+            case let .dateUnitChanged(dateUnitType):
+                switch dateUnitType {
+                case .weekly:
+                    state.currentDateUnit = .weekly(ago: 0, data: state.currentDateUnit.tikkeuls)
+                case .monthly:
+                    state.currentDateUnit = .monthly(ago: 0, data: state.currentDateUnit.tikkeuls)
+                }
+                return .send(.fetchTikkeulList)
+                
+            case .previousDate:
+                state.currentDateUnit.ago -= 1
+                let key = state.currentDateUnit.cacheKey
+                if let cached = state.cachedData[key] {
+                    state.currentDateUnit.tikkeuls = cached
+                    return .none
+                }
+                return .send(.fetchTikkeulList)
+                
+            case .nextDate:
+                state.currentDateUnit.ago += 1
+                let key = state.currentDateUnit.cacheKey
+                if let cached = state.cachedData[key] {
+                    state.currentDateUnit.tikkeuls = cached
+                    return .none
+                }
+                return .send(.fetchTikkeulList)
                 
                 // Data Management
-            case let .fetchTikkeulList(ago):
+            case .fetchTikkeulList:
                 return .run { [currentDateUnit = state.currentDateUnit] send in
-                    guard let range = getDateRange(currentDateUnit: currentDateUnit, ago: ago) else { return }
+                    guard let range = getDateRange(currentDateUnit: currentDateUnit) else { return }
                     
                     let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: range.lowerBound, to: range.upperBound)
                     
@@ -63,22 +86,14 @@ struct NormalRecordFeature {
                     
                     let groupedPresentiableData = convertToPresentiableData(from: groupedResponseData)
                     
-                    await send(.setTikkeulList(items: groupedPresentiableData))
+                    await send(.setTikkeulList(data: groupedPresentiableData))
                 }
-                
-                // User Action
-            case let .dateUnitChanged(dateUnit):
-                state.currentDateUnit = dateUnit
-                return .none
                 
                 // Update State
-            case .setTikkeulList(let items):
-                switch state.currentDateUnit {
-                case .weekly:
-                    state.weeklyTikkeuls = items
-                case .monthly:
-                    state.monthlyTikkeuls = items
-                }
+            case let .setTikkeulList(data):
+                let key = state.currentDateUnit.cacheKey
+                state.cachedData[key] = data
+                state.currentDateUnit.tikkeuls = data
                 return .none
             }
         }
@@ -87,11 +102,12 @@ struct NormalRecordFeature {
 
 // MARK: - Helper Function
 extension NormalRecordFeature {
-    private func getDateRange(currentDateUnit: RecordDateUnit, ago: Int) -> Range<Date>? {
+    
+    private func getDateRange(currentDateUnit: RecordDateUnit) -> Range<Date>? {
         switch currentDateUnit {
-        case .weekly:
+        case .weekly(let ago, _):
             return Date().getWeekRange(weeksAgo: ago)
-        case .monthly:
+        case .monthly(let ago, _):
             return Date().getMonthRange(monthsAgo: ago)
         }
     }
@@ -111,4 +127,3 @@ extension NormalRecordFeature {
         }
     }
 }
-

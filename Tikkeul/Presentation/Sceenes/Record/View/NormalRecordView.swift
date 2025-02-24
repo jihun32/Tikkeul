@@ -27,7 +27,7 @@ struct NormalRecordView: View {
                 
                 dateUnitPicker
                 
-                RecordTikkeulList(tikkeulDatas: store.currentTikkeuls)
+                RecordTikkeulList(tikkeulDatas: store.currentDateUnit.tikkeuls)
                 
             }
             .padding(.horizontal, 20)
@@ -49,14 +49,14 @@ extension NormalRecordView {
             Spacer()
             
             Button {
-                
+                store.send(.previousDate)
             } label: {
                 Image(systemName: "chevron.left")
                     .foregroundStyle(.black)
             }
             
             Button {
-                
+                store.send(.nextDate)
             } label: {
                 Image(systemName: "chevron.right")
                     .foregroundStyle(.black)
@@ -70,13 +70,25 @@ extension NormalRecordView {
     }
     
     private var dateUnitPicker: some View {
-        Picker("", selection: $store.currentDateUnit.sending(\.dateUnitChanged)) {
+        HStack {
             ForEach(RecordDateUnit.allCases, id: \.self) { dateUnit in
-                Text(dateUnit.title)
+                Button {
+                    store.send(.dateUnitChanged(dateUnit: dateUnit))
+                } label: {
+                    Text(dateUnit.title)
+                        .foregroundStyle( dateUnit == store.currentDateUnit ? .black : .gray.opacity(0.6)
+                        )
+                        .padding(.vertical, 6)
+                        .padding(.horizontal, 16)
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(dateUnit == store.currentDateUnit ? .gray.opacity(0.6) : .clear,
+                            lineWidth: 2
+                        )
+                )
             }
         }
-        .pickerStyle(.segmented)
-        .frame(width: 160)
     }
 }
 
