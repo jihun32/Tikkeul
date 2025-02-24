@@ -132,7 +132,9 @@ extension HomeFeature {
     private func fetchTikkeulListEffect() -> Effect<Action> {
         return .run { send in
             let date = Date()
-            let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+            guard let endOfDay = date.endOfDay else { return }
+        
+            let responseData = try fetchTikkeulUseCase.fetchTikkeul(from: date.startOfDay, to: endOfDay)
             
             let tikkeulList: [PresentiableTikkeulData] = responseData.compactMap { data in
                 guard let category = TikkeulCategory(rawValue: data.category) else { return nil }
