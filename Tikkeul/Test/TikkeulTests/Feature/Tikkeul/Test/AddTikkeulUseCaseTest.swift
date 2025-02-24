@@ -43,7 +43,12 @@ final class AddTikkeulUseCaseTest: XCTestCase {
         // When
         try sut.addTikkeul(item: newItem)
         let date = Date()
-        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+        guard let endOfDay = date.endOfDay else {
+            XCTFail("endOfDay 계산 실패")
+            return
+        }
+        
+        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: endOfDay)
         // Then
         XCTAssertEqual(resultItems.count, initialItems.count + 1)
         XCTAssertEqual(resultItems.last, newItem)

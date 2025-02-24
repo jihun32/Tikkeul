@@ -45,7 +45,12 @@ final class DeleteTikkeulUseCaseTest: XCTestCase {
         // Then
         let stubRepository = TikkeulRepository(persistenceController: .testValue)
         let date = Date()
-        let deletedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+        guard let endOfDay = date.endOfDay else {
+            XCTFail("endOfDay 계산 실패")
+            return
+        }
+        
+        let deletedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: endOfDay)
         XCTAssertFalse(deletedItems.contains(where: { $0.id == deleteItemID }))
     }
     

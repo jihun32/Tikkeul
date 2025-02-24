@@ -41,14 +41,19 @@ final class UpdateTikkeulUseCaseTest: XCTestCase {
         // Given
         let stubRepository = TikkeulRepository(persistenceController: .testValue)
         let date = Date()
-        var fetchedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+        guard let endOfDay = date.endOfDay else {
+            XCTFail("endOfDay 계산 실패")
+            return
+        }
+        var fetchedItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: endOfDay)
         
         // When
         fetchedItems[0].money = 100000
         try sut.updateTikkeul(item: fetchedItems[0])
         
         // Then
-        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: date.endOfDay)
+        
+        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: endOfDay)
         XCTAssertEqual(resultItems, fetchedItems)
     }
     
