@@ -45,13 +45,23 @@ struct MainTabView: View {
         NavigationStack {
             TabView(selection: $store.selectedTab.sending(\.selectedTabChanged)) {
                 
-                HomeTikkeulView(store: store.scope(state: \.homeState, action: \.homeAction))
+                HomeTikkeulView(
+                    store: store.scope(
+                        state: \.homeState,
+                        action: \.homeAction
+                    )
+                )
                     .tag(TabDestination.home)
                     .tabItem {
                         Label("홈", systemImage: "house")
                     }
                 
-                RecordRootView()
+                RecordView(
+                    store: store.scope(
+                        state: \.recordState,
+                        action: \.recordAction
+                    )
+                )
                     .tag(TabDestination.record)
                     .tabItem {
                         Label("기록", systemImage: "chart.bar.xaxis.ascending")

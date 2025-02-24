@@ -8,7 +8,7 @@
 import SwiftUI
 
 //
-//  RecordRootView.swift
+//  RecordView.swift
 //  Tikkeul
 //
 //  Created by 정지훈 on 2/20/25.
@@ -16,16 +16,20 @@ import SwiftUI
 
 import SwiftUI
 
-struct RecordRootView: View {
-    @State private var selectedTab: RecordTab = .normal
+import ComposableArchitecture
+
+struct RecordView: View {
+    
+    @Perception.Bindable var store: StoreOf<RecordFeature>
 
     var body: some View {
         VStack(spacing: 30) {
             
-            RecordTobTabBar(selectedTab: $selectedTab)
+            RecordTobTabBar(selectedTab: store.selectedTab) { tab in
+                store.send(.topTabBarChanged(selectedTab: tab))
+            }
             
-            switch selectedTab {
-                
+            switch store.selectedTab {
             case .normal:
                 NormalRecordView()
                 
@@ -39,5 +43,7 @@ struct RecordRootView: View {
 }
 
 #Preview {
-    RecordRootView()
+    RecordView(store: Store(initialState: RecordFeature.State(), reducer: {
+        RecordFeature()
+    }))
 }
