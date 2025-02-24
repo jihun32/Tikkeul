@@ -18,6 +18,7 @@ struct NormalRecordFeature {
         // UI State
         var currentDateUnit: RecordDateUnit = .weekly(ago: 0, data: [:])
         var cachedData: TikkeulCache = [:]
+        var dateRangeString: String = ""
     }
     
     enum Action {
@@ -29,11 +30,12 @@ struct NormalRecordFeature {
         
         // User Action
         case dateUnitChanged(dateUnit: RecordDateUnit)
-        case previousDate
-        case nextDate
+        case previousDateButtonTapped
+        case nextDateButtonTapped
         
         // Update State
-        case setTikkeulList(data: [String: [PresentiableTikkeulData]])
+        case updateTikkeulList(data: [String: [PresentiableTikkeulData]])
+        case updateDateRangeString(range: Range<Date>)
     }
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
@@ -55,20 +57,26 @@ struct NormalRecordFeature {
                 }
                 return .send(.fetchTikkeulList)
                 
-            case .previousDate:
+            case .previousDateButtonTapped:
                 state.currentDateUnit.ago -= 1
                 let key = state.currentDateUnit.cacheKey
                 if let cached = state.cachedData[key] {
                     state.currentDateUnit.tikkeuls = cached
                     return .none
+                    if let range = getDateRange(currentDateUnit: state.currentDateUnit) {
+                        state.dateRangeString = formatDateRange(range: range, unit: state.currentDateUnit)
+                    }
                 }
                 return .send(.fetchTikkeulList)
                 
-            case .nextDate:
+            case .nextDateButtonTapped:
                 state.currentDateUnit.ago += 1
                 let key = state.currentDateUnit.cacheKey
                 if let cached = state.cachedData[key] {
                     state.currentDateUnit.tikkeuls = cached
+                    if let range = getDateRange(currentDateUnit: state.currentDateUnit) {
+                        state.dateRangeString = formatDateRange(range: range, unit: state.currentDateUnit)
+                    }
                     return .none
                 }
                 return .send(.fetchTikkeulList)
@@ -86,14 +94,29 @@ struct NormalRecordFeature {
                     
                     let groupedPresentiableData = convertToPresentiableData(from: groupedResponseData)
                     
-                    await send(.setTikkeulList(data: groupedPresentiableData))
+                    
+                    await send(.updateDateRangeString(range: range))
+                    await send(.updateTikkeulList(data: groupedPresentiableData))
                 }
                 
                 // Update State
-            case let .setTikkeulList(data):
+            case let .updateTikkeulList(data):
                 let key = state.currentDateUnit.cacheKey
                 state.cachedData[key] = data
                 state.currentDateUnit.tikkeuls = data
+                return .none
+                
+            case let .updateDateRangeString(range):
+                var result = ""
+                switch state.currentDateUnit {
+                case .weekly:
+                    result = "\(range.lowerBound.formattedString(dateFormat: .mm_dd)) ~ \(range.upperBound.formattedString(dateFormat: .mm_dd))"
+                    
+                case .monthly:
+                    result =  range.lowerBound.formattedString(dateFormat: .m)
+                }
+                
+                state.dateRangeString = result
                 return .none
             }
         }
@@ -124,6 +147,15 @@ extension NormalRecordFeature {
                     memo: data.memo
                 )
             }
+        }
+    }
+    
+    private func formatDateRange(range: Range<Date>, unit: RecordDateUnit) -> String {
+        switch unit {
+        case .weekly:
+            return "\(range.lowerBound.formattedString(dateFormat: .mm_dd)) ~ \(range.upperBound.formattedString(dateFormat: .mm_dd))"
+        case .monthly:
+            return range.lowerBound.formattedString(dateFormat: .m)
         }
     }
 }

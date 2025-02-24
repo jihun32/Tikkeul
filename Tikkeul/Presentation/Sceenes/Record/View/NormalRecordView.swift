@@ -13,7 +13,6 @@ struct NormalRecordView: View {
     
     @Perception.Bindable var store: StoreOf<NormalRecordFeature>
     
-    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
@@ -44,19 +43,19 @@ extension NormalRecordView {
     private var dateSection: some View {
         HStack(spacing: 16) {
             
-            Text("02.17 ~ 02.23")
+            Text(store.dateRangeString)
             
             Spacer()
             
             Button {
-                store.send(.previousDate)
+                store.send(.previousDateButtonTapped)
             } label: {
                 Image(systemName: "chevron.left")
                     .foregroundStyle(.black)
             }
             
             Button {
-                store.send(.nextDate)
+                store.send(.nextDateButtonTapped)
             } label: {
                 Image(systemName: "chevron.right")
                     .foregroundStyle(.black)
