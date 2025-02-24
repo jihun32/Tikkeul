@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct NormalRecordView: View {
     
-    @State private var selectedDateUnit: RecordDateUnit = .weekly
-    @State private var tikkeulDatas: [String: [PresentiableTikkeulData]] = [:]
+    @Perception.Bindable var store: StoreOf<NormalRecordFeature>
+    
     
     var body: some View {
         ScrollView {
@@ -25,12 +27,15 @@ struct NormalRecordView: View {
                 
                 dateUnitPicker
                 
-                RecordTikkeulList(tikkeulDatas: tikkeulDatas)
+                RecordTikkeulList(tikkeulDatas: store.currentTikkeuls)
                 
             }
             .padding(.horizontal, 20)
         }
         .background(Color.background)
+        .onAppear {
+            store.send(.onAppear)
+        }
     }
 }
 
@@ -65,7 +70,7 @@ extension NormalRecordView {
     }
     
     private var dateUnitPicker: some View {
-        Picker("", selection: $selectedDateUnit) {
+        Picker("", selection: $store.currentDateUnit.sending(\.dateUnitChanged)) {
             ForEach(RecordDateUnit.allCases, id: \.self) { dateUnit in
                 Text(dateUnit.title)
             }
@@ -76,5 +81,19 @@ extension NormalRecordView {
 }
 
 #Preview {
-    NormalRecordView()
+    NormalRecordView(
+        store: Store(
+            initialState: NormalRecordFeature.State(),
+            reducer: {
+                NormalRecordFeature()
+            }, withDependencies: {
+                
+                $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
+                    repository: TikkeulRepository(
+                        persistenceController: .testValue
+                    )
+                )
+            }
+        )
+    )
 }

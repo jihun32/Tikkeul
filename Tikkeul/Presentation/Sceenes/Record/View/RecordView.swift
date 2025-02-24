@@ -31,7 +31,12 @@ struct RecordView: View {
             
             switch store.selectedTab {
             case .normal:
-                NormalRecordView()
+                NormalRecordView(
+                    store: store.scope(
+                        state: \.normalRecord,
+                        action: \.normalRecord
+                    )
+                )
                 
             case .category:
                 Text("카테고리")
