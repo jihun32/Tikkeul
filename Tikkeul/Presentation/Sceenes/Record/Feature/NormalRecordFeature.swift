@@ -19,6 +19,11 @@ struct NormalRecordFeature {
         var currentDateUnit: RecordDateUnit = .weekly(ago: 0, data: [:])
         var cachedData: TikkeulCache = [:]
         var dateRangeString: String = ""
+        var totalMoney: Int {
+            currentDateUnit.tikkeuls.values
+                .flatMap { $0 }
+                .reduce(0) { total, data in total + data.money }
+        }
     }
     
     enum Action {
@@ -62,10 +67,10 @@ struct NormalRecordFeature {
                 let key = state.currentDateUnit.cacheKey
                 if let cached = state.cachedData[key] {
                     state.currentDateUnit.tikkeuls = cached
-                    return .none
                     if let range = getDateRange(currentDateUnit: state.currentDateUnit) {
                         state.dateRangeString = formatDateRange(range: range, unit: state.currentDateUnit)
                     }
+                    return .none
                 }
                 return .send(.fetchTikkeulList)
                 

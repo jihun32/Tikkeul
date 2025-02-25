@@ -64,7 +64,7 @@ extension NormalRecordView {
     }
     
     private var totalPrice: some View {
-        Text("100,000원")
+        Text("\(store.totalMoney)원")
             .font(.largeTitle)
     }
     
