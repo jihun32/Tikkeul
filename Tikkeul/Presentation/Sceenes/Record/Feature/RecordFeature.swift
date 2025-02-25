@@ -20,6 +20,7 @@ struct RecordFeature {
         
         // Other Feature
         var normalRecord: NormalRecordFeature.State = .init()
+        var categoryRecord: CategoryRecordFeature.State = .init()
     }
     
     enum Action {
@@ -29,12 +30,17 @@ struct RecordFeature {
         
         // Other Feature
         case normalRecord(NormalRecordFeature.Action)
+        case categoryRecord(CategoryRecordFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
         
         Scope(state: \.normalRecord, action: \.normalRecord) {
             NormalRecordFeature()
+        }
+        
+        Scope(state: \.categoryRecord, action: \.categoryRecord) {
+            CategoryRecordFeature()
         }
         
         Reduce { state, action in
@@ -48,6 +54,9 @@ struct RecordFeature {
                 
                 // Other Feature
             case .normalRecord:
+                return .none
+                
+            case .categoryRecord:
                 return .none
             }
         }

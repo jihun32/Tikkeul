@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 struct HomeTikkeulView: View {
     
-    @Perception.Bindable var store: StoreOf<HomeFeature>
+    @Bindable var store: StoreOf<HomeFeature>
     
     var body: some View {
         NavigationStack(path: $store.scope(state: \.path, action: \.path)) {

@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 struct SaveTikkeulView: View {
     
-    @Perception.Bindable var store: StoreOf<SaveTikkeulFeature>
+    @Bindable var store: StoreOf<SaveTikkeulFeature>
     
     var body: some View {
         VStack(spacing: 0) {

@@ -11,7 +11,7 @@ import ComposableArchitecture
 
 struct RecordView: View {
     
-    @Perception.Bindable var store: StoreOf<RecordFeature>
+    @Bindable var store: StoreOf<RecordFeature>
 
     var body: some View {
         VStack(spacing: 0) {
@@ -36,7 +36,12 @@ struct RecordView: View {
                 )
                 
             case .category:
-                Text("카테고리")
+                CategoryRecordView(
+                    store: store.scope(
+                        state: \.categoryRecord,
+                        action: \.categoryRecord
+                    )
+                )
             }
             
             Spacer()

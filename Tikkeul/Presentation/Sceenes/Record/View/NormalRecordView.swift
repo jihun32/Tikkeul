@@ -12,7 +12,7 @@ import ComposableArchitecture
 
 struct NormalRecordView: View {
     
-    @Perception.Bindable var store: StoreOf<NormalRecordFeature>
+    @Bindable var store: StoreOf<NormalRecordFeature>
     
     var body: some View {
         ScrollView {

@@ -17,7 +17,7 @@ enum TabDestination {
 
 struct MainTabView: View {
     
-    @Perception.Bindable var store: StoreOf<MainTabFeature>
+    @Bindable var store: StoreOf<MainTabFeature>
     
     var body: some View {
         NavigationStack {
