@@ -45,26 +45,15 @@ struct NormalRecordView: View {
 // MARK: - UI Components
 extension NormalRecordView {
     private var dateSection: some View {
-        HStack(spacing: 16) {
-            
-            Text(store.dateRangeString)
-            
-            Spacer()
-            
-            Button {
+        DateRangeSection(
+            text: store.dateRangeString,
+            previousButtonTapped: {
                 store.send(.previousDateButtonTapped)
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundStyle(.black)
-            }
-            
-            Button {
+            },
+            nextButtonTapped: {
                 store.send(.nextDateButtonTapped)
-            } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundStyle(.black)
             }
-        }
+        )
     }
     
     private var totalPrice: some View {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum TikkeulCategory: String, CaseIterable {
     case snack
@@ -63,6 +64,29 @@ extension TikkeulCategory {
             return "💄"
         case .transportation:
             return "🚌"
+        }
+    }
+    
+    var color: Color {
+        switch self {
+        case .snack:
+            return Color(red: 1.0, green: 193/255, blue: 7/255)
+        case .coffee:
+            return Color(red: 121/255, green: 85/255, blue: 72/255)
+        case .drink:
+            return Color(red: 244/255, green: 67/255, blue: 54/255)
+        case .delivery:
+            return Color(red: 0/255, green: 150/255, blue: 136/255)
+        case .shopping:
+            return Color(red: 33/255, green: 150/255, blue: 243/255)
+        case .entertainment:
+            return Color(red: 156/255, green: 39/255, blue: 176/255)
+        case .hobby:
+            return Color(red: 76/255, green: 175/255, blue: 80/255)
+        case .beauty:
+            return Color(red: 233/255, green: 30/255, blue: 99/255)
+        case .transportation:
+            return Color(red: 158/255, green: 158/255, blue: 158/255)
         }
     }
 }
