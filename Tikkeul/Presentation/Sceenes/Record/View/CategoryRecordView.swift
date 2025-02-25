@@ -14,11 +14,6 @@ import ComposableArchitecture
 struct CategoryRecordView: View {
     let store: StoreOf<CategoryRecordFeature>
     
-    let data: [CategoryRecordData] = [
-        CategoryRecordData(category: .beauty, value: 40, money: 1000),
-        CategoryRecordData(category: .coffee, value: 30, money: 10000),
-        CategoryRecordData(category: .drink, value: 30, money: 100000)
-    ]
     
     var body: some View {
         ScrollView {
@@ -34,9 +29,10 @@ struct CategoryRecordView: View {
                     }
                 )
                 
-                Chart(data, id: \.category) { item in
+                Chart(store.categoryData, id: \.category) { item in
                     SectorMark(
-                        angle: .value("Value", item.value)
+                        angle: .value("Value", item.value),
+                        angularInset: 1.5
                     )
                     .foregroundStyle(by: .value("Category", item.category.title))
                 }
@@ -45,7 +41,7 @@ struct CategoryRecordView: View {
                 
                 
                 VStack(spacing: 10) {
-                    ForEach(data, id: \.category) { data in
+                    ForEach(store.categoryData, id: \.category) { data in
                         HStack {
                             Circle()
                                 .fill(data.category.color)
@@ -68,6 +64,9 @@ struct CategoryRecordView: View {
             .padding(.horizontal, 20)
             .padding(.top, 20)
         }
+        .onAppear {
+            store.send(.onAppear)
+        }
     }
 }
 
@@ -75,6 +74,13 @@ struct CategoryRecordView: View {
     CategoryRecordView(
         store: Store(initialState: CategoryRecordFeature.State(), reducer: {
             CategoryRecordFeature()
+        }, withDependencies: {
+            
+            $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
+                repository: TikkeulRepository(
+                    persistenceController: .testValue
+                )
+            )
         })
     )
 }

@@ -9,6 +9,6 @@ import Foundation
 
 struct CategoryRecordData {
     let category: TikkeulCategory
-    let value: Double
+    let value: Int
     let money: Int
 }
