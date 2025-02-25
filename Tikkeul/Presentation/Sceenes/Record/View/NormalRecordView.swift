@@ -33,6 +33,7 @@ struct NormalRecordView: View {
                 
             }
             .padding(.horizontal, 20)
+            .padding(.top, 20)
         }
         .background(Color.background)
         .onAppear {

@@ -13,28 +13,6 @@ enum TabDestination {
     case home
     case record
     case settings
-    
-    var navigationTitle: String {
-        switch self {
-        case .home:
-            return "오늘의 티끌"
-        case .record:
-            return "기록"
-        case .settings:
-            return "설정"
-        }
-    }
-    
-    var navigationTitleMode: NavigationBarItem.TitleDisplayMode {
-        switch self {
-        case .home:
-            return .large
-        case .record:
-            return .inline
-        case .settings:
-            return .automatic
-        }
-    }
 }
 
 struct MainTabView: View {
@@ -74,8 +52,6 @@ struct MainTabView: View {
                     }
             }
             .tint(.black)
-            .navigationTitle(store.selectedTab.navigationTitle)
-            .navigationBarTitleDisplayMode(store.selectedTab.navigationTitleMode)
         }
     }
 }

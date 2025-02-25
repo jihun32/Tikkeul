@@ -7,15 +7,6 @@
 
 import SwiftUI
 
-//
-//  RecordView.swift
-//  Tikkeul
-//
-//  Created by 정지훈 on 2/20/25.
-//
-
-import SwiftUI
-
 import ComposableArchitecture
 
 struct RecordView: View {
@@ -23,11 +14,17 @@ struct RecordView: View {
     @Perception.Bindable var store: StoreOf<RecordFeature>
 
     var body: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 0) {
+            
+            Text("기록")
+                .font(.title3)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 20)
             
             RecordTobTabBar(selectedTab: store.selectedTab) { tab in
                 store.send(.topTabBarChanged(selectedTab: tab))
             }
+            .padding(.top, 20)
             
             switch store.selectedTab {
             case .normal:
@@ -44,6 +41,7 @@ struct RecordView: View {
             
             Spacer()
         }
+        .background(Color.background)
     }
 }
 

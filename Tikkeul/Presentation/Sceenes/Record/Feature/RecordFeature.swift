@@ -14,14 +14,21 @@ struct RecordFeature {
     
     @ObservableState
     struct State {
-        var normalRecord: NormalRecordFeature.State = .init()
         
+        // UI State
         var selectedTab: RecordTab = .normal
+        
+        // Other Feature
+        var normalRecord: NormalRecordFeature.State = .init()
     }
     
     enum Action {
-        case normalRecord(NormalRecordFeature.Action)
+        
+        // User Action
         case topTabBarChanged(selectedTab: RecordTab)
+        
+        // Other Feature
+        case normalRecord(NormalRecordFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -33,11 +40,13 @@ struct RecordFeature {
         Reduce { state, action in
             switch action {
                 
+                // User Action
             case let .topTabBarChanged(tab):
                 state.selectedTab = tab
                 
                 return .none
                 
+                // Other Feature
             case .normalRecord:
                 return .none
             }
