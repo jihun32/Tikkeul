@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Foundation
+import SwiftUICore
 
 @Reducer
 struct CategoryRecordFeature {
@@ -63,6 +64,7 @@ struct CategoryRecordFeature {
                         money: Int(sumMoney)
                     )
                 }
+                .sorted(by: { $0.money > $1.money })
                 return .none
                 
             case let .updateMonthString(monthRange):

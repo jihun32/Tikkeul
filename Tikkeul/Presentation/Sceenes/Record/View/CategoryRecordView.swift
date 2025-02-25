@@ -19,7 +19,9 @@ struct CategoryRecordView: View {
                 
                 dateRangeSection
                 
-                CategoryPieChart(categoryData: store.categoryData)
+                CategoryPieChart(
+                    categoryData: store.categoryData
+                )
                 
                 categoryDataList
             }

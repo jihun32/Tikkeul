@@ -18,8 +18,18 @@ struct CategoryPieChart: View {
                 angle: .value("Value", item.value),
                 angularInset: 1.5
             )
-            .foregroundStyle(by: .value("Category", item.category.title))
         }
+        .chartForegroundStyleScale([
+            TikkeulCategory.snack.title: TikkeulCategory.snack.color,
+            TikkeulCategory.coffee.title: TikkeulCategory.coffee.color,
+            TikkeulCategory.drink.title: TikkeulCategory.drink.color,
+            TikkeulCategory.delivery.title: TikkeulCategory.delivery.color,
+            TikkeulCategory.shopping.title: TikkeulCategory.shopping.color,
+            TikkeulCategory.entertainment.title: TikkeulCategory.entertainment.color,
+            TikkeulCategory.hobby.title: TikkeulCategory.hobby.color,
+            TikkeulCategory.beauty.title: TikkeulCategory.beauty.color,
+            TikkeulCategory.transportation.title: TikkeulCategory.transportation.color
+        ])
         .chartLegend(.hidden)
         .frame(width: 250, height: 250)
     }
