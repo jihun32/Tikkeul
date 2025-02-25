@@ -26,19 +26,8 @@ struct NormalRecordView: View {
                     dateUnitPicker
                 }
                 
-                // chart
-                Chart {
-                    ForEach(store.chartData, id: \.date) { data in
-                        BarMark(
-                            x: .value("Date", data.date),
-                            y: .value("Money", data.money)
-                        )
-                    
-                    }
-                }
-                .foregroundStyle(.primaryMain)
-                .frame(height: 200)
-                .padding()
+                barChart
+                    .padding(.top, 10)
                 
                 RecordTikkeulList(tikkeulDatas: store.currentDateUnit.tikkeuls)
                 
@@ -92,6 +81,20 @@ extension NormalRecordView {
                     )
             }
         }
+    }
+    
+    private var barChart: some View {
+        Chart {
+            ForEach(store.chartData, id: \.date) { data in
+                BarMark(
+                    x: .value("Date", data.date),
+                    y: .value("Money", data.money)
+                )
+            
+            }
+        }
+        .foregroundStyle(.primaryMain)
+        .frame(height: 200)
     }
 }
 

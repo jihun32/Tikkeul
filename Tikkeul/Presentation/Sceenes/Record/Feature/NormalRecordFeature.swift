@@ -25,7 +25,7 @@ struct NormalRecordFeature {
                 .reduce(0) { total, data in total + data.money }
         }
         var chartData: [(date: String, money: Int)] = []
-        let weeklyLabels = ["1주차", "2주차", "3주차", "4주차", "5주차"]
+        let weeklyLabels = ["1주차", "2주차", "3주차", "4주차", "5주차", "6주차"]
     }
     
     enum Action {
