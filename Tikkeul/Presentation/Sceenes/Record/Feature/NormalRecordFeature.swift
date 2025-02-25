@@ -24,6 +24,8 @@ struct NormalRecordFeature {
                 .flatMap { $0 }
                 .reduce(0) { total, data in total + data.money }
         }
+        var chartData: [(date: String, money: Int)] = []
+        let weeklyLabels = ["1주차", "2주차", "3주차", "4주차", "5주차"]
     }
     
     enum Action {
@@ -40,7 +42,8 @@ struct NormalRecordFeature {
         
         // Update State
         case updateTikkeulList(data: [String: [PresentiableTikkeulData]])
-        case updateDateRangeString(range: Range<Date>)
+        case updateDateRange(range: Range<Date>)
+        case updateChartData(range: Range<Date>)
     }
     
     @Dependency(\.fetchTikkeulUseCase) var fetchTikkeulUseCase
@@ -68,7 +71,10 @@ struct NormalRecordFeature {
                 if let cached = state.cachedData[key] {
                     state.currentDateUnit.tikkeuls = cached
                     if let range = getDateRange(currentDateUnit: state.currentDateUnit) {
-                        state.dateRangeString = formatDateRange(range: range, unit: state.currentDateUnit)
+                        return .merge(
+                            .send(.updateDateRange(range: range)),
+                            .send(.updateChartData(range: range))
+                        )
                     }
                     return .none
                 }
@@ -80,7 +86,10 @@ struct NormalRecordFeature {
                 if let cached = state.cachedData[key] {
                     state.currentDateUnit.tikkeuls = cached
                     if let range = getDateRange(currentDateUnit: state.currentDateUnit) {
-                        state.dateRangeString = formatDateRange(range: range, unit: state.currentDateUnit)
+                        return .merge(
+                            .send(.updateDateRange(range: range)),
+                            .send(.updateChartData(range: range))
+                        )
                     }
                     return .none
                 }
@@ -99,9 +108,9 @@ struct NormalRecordFeature {
                     
                     let groupedPresentiableData = convertToPresentiableData(from: groupedResponseData)
                     
-                    
-                    await send(.updateDateRangeString(range: range))
+                    await send(.updateDateRange(range: range))
                     await send(.updateTikkeulList(data: groupedPresentiableData))
+                    await send(.updateChartData(range: range))
                 }
                 
                 // Update State
@@ -111,7 +120,7 @@ struct NormalRecordFeature {
                 state.currentDateUnit.tikkeuls = data
                 return .none
                 
-            case let .updateDateRangeString(range):
+            case let .updateDateRange(range):
                 var result = ""
                 switch state.currentDateUnit {
                 case .weekly:
@@ -122,6 +131,23 @@ struct NormalRecordFeature {
                 }
                 
                 state.dateRangeString = result
+                return .none
+                
+            case let .updateChartData(range):
+                let calendar = Calendar.current
+                let allDates = stride(from: range.lowerBound, to: range.upperBound, by: 86400).map { $0 }
+                
+                let existingData = state.currentDateUnit.tikkeuls.mapValues { list in
+                    list.reduce(0) { $0 + $1.money }
+                }
+                
+                switch state.currentDateUnit {
+                case .monthly:
+                    updateMonthlyChartData(allDates: allDates, existingData: existingData, state: &state)
+                case .weekly:
+                    updateWeeklyChartData(allDates: allDates, existingData: existingData, state: &state)
+                }
+                
                 return .none
             }
         }
@@ -161,6 +187,36 @@ extension NormalRecordFeature {
             return "\(range.lowerBound.formattedString(dateFormat: .mm_dd)) ~ \(range.upperBound.formattedString(dateFormat: .mm_dd))"
         case .monthly:
             return range.lowerBound.formattedString(dateFormat: .m)
+        }
+    }
+    
+    private func updateMonthlyChartData(allDates: [Date], existingData: [String: Int], state: inout State) {
+        let calendar = Calendar.current
+        // 캘린더 기준 주 번호로 그룹화
+        let weeklyGrouped = Dictionary(grouping: allDates) { date in
+            calendar.component(.weekOfMonth, from: date)
+        }
+        
+        // 각 그룹별 금액 합산
+        let weeklyData = weeklyGrouped.map { (week, dates) -> (week: Int, money: Int) in
+            let money = dates.reduce(0) { total, date in
+                let dateStr = date.formattedString(dateFormat: .mm_dd)
+                return total + (existingData[dateStr] ?? 0)
+            }
+            return (week, money)
+        }
+        
+        // 주 번호 순으로 정렬 후, 미리 정의된 주차 레이블과 매핑 ("1주차", "2주차", …)
+        let sortedWeeklyData = weeklyData.sorted { $0.week < $1.week }
+        state.chartData = sortedWeeklyData.enumerated().map { (index, data) in
+            (date: state.weeklyLabels[index], money: data.money)
+        }
+    }
+
+    private func updateWeeklyChartData(allDates: [Date], existingData: [String: Int], state: inout State) {
+        state.chartData = allDates.map { date in
+            let dateStr = date.formattedString(dateFormat: .mm_dd)
+            return (dateStr, existingData[dateStr] ?? 0)
         }
     }
 }

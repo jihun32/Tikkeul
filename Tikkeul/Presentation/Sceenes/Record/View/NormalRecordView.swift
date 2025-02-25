@@ -5,6 +5,7 @@
 //  Created by 정지훈 on 2/20/25.
 //
 
+import Charts
 import SwiftUI
 
 import ComposableArchitecture
@@ -17,14 +18,27 @@ struct NormalRecordView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 dateSection
-                totalPrice
+                HStack {
+                    totalPrice
+                    
+                    Spacer()
+                    
+                    dateUnitPicker
+                }
                 
                 // chart
-                Rectangle()
-                    .frame(height: 200)
-                    .frame(maxWidth: .infinity)
-                
-                dateUnitPicker
+                Chart {
+                    ForEach(store.chartData, id: \.date) { data in
+                        BarMark(
+                            x: .value("Date", data.date),
+                            y: .value("Money", data.money)
+                        )
+                    
+                    }
+                }
+                .foregroundStyle(.primaryMain)
+                .frame(height: 200)
+                .padding()
                 
                 RecordTikkeulList(tikkeulDatas: store.currentDateUnit.tikkeuls)
                 
@@ -69,23 +83,13 @@ extension NormalRecordView {
     }
     
     private var dateUnitPicker: some View {
-        HStack {
-            ForEach(RecordDateUnit.allCases, id: \.self) { dateUnit in
-                Button {
-                    store.send(.dateUnitChanged(dateUnit: dateUnit))
-                } label: {
-                    Text(dateUnit.title)
-                        .foregroundStyle( dateUnit == store.currentDateUnit ? .black : .gray.opacity(0.6)
-                        )
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 16)
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(dateUnit == store.currentDateUnit ? .gray.opacity(0.6) : .clear,
-                            lineWidth: 2
-                        )
-                )
+        ForEach(RecordDateUnit.allCases, id: \.self) { dateUnit in
+            Button {
+                store.send(.dateUnitChanged(dateUnit: dateUnit))
+            } label: {
+                Text(dateUnit.title)
+                    .foregroundStyle( dateUnit == store.currentDateUnit ? .black : .gray.opacity(0.6)
+                    )
             }
         }
     }
