@@ -25,6 +25,9 @@ struct CategoryRecordFeature {
         
         case fetchTikkeuls
         
+        case previousButtonTapped
+        case nextButtonTapped
+        
         case updateCategoryData(data: [TikkeulData])
         case updateMonthString(monthRange: Range<Date>)
     }
@@ -65,6 +68,14 @@ struct CategoryRecordFeature {
             case let .updateMonthString(monthRange):
                 state.monthString = monthRange.lowerBound.formattedString(dateFormat: .m)
                 return .none
+                
+            case .previousButtonTapped:
+                state.rangeAgo -= 1
+                
+                return .send(.fetchTikkeuls)
+            case .nextButtonTapped:
+                state.rangeAgo += 1
+                return .send(.fetchTikkeuls)
             }
         }
     }

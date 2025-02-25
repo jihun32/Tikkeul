@@ -20,12 +20,12 @@ struct CategoryRecordView: View {
             VStack(spacing: 10) {
                 
                 DateRangeSection(
-                    text: "2월",
+                    text: store.monthString,
                     previousButtonTapped: {
-                        
+                        store.send(.previousButtonTapped)
                     },
                     nextButtonTapped: {
-                        
+                        store.send(.nextButtonTapped)
                     }
                 )
                 
