@@ -37,20 +37,24 @@ final class AddTikkeulUseCaseTest: XCTestCase {
     func test_addTikkeul함수호출시_새로운티끌을전달했을때_마지막에추가되는지확인() throws {
         // Given
         let newItem = TikkeulData(id: UUID(), money: 10000, category: "Snack", date: Date())
-        let initialItems = TikkeulData.dummyData
         let stubRepository = TikkeulRepository(persistenceController: .testValue)
         
-        // When
-        try sut.addTikkeul(item: newItem)
-        let date = Date()
-        guard let endOfDay = date.endOfDay else {
-            XCTFail("endOfDay 계산 실패")
+        let today = Date()
+        guard let endOfDay = today.endOfDay else {
+            XCTFail("날짜 계산 실패")
             return
         }
         
-        let resultItems = try stubRepository.fetchTikkeul(from: date.startOfDay, to: endOfDay)
+        let initialItemsToday = TikkeulData.dummyData.filter { item in
+            return item.date >= today.startOfDay && item.date <= endOfDay
+        }
+        
+        // When
+        try sut.addTikkeul(item: newItem)
+        
+        let resultItems = try stubRepository.fetchTikkeul(from: today.startOfDay, to: endOfDay)
         // Then
-        XCTAssertEqual(resultItems.count, initialItems.count + 1)
+        XCTAssertEqual(resultItems.count, initialItemsToday.count + 1)
         XCTAssertEqual(resultItems.last, newItem)
     }
 }
