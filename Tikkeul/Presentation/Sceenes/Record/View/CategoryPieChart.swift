@@ -13,11 +13,13 @@ struct CategoryPieChart: View {
     let categoryData: [CategoryRecordData]
     
     var body: some View {
+        
         Chart(categoryData, id: \.category) { item in
             SectorMark(
                 angle: .value("Value", item.value),
                 angularInset: 1.5
             )
+            .foregroundStyle(by: .value("Category", item.category.title))
         }
         .chartForegroundStyleScale([
             TikkeulCategory.snack.title: TikkeulCategory.snack.color,

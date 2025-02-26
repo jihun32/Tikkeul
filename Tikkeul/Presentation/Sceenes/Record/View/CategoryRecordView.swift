@@ -16,14 +16,8 @@ struct CategoryRecordView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
-                
                 dateRangeSection
-                
-                CategoryPieChart(
-                    categoryData: store.categoryData
-                )
-                
-                categoryDataList
+                categoryDataView
             }
             .padding(.horizontal, 20)
             .padding(.top, 20)
@@ -48,15 +42,40 @@ extension CategoryRecordView {
         )
     }
     
-    private var categoryDataList: some View {
-        VStack(spacing: 10) {
-            ForEach(store.categoryData, id: \.category) { data in
-                categoryDataRow(data: data)
+    @ViewBuilder
+    private var categoryDataView: some View {
+        if let categoryData = store.categoryData  {
+            if categoryData.isEmpty {
+                emptyDataView
+            } else {
+                CategoryPieChart(categoryData: categoryData)
+                
+                categoryDataList(for: categoryData)
             }
         }
     }
     
-    @ViewBuilder
+    private var emptyDataView: some View {
+        VStack {
+            Image(.noChartData)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 80)
+                .padding(.top, 100)
+            
+            Text("아직 모은 티끌이 없어요.")
+                .padding(.top, 10)
+        }
+    }
+    
+    private func categoryDataList(for data: [CategoryRecordData]) -> some View {
+        VStack(spacing: 10) {
+            ForEach(data, id: \.category) { item in
+                categoryDataRow(data: item)
+            }
+        }
+    }
+    
     private func categoryDataRow(data: CategoryRecordData) -> some View {
         HStack {
             Circle()

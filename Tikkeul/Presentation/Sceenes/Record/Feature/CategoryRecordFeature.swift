@@ -7,14 +7,13 @@
 
 import ComposableArchitecture
 import Foundation
-import SwiftUICore
 
 @Reducer
 struct CategoryRecordFeature {
     
     @ObservableState
     struct State {
-        var categoryData: [CategoryRecordData] = []
+        var categoryData: [CategoryRecordData]?
         var rangeAgo: Int = 0
         var monthString: String = ""
     }

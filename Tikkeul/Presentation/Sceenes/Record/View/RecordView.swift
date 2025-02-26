@@ -17,9 +17,11 @@ struct RecordView: View {
         VStack(spacing: 0) {
             
             Text("기록")
-                .font(.title3)
+                .font(.title2)
+                .fontWeight(.medium)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 20)
+                .padding(.top, 5)
             
             RecordTobTabBar(selectedTab: store.selectedTab) { tab in
                 store.send(.topTabBarChanged(selectedTab: tab))
