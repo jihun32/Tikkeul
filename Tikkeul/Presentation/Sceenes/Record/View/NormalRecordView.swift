@@ -5,76 +5,103 @@
 //  Created by 정지훈 on 2/20/25.
 //
 
+import Charts
 import SwiftUI
+
+import ComposableArchitecture
 
 struct NormalRecordView: View {
     
-    @State private var selectedDateUnit: RecordDateUnit = .weekly
-    @State private var tikkeulDatas: [String: [PresentiableTikkeulData]] = [:]
+    @Bindable var store: StoreOf<NormalRecordFeature>
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
                 dateSection
-                totalPrice
+                HStack {
+                    totalPrice
+                    
+                    Spacer()
+                    
+                    dateUnitPicker
+                }
                 
-                // chart
-                Rectangle()
-                    .frame(height: 200)
-                    .frame(maxWidth: .infinity)
+                barChart
+                    .padding(.top, 10)
                 
-                dateUnitPicker
-                
-                RecordTikkeulList(tikkeulDatas: tikkeulDatas)
+                RecordTikkeulList(tikkeulDatas: store.currentDateUnit.tikkeuls)
                 
             }
             .padding(.horizontal, 20)
+            .padding(.top, 20)
         }
         .background(Color.background)
+        .onAppear {
+            store.send(.onAppear)
+        }
     }
 }
 
 // MARK: - UI Components
 extension NormalRecordView {
     private var dateSection: some View {
-        HStack(spacing: 16) {
-            
-            Text("02.17 ~ 02.23")
-            
-            Spacer()
-            
-            Button {
-                
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundStyle(.black)
+        DateRangeSection(
+            text: store.dateRangeString,
+            previousButtonTapped: {
+                store.send(.previousDateButtonTapped)
+            },
+            nextButtonTapped: {
+                store.send(.nextDateButtonTapped)
             }
-            
-            Button {
-                
-            } label: {
-                Image(systemName: "chevron.right")
-                    .foregroundStyle(.black)
-            }
-        }
+        )
     }
     
     private var totalPrice: some View {
-        Text("100,000원")
+        Text("\(store.totalMoney)원")
             .font(.largeTitle)
     }
     
     private var dateUnitPicker: some View {
-        Picker("", selection: $selectedDateUnit) {
-            ForEach(RecordDateUnit.allCases, id: \.self) { dateUnit in
+        ForEach(RecordDateUnit.allCases, id: \.self) { dateUnit in
+            Button {
+                store.send(.dateUnitChanged(dateUnit: dateUnit))
+            } label: {
                 Text(dateUnit.title)
+                    .foregroundStyle( dateUnit == store.currentDateUnit ? .black : .gray.opacity(0.6)
+                    )
             }
         }
-        .pickerStyle(.segmented)
-        .frame(width: 160)
+    }
+    
+    private var barChart: some View {
+        Chart {
+            ForEach(store.chartData, id: \.date) { data in
+                BarMark(
+                    x: .value("Date", data.date),
+                    y: .value("Money", data.money)
+                )
+            
+            }
+        }
+        .foregroundStyle(.primaryMain)
+        .frame(height: 200)
     }
 }
 
 #Preview {
-    NormalRecordView()
+    NormalRecordView(
+        store: Store(
+            initialState: NormalRecordFeature.State(),
+            reducer: {
+                NormalRecordFeature()
+            }, withDependencies: {
+                
+                $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
+                    repository: TikkeulRepository(
+                        persistenceController: .testValue
+                    )
+                )
+            }
+        )
+    )
 }

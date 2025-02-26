@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PresentiableTikkeulData: Identifiable {
+struct PresentiableTikkeulData: Identifiable, Hashable, Equatable {
     let id: UUID
     let money: Int
     let category: TikkeulCategory

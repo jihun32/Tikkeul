@@ -11,12 +11,16 @@ import ComposableArchitecture
 
 struct HomeTikkeulView: View {
     
-    @Perception.Bindable var store: StoreOf<HomeFeature>
+    @Bindable var store: StoreOf<HomeFeature>
     
     var body: some View {
         NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
             ZStack {
                 VStack(alignment: .leading, spacing: 0) {
+                    
+                    topTitleText
+                        .padding(.top, 20)
+                    
                     todayTikkeulMoney
                     
                     Divider()
@@ -57,10 +61,15 @@ struct HomeTikkeulView: View {
 // MARK: - UI Components
 extension HomeTikkeulView {
     
-    private var todayTikkeulMoney: Text {
+    private var topTitleText: some View {
+        Text("오늘의 티끌")
+            .font(.system(size: 36, weight: .medium))
+    }
+    
+    private var todayTikkeulMoney: some View {
         Text("\(store.totalTikkeul)원")
             .font(.system(size: 60, weight: .regular))
-            .foregroundColor(Color.primaryMain)
+            .foregroundStyle(.primaryMain)
     }
     
     private var addTikkeulButton: some View {

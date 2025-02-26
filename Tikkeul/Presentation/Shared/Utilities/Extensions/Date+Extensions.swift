@@ -31,7 +31,7 @@ extension Date {
         guard let endOfTargetWeek = calendar.date(byAdding: .weekOfYear, value: 1, to: startOfTargetWeek) else {
             return nil
         }
-        return startOfTargetWeek..<endOfTargetWeek
+        return startOfTargetWeek..<endOfTargetWeek.addingTimeInterval(-86400)
     }
     
     /// 월 단위 날짜 범위를 반환합니다.

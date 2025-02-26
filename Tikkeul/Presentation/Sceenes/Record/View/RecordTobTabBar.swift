@@ -9,15 +9,16 @@ import SwiftUI
 
 struct RecordTobTabBar: View {
     
-    @Binding var selectedTab: RecordTab
+    var selectedTab: RecordTab
     @Namespace private var animationNamespace
+    var tabChanged: (RecordTab) -> Void
     
     var body: some View {
         HStack(spacing: 0) {
             ForEach(RecordTab.allCases, id: \.self) { tab in
                 Button {
                     withAnimation {
-                        selectedTab = tab
+                        tabChanged(tab)
                     }
                 } label: {
                     VStack(spacing: 5) {
@@ -41,5 +42,5 @@ struct RecordTobTabBar: View {
 }
 
 #Preview {
-    RecordTobTabBar(selectedTab: .constant(.normal))
+    RecordTobTabBar(selectedTab: .normal, tabChanged: { _ in })
 }
