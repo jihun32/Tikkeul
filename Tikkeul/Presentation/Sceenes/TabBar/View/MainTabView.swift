@@ -12,7 +12,6 @@ import ComposableArchitecture
 enum TabDestination {
     case home
     case record
-    case settings
 }
 
 struct MainTabView: View {
@@ -43,12 +42,6 @@ struct MainTabView: View {
                     .tag(TabDestination.record)
                     .tabItem {
                         Label("기록", systemImage: "chart.bar.xaxis.ascending")
-                    }
-                
-                Text("settings")
-                    .tag(TabDestination.settings)
-                    .tabItem {
-                        Label("설정", systemImage: "gearshape")
                     }
             }
             .tint(.black)
