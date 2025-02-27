@@ -11,7 +11,7 @@ import SwiftUI
 struct CategoryPieChart: View {
     
     let categoryData: [CategoryRecordData]
-     
+    
     var body: some View {
         
         Chart(categoryData, id: \.category) { item in
