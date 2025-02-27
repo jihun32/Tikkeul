@@ -15,6 +15,7 @@ struct RecordView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            
             Text("기록")
                 .font(.title2)
                 .fontWeight(.medium)
