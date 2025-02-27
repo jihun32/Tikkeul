@@ -25,7 +25,7 @@ struct CategoryPieChart: View {
             TikkeulCategory.snack.title: TikkeulCategory.snack.color,
             TikkeulCategory.coffee.title: TikkeulCategory.coffee.color,
             TikkeulCategory.drink.title: TikkeulCategory.drink.color,
-            TikkeulCategory.delivery.title: TikkeulCategory.delivery.color,
+            TikkeulCategory.food.title: TikkeulCategory.food.color,
             TikkeulCategory.shopping.title: TikkeulCategory.shopping.color,
             TikkeulCategory.entertainment.title: TikkeulCategory.entertainment.color,
             TikkeulCategory.hobby.title: TikkeulCategory.hobby.color,
