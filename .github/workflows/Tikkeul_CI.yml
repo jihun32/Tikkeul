@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - dev
-  # dev/main 브랜치에 대한 PR이 열리거나 업데이트될 때도 CI 동작
   pull_request:
     branches:
       - dev
@@ -25,9 +24,11 @@ jobs:
         with:
           ruby-version: '3.4.0'
 
-      - name: Install fastlane via Homebrew
+      - name: Install Dependencies
+        run: bundle install
+
+      - name: Install fastlane
         run: brew install fastlane
 
       - name: Fastlane Test
-        run: |
-          bundle exec fastlane test
+        run: bundle exec fastlane test
