@@ -12,7 +12,7 @@ enum TikkeulCategory: String, CaseIterable {
     case snack
     case coffee
     case drink
-    case delivery
+    case food
     case shopping
     case entertainment
     case hobby
@@ -29,8 +29,8 @@ extension TikkeulCategory {
             return "커피"
         case .drink:
             return "술/유흥"
-        case .delivery:
-            return "배달 음식"
+        case .food:
+            return "식비"
         case .shopping:
             return "쇼핑"
         case .entertainment:
@@ -52,8 +52,8 @@ extension TikkeulCategory {
             return "☕️"
         case .drink:
             return "🍻"
-        case .delivery:
-            return "🛵"
+        case .food:
+            return "🍚"
         case .shopping:
             return "🛍️"
         case .entertainment:
@@ -75,7 +75,7 @@ extension TikkeulCategory {
             return Color(red: 121/255, green: 85/255, blue: 72/255)
         case .drink:
             return Color(red: 244/255, green: 67/255, blue: 54/255)
-        case .delivery:
+        case .food:
             return Color(red: 0/255, green: 150/255, blue: 136/255)
         case .shopping:
             return Color(red: 33/255, green: 150/255, blue: 243/255)
