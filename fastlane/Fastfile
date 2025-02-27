@@ -29,7 +29,6 @@ platform :ios do
     build_app(scheme: "Tikkeul")
     upload_to_testflight(
        api_key: api_key
-      )
     )
  end
   desc "Push a new release build to the App Store"
