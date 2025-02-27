@@ -27,8 +27,11 @@ jobs:
       - name: Install Dependencies
         run: bundle install
 
-      - name: Install fastlane
-        run: brew install fastlane
+      - name: Install FastLane   
+        uses: ruby/setup-ruby@v1  
+        with:  
+          ruby-version: '3.4.0'  
+      - run: brew install fastlane
 
       - name: Fastlane Test
         env: 
