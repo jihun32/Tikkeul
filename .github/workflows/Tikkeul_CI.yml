@@ -1,44 +1,14 @@
 # This workflow will build a Swift project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
 
-name: iOS CI
-
+name: build-ios-app
 on:
   push:
     branches:
-      - dev
-  pull_request:
-    branches:
-      - dev
-      - main
-
+      - 'master'
 jobs:
-  build-and-test:
+  build:
     runs-on: macos-latest
-        
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.4.0'
-
-      - name: Select Xcode 
-        run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
-
-      - name: Debug Xcode Version
-        run: xcodebuild -version
-
-      - name: Install FastLane   
-        uses: ruby/setup-ruby@v1  
-        with:  
-          ruby-version: '3.4.0'  
-      - run: brew install fastlane
-
-      - name: Fastlane Test
-        run: fastlane test
-        env:
-          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
-          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
-          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
+      - uses: actions/checkout@v2
+      - run: fastlane test
