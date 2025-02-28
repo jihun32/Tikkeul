@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - dev
-  # dev/main 브랜치에 대한 PR이 열리거나 업데이트될 때도 CI 동작
   pull_request:
     branches:
       - dev
@@ -23,11 +22,17 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.4.1'
+          ruby-version: '3.4.0'
 
-      - name: Install fastlane via Homebrew
-        run: brew install fastlane
+      - name: Install FastLane   
+        uses: ruby/setup-ruby@v1  
+        with:  
+          ruby-version: '3.4.0'  
+      - run: brew install fastlane
 
       - name: Fastlane Test
-        run: |
-          bundle exec fastlane test
+        run: fastlane test
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
