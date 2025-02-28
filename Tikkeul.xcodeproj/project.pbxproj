@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CA5688762D71955E0033BC56 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA5688752D71955E0033BC56 /* ComposableArchitecture */; };
 		CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA793BE52D50C9FD0028E7E2 /* .gitignore */; };
 		CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA793C022D50CC270028E7E2 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
@@ -95,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA5688762D71955E0033BC56 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +175,6 @@
 			);
 			name = TikkeulTests;
 			packageProductDependencies = (
-				CA5688752D71955E0033BC56 /* ComposableArchitecture */,
 			);
 			productName = TikkeulTests;
 			productReference = CA793BC82D50C4FA0028E7E2 /* TikkeulTests.xctest */;
@@ -236,7 +233,6 @@
 			mainGroup = CA793BAA2D50C4F70028E7E2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CA793C2D2D50CD6F0028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CA793BB42D50C4F70028E7E2 /* Products */;
@@ -609,23 +605,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		CA793C2D2D50CD6F0028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.17.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		CA5688752D71955E0033BC56 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CA793C2D2D50CD6F0028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
 		CA793C022D50CC270028E7E2 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ComposableArchitecture;
