@@ -52,7 +52,7 @@ platform :ios do
  lane :test do
   scan(
     scheme: "Tikkeul",
-    destination: "platform=iOS Simulator,name=iPhone 15 Pro,OS=18.1"
+    destination: ["platform=iOS Simulator,OS=18.1,name=iPhone 15 Pro"]
   )
  end
 end
