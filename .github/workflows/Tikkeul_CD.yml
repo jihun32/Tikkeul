@@ -25,13 +25,13 @@ jobs:
       - name: Debug Xcode Version
         run: xcodebuild -version
 
+      - name: Install Dependencies
+        run: |
+          gem install bundler
+          bundle install
+
       - name: Install Fastlane via gem
         run: gem install fastlane
 
-      - name: Clean Derived Data
-        run: rm -rf ~/Library/Developer/Xcode/DerivedData
-
-      - name: Run Fastlane Test (Debug configuration)
-        env:
-          FASTLANE_BUILD_CONFIGURATION: Debug
+      - name: Run Fastlane Test
         run: fastlane test
