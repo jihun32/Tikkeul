@@ -25,6 +25,9 @@ jobs:
       - name: Debug Xcode Version
         run: xcodebuild -version
 
+      - name: Clean Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData
+
       - name: Resolve Swift Package Dependencies
         run: xcodebuild -resolvePackageDependencies -project ./Tikkeul.xcodeproj
 
