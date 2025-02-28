@@ -50,6 +50,9 @@ platform :ios do
 
   # 테스트
  lane :test do
-  run_tests(scheme: "Tikkeul")
+  run_tests(
+    scheme: "Tikkeul",
+    xcargs: "-skipMacroValidation"
+  )
  end
 end
