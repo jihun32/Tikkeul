@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA4819FF2D719F670006D2D5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA4819FE2D719F670006D2D5 /* ComposableArchitecture */; };
 		CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA793BE52D50C9FD0028E7E2 /* .gitignore */; };
-		CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA793C022D50CC270028E7E2 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */,
+				CA4819FF2D719F670006D2D5 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +155,7 @@
 			name = Tikkeul;
 			packageProductDependencies = (
 				CA793C022D50CC270028E7E2 /* ComposableArchitecture */,
+				CA4819FE2D719F670006D2D5 /* ComposableArchitecture */,
 			);
 			productName = Tikkeul;
 			productReference = CA793BB32D50C4F70028E7E2 /* Tikkeul.app */;
@@ -233,6 +234,7 @@
 			mainGroup = CA793BAA2D50C4F70028E7E2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				CA4819FD2D719F670006D2D5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CA793BB42D50C4F70028E7E2 /* Products */;
@@ -605,7 +607,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		CA4819FD2D719F670006D2D5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.17.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		CA4819FE2D719F670006D2D5 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA4819FD2D719F670006D2D5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		CA793C022D50CC270028E7E2 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ComposableArchitecture;
