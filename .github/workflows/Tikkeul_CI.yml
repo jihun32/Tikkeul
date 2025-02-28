@@ -24,9 +24,6 @@ jobs:
         with:
           ruby-version: '3.4.0'
 
-      - name: Install Dependencies
-        run: bundle install
-
       - name: Install FastLane   
         uses: ruby/setup-ruby@v1  
         with:  
@@ -34,6 +31,8 @@ jobs:
       - run: brew install fastlane
 
       - name: Fastlane Test
-        env: 
-          FASTLANE_SKIP_UPDATE_CHECK: true
-        run: bundle exec fastlane test
+        run: fastlane test
+        env:
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_CONTENT: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT }}
