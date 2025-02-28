@@ -49,7 +49,10 @@ platform :ios do
   end
 
   # 테스트
-  lane :test do
-   scan(scheme: "Tikkeul")
-  end
+ lane :test do
+  scan(
+    scheme: "Tikkeul",
+    destination: "platform=iOS Simulator,name=iPhone 15 Pro,OS=18.1"
+  )
+ end
 end
