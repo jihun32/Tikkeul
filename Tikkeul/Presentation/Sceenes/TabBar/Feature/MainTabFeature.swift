@@ -17,26 +17,21 @@ struct MainTabFeature {
         var selectedTab: TabDestination = .home
         var homeState: HomeFeature.State = .init()
         var recordState: RecordFeature.State = .init()
-//        var settingsState: SettingsFeature.State = .init()
     }
     
     enum Action {
         case selectedTabChanged(TabDestination)
         case homeAction(HomeFeature.Action)
         case recordAction(RecordFeature.Action)
-//        case settingsAction(SettingsFeature.Action)
     }
     
     var body: some ReducerOf<Self> {
         Scope(state: \.homeState, action: \.homeAction) {
             HomeFeature()
         }
-        Scope(state: \.recordState, action: /Action.recordAction) {
+        Scope(state: \.recordState, action: \.recordAction) {
             RecordFeature()
         }
-//        Scope(state: \.settings, action: /Action.settings) {
-//            SettingsFeature()
-//        }
         
         Reduce { state, action in
             switch action {
