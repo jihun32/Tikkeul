@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct HomeTikkeulList: View {
-    var tikkeulList: [HomeTikkeulData]
+    var tikkeulList: [PresentiableTikkeulData]
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack(spacing: 0) {
+            VStack(spacing: 10) {
                 historyText
                     .padding(.top, 20)
                 
                 ForEach(tikkeulList) { tikkeul in
-                    HomeTikkeulRow(tikkeul: tikkeul)
+                    NavigationLink(
+                        state: SaveTikkeulFeature.State(
+                            tikkeulData: tikkeul
+                        )) {
+                        HomeTikkeulRow(tikkeul: tikkeul)
+                    }
                 }
             }
+                .padding(.bottom, 60)
         }
     }
 }
@@ -35,5 +41,5 @@ extension HomeTikkeulList {
 }
 
 #Preview {
-    HomeTikkeulList(tikkeulList: HomeTikkeulData.data)
+    HomeTikkeulList(tikkeulList: [PresentiableTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM")])
 }

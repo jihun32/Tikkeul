@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA4819FF2D719F670006D2D5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA4819FE2D719F670006D2D5 /* ComposableArchitecture */; };
 		CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA793BE52D50C9FD0028E7E2 /* .gitignore */; };
-		CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA793C022D50CC270028E7E2 /* ComposableArchitecture */; };
+		CAD664B22D745E4A00335D48 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA793C022D50CC270028E7E2 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +37,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CA3638892D54AF1F0052D972 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
+		CA5CE4222D59E1AE000C73D3 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/FetchTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/UpdateTikkeulUseCaseTest.swift,
 			);
 			target = CA793BC72D50C4FA0028E7E2 /* TikkeulTests */;
@@ -50,6 +52,7 @@
 			membershipExceptions = (
 				Test/TikkeulTests/Feature/Tikkeul/Test/AddTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/DeleteTikkeulUseCaseTest.swift,
+				Test/TikkeulTests/Feature/Tikkeul/Test/FetchTikkeulUseCaseTest.swift,
 				Test/TikkeulTests/Feature/Tikkeul/Test/UpdateTikkeulUseCaseTest.swift,
 				Test/TikkeulUITests/TikkeulUITests.swift,
 				Test/TikkeulUITests/TikkeulUITestsLaunchTests.swift,
@@ -71,7 +74,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CA793BF52D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "Tikkeul" target */,
-				CA3638892D54AF1F0052D972 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
+				CA5CE4222D59E1AE000C73D3 /* Exceptions for "Tikkeul" folder in "TikkeulTests" target */,
 				CA793BF72D50CB270028E7E2 /* Exceptions for "Tikkeul" folder in "TikkeulUITests" target */,
 			);
 			path = Tikkeul;
@@ -84,7 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA793C032D50CC270028E7E2 /* ComposableArchitecture in Frameworks */,
+				CAD664B22D745E4A00335D48 /* ComposableArchitecture in Frameworks */,
+				CA4819FF2D719F670006D2D5 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,11 +109,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA5688742D71955E0033BC56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CA793BAA2D50C4F70028E7E2 = {
 			isa = PBXGroup;
 			children = (
 				CA793BE52D50C9FD0028E7E2 /* .gitignore */,
 				CA793BB52D50C4F70028E7E2 /* Tikkeul */,
+				CA5688742D71955E0033BC56 /* Frameworks */,
 				CA793BB42D50C4F70028E7E2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +157,7 @@
 			name = Tikkeul;
 			packageProductDependencies = (
 				CA793C022D50CC270028E7E2 /* ComposableArchitecture */,
+				CA4819FE2D719F670006D2D5 /* ComposableArchitecture */,
 			);
 			productName = Tikkeul;
 			productReference = CA793BB32D50C4F70028E7E2 /* Tikkeul.app */;
@@ -205,7 +218,6 @@
 					};
 					CA793BC72D50C4FA0028E7E2 = {
 						CreatedOnToolsVersion = 16.2;
-						LastSwiftMigration = 1620;
 						TestTargetID = CA793BB22D50C4F70028E7E2;
 					};
 					CA793BD12D50C4FB0028E7E2 = {
@@ -224,7 +236,7 @@
 			mainGroup = CA793BAA2D50C4F70028E7E2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CA793C2D2D50CD6F0028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				CA4819FD2D719F670006D2D5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CA793BB42D50C4F70028E7E2 /* Products */;
@@ -353,7 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -410,7 +422,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -425,26 +437,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Tikkeul/Preview Content\"";
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -456,26 +470,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Tikkeul/Preview Content\"";
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -486,17 +502,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tikkeul.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Tikkeul";
@@ -507,12 +522,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.TikkeulTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -527,7 +542,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -544,7 +559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -599,7 +614,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CA793C2D2D50CD6F0028E7E2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		CA4819FD2D719F670006D2D5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
@@ -610,6 +625,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA4819FE2D719F670006D2D5 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA4819FD2D719F670006D2D5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		CA793C022D50CC270028E7E2 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ComposableArchitecture;

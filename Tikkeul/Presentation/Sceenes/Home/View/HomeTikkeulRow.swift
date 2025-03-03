@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeTikkeulRow: View {
-    let tikkeul: HomeTikkeulData
+    let tikkeul: PresentiableTikkeulData
     
     var body: some View {
         HStack(spacing: 16) {
@@ -43,19 +43,29 @@ extension HomeTikkeulRow {
         VStack(alignment: .leading, spacing: 4) {
             Text(tikkeul.category.title)
                 .font(.system(size: 20))
+                .foregroundStyle(.black)
+            
+            if let memo = tikkeul.memo {
+                Text(memo)
+                    .font(.caption)
+                    .foregroundStyle(.gray)
+            }
+        }
+    }
+    
+    private var priceText: some View {
+        VStack(alignment: .trailing) {
+            Text("\(tikkeul.money) 원")
+            .foregroundStyle(.black)
+                .font(.system(size: 20))
             
             Text(tikkeul.time)
                 .font(.caption)
                 .foregroundStyle(.gray)
         }
     }
-    
-    private var priceText: some View {
-        Text("\(tikkeul.money) 원")
-            .font(.system(size: 20))
-    }
 }
 
 #Preview {
-    HomeTikkeulRow(tikkeul: HomeTikkeulData.data[0])
+    HomeTikkeulRow(tikkeul: PresentiableTikkeulData(id: UUID(), money: 1000, category: .beauty, time: "01:00 PM"))
 }

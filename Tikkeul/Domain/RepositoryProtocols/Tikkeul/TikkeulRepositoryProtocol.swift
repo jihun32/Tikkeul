@@ -5,11 +5,24 @@
 //  Created by 정지훈 on 2/6/25.
 //
 
-import Foundation
+import CoreData
 
 protocol TikkeulRepositoryProtocol {
-    func addTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData]
-    func deleteTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData]?
-    func updateTikkeul(item: TikkeulData, items: [TikkeulData]) -> [TikkeulData]?
-    func fetchTikkeul() -> [TikkeulData]
+    func addTikkeul(item: TikkeulData) throws
+    func deleteTikkeul(id: UUID) throws
+    func updateTikkeul(item: TikkeulData) throws
+    func fetchTikkeul(from startDate: Date, to endDate: Date) throws -> [TikkeulData] 
+}
+
+extension TikkeulRepositoryProtocol {
+    func toContextItem(item: TikkeulData, context: NSManagedObjectContext) -> Tikkeul {
+        let newItem = Tikkeul(context: context)
+        newItem.id = item.id
+        newItem.money = Int32(item.money)
+        newItem.category = item.category
+        newItem.memo = item.memo
+        newItem.date = item.date
+        
+        return newItem
+    }
 }

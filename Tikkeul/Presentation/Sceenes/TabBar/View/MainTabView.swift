@@ -7,36 +7,50 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
+enum TabDestination {
+    case home
+    case record
+}
+
 struct MainTabView: View {
+    
+    @Bindable var store: StoreOf<MainTabFeature>
+    
     var body: some View {
-        TabView {
-            ForEach(TabDestination.allCases, id: \.title) { destination in
-                tabView(destination)
+        NavigationStack {
+            TabView(selection: $store.selectedTab.sending(\.selectedTabChanged)) {
+                
+                HomeTikkeulView(
+                    store: store.scope(
+                        state: \.homeState,
+                        action: \.homeAction
+                    )
+                )
+                    .tag(TabDestination.home)
                     .tabItem {
-                        Label(
-                            destination.title,
-                            systemImage: destination.systemImageName
-                        )
+                        Label("홈", systemImage: "house")
+                    }
+                
+                RecordView(
+                    store: store.scope(
+                        state: \.recordState,
+                        action: \.recordAction
+                    )
+                )
+                    .tag(TabDestination.record)
+                    .tabItem {
+                        Label("기록", systemImage: "chart.bar.xaxis.ascending")
                     }
             }
-        }
-        .tint(.black)
-    }
-    
-    // TODO: - 탭 별 뷰 만들기
-    @ViewBuilder
-    private func tabView(_ destination: TabDestination) -> some View {
-        switch destination {
-        case .home:
-            HomeRootView()
-        case .record:
-            Text("record")
-        case .settings:
-            Text("settings")
+            .tint(.black)
         }
     }
 }
 
 #Preview {
-    MainTabView()
+    MainTabView(store: Store(initialState: MainTabFeature.State(), reducer: {
+        MainTabFeature()
+    }))
 }

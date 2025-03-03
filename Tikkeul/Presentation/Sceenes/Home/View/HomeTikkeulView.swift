@@ -7,39 +7,52 @@
 
 import SwiftUI
 
+import ComposableArchitecture
+
 struct HomeTikkeulView: View {
-    let tikkeulList: [HomeTikkeulData]
+    
+    @Bindable var store: StoreOf<HomeFeature>
+    
     var body: some View {
-        
-        ZStack {
-            VStack(alignment: .leading, spacing: 0) {
-                todayTikkeulMoney
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
+            ZStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    
+                    topTitleText
+                        .padding(.top, 20)
+                    
+                    todayTikkeulMoney
+                    
+                    Divider()
+                        .padding(.top, 5)
+                    
+                    Spacer()
+                    
+                    if !store.isEmptyTikkeulList {
+                        HomeTikkeulList(tikkeulList: store.tikkeulList)
+                    }
+                }
                 
-                Divider()
-                    .padding(.top, 5)
+                if store.isEmptyTikkeulList {
+                    homeTikkeulEmptyView
+                }
                 
-                Spacer()
-                
-                if !tikkeulList.isEmpty {
-                    HomeTikkeulList(tikkeulList: tikkeulList)
+                VStack {
+                    Spacer()
+                    
+                    addTikkeulButton
+                        .padding(.bottom, 10)
                 }
             }
-            
-            if tikkeulList.isEmpty {
-                homeTikkeulEmptyView
+            .padding(.horizontal, 20)
+            .background(Color.background)
+            .onAppear {
+                store.send(.onAppear)
             }
-            
-            VStack {
-                Spacer()
-                
-                addTikkeulButton
-                    .padding(.bottom, 10)
-            }
+        } destination: { store in
+            SaveTikkeulView(store: store)
+                .toolbar(.hidden, for: .tabBar)
         }
-        .padding(.horizontal, 20)
-        .background(Color.background)
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.large)
     }
 }
 
@@ -48,19 +61,20 @@ struct HomeTikkeulView: View {
 // MARK: - UI Components
 extension HomeTikkeulView {
     
-    private var navigationTitle: Text {
+    private var topTitleText: some View {
         Text("오늘의 티끌")
+            .font(.system(size: 36, weight: .medium))
     }
     
-    private var todayTikkeulMoney: Text {
-        Text("18,000원")
+    private var todayTikkeulMoney: some View {
+        Text("\(store.totalTikkeul)원")
             .font(.system(size: 60, weight: .regular))
-            .foregroundColor(Color.primaryMain)
+            .foregroundStyle(.primaryMain)
     }
     
     private var addTikkeulButton: some View {
         Button {
-            
+            store.send(.addTikkeulButtonTapped)
         } label: {
             Label("티끌 모으기", systemImage: "plus")
                 .font(.headline)
@@ -93,5 +107,35 @@ extension HomeTikkeulView {
 
 
 #Preview {
-    HomeTikkeulView(tikkeulList: HomeTikkeulData.data)
+    withDependencies {
+        $0.fetchTikkeulUseCase = FetchTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        $0.addTikkeulUseCase = AddTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        
+        $0.updateTikkeulUseCase = UpdateTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+        
+        $0.deleteTikkeulUseCase = DeleteTikkeulUseCase(
+            repository: TikkeulRepository(
+                persistenceController: .testValue
+            )
+        )
+    } operation: {
+        HomeTikkeulView(
+            store: Store(
+                initialState: HomeFeature.State(),
+                reducer: { HomeFeature() }
+            )
+        )
+    }
 }
