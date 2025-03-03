@@ -98,4 +98,11 @@ iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+#fastlane
+5W97T262N6.cer
+5W97T262N6.certSigningRequest
+5W97T262N6.p12
+AppStore_com.jihun.Tikkeul.mobileprovision
+
+
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swift
