@@ -134,7 +134,6 @@ struct NormalRecordFeature {
                 return .none
                 
             case let .updateChartData(range):
-                let calendar = Calendar.current
                 let allDates = stride(from: range.lowerBound, to: range.upperBound, by: 86400).map { $0 }
                 
                 let existingData = state.currentDateUnit.tikkeuls.mapValues { list in
