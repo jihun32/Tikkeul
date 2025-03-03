@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA4819FF2D719F670006D2D5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA4819FE2D719F670006D2D5 /* ComposableArchitecture */; };
 		CA793BE62D50C9FE0028E7E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA793BE52D50C9FD0028E7E2 /* .gitignore */; };
+		CAD664B22D745E4A00335D48 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = CA793C022D50CC270028E7E2 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAD664B22D745E4A00335D48 /* ComposableArchitecture in Frameworks */,
 				CA4819FF2D719F670006D2D5 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,8 +437,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Tikkeul/Preview Content\"";
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				ENABLE_PREVIEWS = YES;
@@ -455,6 +459,7 @@
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -466,8 +471,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_ASSET_PATHS = "\"Tikkeul/Preview Content\"";
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				ENABLE_PREVIEWS = YES;
@@ -486,6 +493,7 @@
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -498,7 +506,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -518,7 +526,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = NO;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -536,7 +544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
@@ -553,7 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = WBG9V97XP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
