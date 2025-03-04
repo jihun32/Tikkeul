@@ -33,6 +33,11 @@ platform :ios do
     get_certificates
     get_provisioning_profile 
     build_app(scheme: "Tikkeul")
-    upload_to_app_store
+    upload_to_app_store(
+      skip_screenshots: true,
+      skip_metadata: true,
+      submit_for_review: false,
+      automatic_release: false
+    )
   end
 end
