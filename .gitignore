@@ -103,6 +103,7 @@ iOSInjectionProject/
 5W97T262N6.certSigningRequest
 5W97T262N6.p12
 AppStore_com.jihun.Tikkeul.mobileprovision
-
+Tikkeul.app.dSYM.zip
+Tikkeul.ipa
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swift
