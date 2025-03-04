@@ -456,7 +456,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -493,7 +493,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				ON_DEMAND_RESOURCES_PREFETCH_ORDER = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jihun.Tikkeul;
 				PRODUCT_NAME = "$(TARGET_NAME)";
