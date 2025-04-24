@@ -20,11 +20,11 @@ struct BottomButton: View {
         } label: {
             Text(title)
                 .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .background(backgroundColor)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 60)
-        .background(backgroundColor)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding(.bottom, 10)
     }
 }
